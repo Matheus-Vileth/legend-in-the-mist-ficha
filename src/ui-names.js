@@ -6,6 +6,6 @@ export const UI_USED = [
   'botao-marrom-vazio', 'botao-verde-vazio', 'botao-vinho-vazio', 'cartao', 'divisor-a', 'divisor-b',
   'espada-flores', 'faixa-clara', 'fita-louros-a', 'flores-azuis', 'flores-grandes',
   'ic-baixar', 'ic-disquete', 'ic-estrela', 'ic-livro', 'ic-mais', 'ic-pessoa',
-  'icone-coroa', 'icone-estrela', 'icone-livro', 'logo', 'losango', 'medalhao', 'moldura-paisagem',
+  'icone-coroa', 'icone-estrela', 'icone-livro', 'logo', 'losango', 'losango-vazio', 'medalhao', 'moldura-paisagem',
   'ornamento-coroa', 'ornamento-estrela', 'ornamento-folha-a', 'passaro', 'pergaminho-continuo', 'placa-verde',
 ];

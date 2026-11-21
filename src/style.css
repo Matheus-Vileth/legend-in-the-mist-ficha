@@ -57,7 +57,7 @@ body.home-on .app { display: none; }
 .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px; }
 .step { width: 100%; min-width: 0; display: flex; align-items: center; justify-content: center; gap: 10px; text-align: center; min-height: 44px; padding: 6px 4px; font: 600 15px var(--body); color: #7d6643; background: none; border: 0; cursor: pointer; border-radius: 6px; }
 .step:hover { background: #ffffff40; }
-.step .n { width: 24px; height: 24px; flex: none; display: grid; place-items: center; background: var(--img-losango) center/contain no-repeat; font: 700 11px var(--display); color: #f2e6c8; text-shadow: 0 1px 0 #0008; filter: grayscale(.9) brightness(1.25) opacity(.7); }
+.step .n { width: 24px; height: 24px; flex: none; display: grid; place-items: center; background: var(--img-losango-vazio) center/contain no-repeat; font: 700 11px var(--display); color: #f2e6c8; text-shadow: 0 1px 0 #0008; filter: grayscale(.9) brightness(1.25) opacity(.7); }
 .step.done { color: var(--ink-soft); }
 .step.done .n { filter: none; font-size: 0; }
 .step.done .n::after { content: "\2713"; font-size: 12px; }
