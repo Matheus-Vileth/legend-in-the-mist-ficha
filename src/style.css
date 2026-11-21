@@ -54,8 +54,8 @@ body.home-on .app { display: none; }
 .side > * { position: relative; z-index: 1; }
 .side .logo { display: block; width: 100%; margin: -8px 0 6px; }
 .side .rule { display: block; width: 100%; margin: 0 0 12px; opacity: .9; }
-.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
-.step { width: 100%; display: flex; align-items: center; gap: 10px; text-align: left; min-height: 44px; padding: 6px 12px; font: 600 15px var(--body); color: #7d6643; background: none; border: 0; cursor: pointer; border-radius: 6px; }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px; }
+.step { width: 100%; min-width: 0; display: flex; align-items: center; justify-content: center; gap: 10px; text-align: center; min-height: 44px; padding: 6px 4px; font: 600 15px var(--body); color: #7d6643; background: none; border: 0; cursor: pointer; border-radius: 6px; }
 .step:hover { background: #ffffff40; }
 .step .n { width: 24px; height: 24px; flex: none; display: grid; place-items: center; background: var(--img-losango) center/contain no-repeat; font: 700 11px var(--display); color: #f2e6c8; text-shadow: 0 1px 0 #0008; filter: grayscale(.9) brightness(1.25) opacity(.7); }
 .step.done { color: var(--ink-soft); }
