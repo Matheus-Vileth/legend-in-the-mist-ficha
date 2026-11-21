@@ -1,4 +1,7 @@
 // Estado da ficha: values[nomeDoCampoNoPDF] = string | true. Funções puras; storage é injetado.
+import { SLIDES } from './fieldmap.js';
+import { TOTAL_SLIDES } from './carousel.js';
+
 export const VERSION = 1;
 const KEY = 'lim-ficha-v1';
 
@@ -33,11 +36,14 @@ function validate(data) {
   for (const v of Object.values(vals)) {
     if (typeof v !== 'string' && v !== true) return 'Arquivo inválido: valor de campo inesperado.';
   }
+  if ('savedAt' in data && !Number.isFinite(data.savedAt)) return 'Arquivo inválido: data de salvamento inesperada.';
   return null;
 }
 
 export function exportJson(state) {
-  return JSON.stringify({ v: state.v, slide: state.slide, values: state.values }, null, 2);
+  const out = { v: state.v, slide: state.slide, values: state.values };
+  if (Number.isFinite(state.savedAt)) out.savedAt = state.savedAt;
+  return JSON.stringify(out, null, 2);
 }
 
 export function importJson(text) {
@@ -49,7 +55,9 @@ export function importJson(text) {
   }
   const error = validate(data);
   if (error) return { ok: false, error };
-  return { ok: true, state: { v: VERSION, slide: data.slide, values: { ...data.values } } };
+  const state = { v: VERSION, slide: data.slide, values: { ...data.values } };
+  if ('savedAt' in data) state.savedAt = data.savedAt;
+  return { ok: true, state };
 }
 
 export function loadState(storage) {
@@ -63,12 +71,49 @@ export function loadState(storage) {
   }
 }
 
-export function saveState(storage, state) {
+export function saveState(storage, state, now = Date.now()) {
   try {
     if (!storage) return false;
-    storage.setItem(KEY, exportJson(state));
+    storage.setItem(KEY, exportJson({ ...state, savedAt: now }));
     return true;
   } catch {
     return false;
   }
+}
+
+export function clearState(storage) {
+  try {
+    if (!storage) return false;
+    storage.removeItem(KEY);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+export const hasSaved = (state) => Object.keys(state.values).length > 0;
+
+export function savedAgo(savedAt, now) {
+  if (!Number.isFinite(savedAt)) return '';
+  const diff = now - savedAt;
+  if (diff < 60_000) return 'agora há pouco';
+  const min = Math.floor(diff / 60_000);
+  if (min < 60) return `há ${min} min`;
+  const h = Math.floor(diff / 3_600_000);
+  if (h < 24) return `há ${h} h`;
+  const d = Math.floor(diff / 86_400_000);
+  return d === 1 ? 'há 1 dia' : `há ${d} dias`;
+}
+
+const TITLE_FIELDS = SLIDES.filter((s) => s.section === 'temas').map(
+  (s) => s.groups.flatMap((g) => g.fields).find((f) => f.role === 'power0').name,
+);
+
+export function homeSummary(state) {
+  return {
+    name: state.values['Character Name'] ?? '',
+    themes: TITLE_FIELDS.map((n) => state.values[n]).filter(Boolean),
+    step: state.slide + 1,
+    total: TOTAL_SLIDES,
+  };
 }
