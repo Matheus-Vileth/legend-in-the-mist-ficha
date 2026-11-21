@@ -11,6 +11,7 @@ import { h, img } from './ui.js';
 import { renderStep } from './steps.js';
 import { renderReview } from './review.js';
 import { renderHome } from './home.js';
+import { confirmDialog } from './dialog.js';
 
 const storage = (() => {
   try { return window.localStorage; } catch { return null; }
@@ -130,8 +131,16 @@ async function onOpenFileInHome(file) {
 }
 
 // ---------- tela inicial ----------
-const CONFIRM_NEW = 'Começar um novo herói apaga o personagem salvo neste navegador. Baixe o save (.json) antes se quiser guardá-lo. Continuar?';
-const CONFIRM_DELETE = 'Apagar este personagem? Isso não pode ser desfeito. Baixe o save (.json) antes se quiser guardá-lo.';
+const ASK_NEW = {
+  title: 'Novo herói',
+  message: 'Começar um novo herói apaga o personagem salvo neste navegador. Baixe o save (.json) antes se quiser guardá-lo.',
+  confirmLabel: 'Apagar e começar',
+};
+const ASK_DELETE = {
+  title: 'Apagar personagem',
+  message: 'Isso não pode ser desfeito. Baixe o save (.json) antes se quiser guardá-lo.',
+  confirmLabel: 'Apagar',
+};
 
 function resetCharacter() {
   state = createState();
@@ -142,15 +151,15 @@ function resetCharacter() {
 const homeCtx = {
   getState: () => state,
   getSavedAt: () => savedAt,
-  onNew: () => {
-    if (hasSaved(state) && !window.confirm(CONFIRM_NEW)) return;
+  onNew: async () => {
+    if (hasSaved(state) && !(await confirmDialog(ASK_NEW))) return;
     resetCharacter();
     go(0, false);
     showHome(false);
   },
   onResume: () => { go(state.slide, false); showHome(false); },
-  onDelete: () => {
-    if (!window.confirm(CONFIRM_DELETE)) return;
+  onDelete: async () => {
+    if (!(await confirmDialog(ASK_DELETE))) return;
     resetCharacter();
     showHome(true);
   },
