@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mockup v5 — Imagens em alta resolução</title>
+<style>
+:root {
+  --ink: #3a2814;
+  --ink-soft: #6b5233;
+  --cream: #f2e6c8;
+  --gold: #e0bd62;
+  --noise: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/><feColorMatrix values='0 0 0 0 .35  0 0 0 0 .25  0 0 0 0 .12  0 0 0 .22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  --display: "Cinzel", "Trajan Pro", Georgia, "Times New Roman", serif;
+  --body: "Crimson Text", Georgia, "Times New Roman", serif;
+}
+* { box-sizing: border-box; }
+html, body { min-height: 100%; }
+body {
+  margin: 0; color: var(--ink); font: 18px/1.4 var(--body);
+  background: radial-gradient(ellipse at 18% 8%, #f3e5c0 0, transparent 55%), radial-gradient(ellipse at 92% 92%, #c9b17c 0, transparent 55%), #e6d4a8;
+}
+body::before { content: ""; position: fixed; inset: 0; background: var(--noise); pointer-events: none; z-index: 0; }
+img { image-rendering: auto; }
+
+.app { position: relative; z-index: 1; min-height: 100vh; display: grid; grid-template-columns: 262px 1fr; grid-template-rows: auto 1fr auto; gap: 16px 22px; padding: 16px 22px 14px; }
+
+/* ---------- barra de abas ---------- */
+.topbar {
+  grid-column: 2; height: 64px; display: flex; align-items: center; gap: 6px; padding: 0 10px;
+  border-style: solid; border-width: 0 26px; border-image: url('../../assets/ui-hd/barra-abas-vazia.webp') 0 78 fill / 0 26px stretch;
+  filter: drop-shadow(0 3px 4px #0004);
+}
+.tab {
+  display: inline-flex; align-items: center; gap: 9px; min-height: 44px; padding: 0 20px; color: #e6dcc0; background: none; border: 0; cursor: pointer;
+  font: 600 17px var(--display); letter-spacing: .03em;
+}
+.tab img { width: 20px; height: auto; }
+.tab:hover { background: #ffffff14; border-radius: 8px; }
+.tab[aria-selected="true"] {
+  color: var(--ink); border-style: solid; border-width: 0 14px; border-image: url('../../assets/ui-hd/faixa-clara.webp') 0 42 fill / 0 14px stretch; height: 44px;
+}
+.tab[aria-selected="true"] img { filter: invert(.8) sepia(.5) brightness(.45); }
+.save-note { margin-left: auto; color: #c8d3b4; font: italic 15px var(--body); padding-right: 14px; }
+
+/* ---------- lateral ---------- */
+.side {
+  grid-row: 1 / span 3; position: relative; min-height: 640px; padding: 22px 26px 270px;
+  border-style: solid; border-width: 34px 26px 34px 26px; border-image: url('../../assets/ui-hd/pergaminho-rasgado.webp') 102 78 102 78 fill / 34px 26px 34px 26px stretch;
+  filter: drop-shadow(0 3px 5px #0003);
+}
+.side .logo { display: block; width: 100%; margin: -8px 0 6px; }
+.side .rule { display: block; width: 100%; margin: 0 0 12px; opacity: .9; }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.step {
+  width: 100%; display: flex; align-items: center; gap: 10px; text-align: left; min-height: 44px; padding: 6px 12px;
+  font: 600 16px var(--body); color: var(--ink-soft); background: none; border: 0; cursor: pointer; border-radius: 6px;
+}
+.step:hover { background: #ffffff40; }
+.step .n { width: 24px; height: 24px; flex: none; display: grid; place-items: center; background: url('../../assets/ui-hd/losango.webp') center/contain no-repeat; font: 700 11px var(--display); color: #f2e6c8; text-shadow: 0 1px 0 #0008; }
+.step[aria-current="step"] {
+  color: var(--cream); font-weight: 700; margin: 2px -10px; padding: 6px 22px;
+  border-style: solid; border-width: 0 18px; border-image: url('../../assets/ui-hd/placa-verde.webp') 0 54 fill / 0 18px stretch; height: 48px; background: none;
+}
+.sword { position: absolute; left: 22px; bottom: 14px; width: 84px; pointer-events: none; filter: drop-shadow(1px 2px 2px #0004); }
+
+/* ---------- palco ---------- */
+.stage { grid-column: 2; position: relative; padding: 6px 4px; min-width: 0; }
+.view { display: none; }
+.view.on { display: block; }
+h1 { font: 700 30px var(--display); letter-spacing: .06em; margin: 4px 0 0; color: var(--ink); text-shadow: 0 1px 0 #fff7; }
+.divider { display: block; width: 260px; max-width: 70%; margin: 2px 0 10px; }
+.note {
+  margin: 4px 0 20px; padding: 6px 4px; font: italic 18px/1.35 var(--body); color: var(--ink-soft);
+  border-style: solid; border-width: 14px; border-image: url('../../assets/ui-hd/faixa-clara.webp') 42 fill / 14px stretch;
+}
+.grid { display: grid; gap: 22px; grid-template-columns: 1fr 1fr; align-items: start; }
+.col { display: grid; gap: 22px; }
+
+/* cartão: moldura verde + faixa marrom no topo (9-slice) */
+.card {
+  position: relative; border-style: solid; border-width: 40px 9px 10px; border-image: url('../../assets/ui-hd/cartao.webp') 120 24 24 24 fill / 40px 9px 10px stretch;
+  filter: drop-shadow(0 3px 5px #3a28143d);
+}
+.card > h2 {
+  position: absolute; top: -40px; left: -9px; right: -9px; height: 38px; margin: 0; display: grid; place-items: center;
+  font: 700 14px var(--display); letter-spacing: .16em; text-transform: uppercase; color: #f8ecd0; text-shadow: 0 1px 1px #000a;
+}
+.card .body { padding: 10px 12px 12px; display: grid; gap: 8px; }
+label.fld { display: grid; gap: 0; font: 700 12px var(--display); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); }
+.line {
+  width: 100%; min-height: 44px; padding: 8px 8px 6px; font: italic 20px var(--body); color: var(--ink);
+  background: linear-gradient(transparent 93%, #8a6b2fa6 93%); border: 0; outline: none;
+}
+.line:focus { background: linear-gradient(#fff5, #fff5), linear-gradient(transparent 93%, #9a6330 93%); box-shadow: 0 2px 0 #9a6330; }
+.line::placeholder { color: #8a7656aa; }
+.row { display: flex; gap: 6px; align-items: center; }
+.row .line { flex: 1; min-width: 0; }
+
+/* fita de louros do título do tema */
+.ribbon { position: relative; width: 100%; max-width: 360px; margin: 0 auto; aspect-ratio: 223 / 96; background: url('../../assets/ui-hd/fita-louros-a.webp') center/100% 100% no-repeat; filter: drop-shadow(0 2px 3px #0003); }
+.ribbon input { position: absolute; left: 17%; right: 17%; top: 31%; height: 36%; text-align: center; background: none; border: 0; outline: none; font: italic 700 clamp(15px, 2.6vw, 21px) var(--body); color: #22340f; }
+.ribbon input:focus { background: #ffffff45; border-radius: 4px; }
+
+/* medalhões de Magnitude: anel + ornamento */
+.might { display: flex; gap: 22px; justify-content: center; flex-wrap: wrap; padding: 4px 0; }
+.medal { display: grid; justify-items: center; gap: 2px; background: none; border: 0; cursor: pointer; font: 700 12px var(--display); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); min-height: 44px; }
+.medal .ring { position: relative; width: 66px; height: 71px; background: url('../../assets/ui-hd/medalhao.webp') center/contain no-repeat; display: grid; place-items: center; transition: filter .15s; filter: grayscale(.55) brightness(.95); }
+.medal .ring img { width: 30px; height: auto; opacity: .55; }
+.medal[aria-pressed="true"] { color: var(--ink); }
+.medal[aria-pressed="true"] .ring { filter: drop-shadow(0 0 7px #e0bd62) saturate(1.5) brightness(1.04); }
+.medal[aria-pressed="true"] .ring img { opacity: 1; }
+
+/* marcas em losango */
+.dots { display: flex; gap: 2px; align-items: center; }
+.hit { min-width: 44px; min-height: 44px; display: grid; place-items: center; background: none; border: 0; cursor: pointer; }
+.dot { width: 30px; height: 30px; background: url('../../assets/ui-hd/losango.webp') center/contain no-repeat; filter: grayscale(1) brightness(1.5) opacity(.5); }
+.dot[aria-pressed="true"] { filter: drop-shadow(0 0 3px #e0bd62) saturate(1.2); }
+.scratch { width: 26px; height: 26px; border-radius: 50%; border: 2px dashed #8a6b2f; position: relative; }
+.scratch[aria-pressed="true"]::after { content: ""; position: absolute; left: 2px; right: 2px; top: 10px; height: 3px; background: #8e2330; transform: rotate(-35deg); border-radius: 2px; }
+.quest { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 4px; }
+.quest div { display: grid; justify-items: center; font: 700 11px var(--display); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); }
+
+/* botões */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 9px; height: 47px; padding: 0 14px; cursor: pointer; color: #f4e9cc;
+  font: 600 17px var(--display); letter-spacing: .03em; text-shadow: 0 1px 2px #000b; background: none;
+  border-style: solid; border-width: 0 10px; border-image: url('../../assets/ui-hd/botao-verde-vazio.webp') 0 30 fill / 0 10px stretch; filter: drop-shadow(0 2px 3px #0005);
+}
+.btn.wine { border-image-source: url('../../assets/ui-hd/botao-vinho-vazio.webp'); }
+.btn.brown { border-image-source: url('../../assets/ui-hd/botao-marrom-vazio.webp'); }
+.btn img { width: 18px; height: auto; }
+.btn:hover:not(:disabled) { filter: drop-shadow(0 2px 3px #0005) brightness(1.12); }
+.btn:disabled { opacity: .45; cursor: default; }
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.exports { display: flex; flex-wrap: wrap; gap: 14px; margin: 18px 0 14px; }
+.exports .btn { height: 54px; font-size: 18px; padding: 0 22px; }
+
+/* resumo */
+.sumgrid { display: grid; gap: 22px; grid-template-columns: 1fr 1fr; }
+.sum { display: flex; gap: 12px; align-items: center; padding: 6px 6px 8px; }
+.sum img { width: 44px; flex: none; }
+.sum b { font: 700 16px var(--display); display: block; }
+.sum span { color: var(--ink-soft); font-size: 16px; }
+
+/* avisos */
+.aviso { display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 14px; font: 600 16px var(--body); border-style: solid; border-width: 0 12px; border-image: url('../../assets/ui-hd/aviso-ok-vazio.webp') 0 36 fill / 0 12px stretch; max-width: 420px; }
+.aviso.err { border-image-source: url('../../assets/ui-hd/aviso-alerta-vazio.webp'); }
+
+/* decoração */
+.deco { position: absolute; pointer-events: none; z-index: 0; }
+.legend { grid-column: 2; font: italic 14px var(--body); color: var(--ink-soft); text-align: center; margin: 0; }
+.bottom { grid-column: 2; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; position: relative; z-index: 2; }
+.bottom .mid { flex: 1; text-align: center; font: 700 15px var(--display); letter-spacing: .12em; color: var(--ink-soft); }
+.bottom .right { display: flex; gap: 10px; flex-wrap: wrap; }
+
+@media (max-width: 1000px) { .deco { display: none; } }
+@media (max-width: 860px) {
+  .app { grid-template-columns: 1fr; padding: 10px; gap: 12px; }
+  .side { display: none; }
+  .topbar, .stage, .bottom, .legend { grid-column: 1; }
+  .topbar { overflow-x: auto; }
+  .tab { padding: 0 12px; font-size: 14px; } .tab img { display: none; }
+  .save-note { display: none; }
+  .grid, .sumgrid { grid-template-columns: 1fr; }
+  .bottom .mid { order: -1; flex-basis: 100%; }
+  .bottom .btn { flex: 1; }
+  .bottom .right { flex: 1 1 100%; }
+  h1 { font-size: 24px; }
+}
+
+/* ===== v3: hierarquia ===== */
+.topbar { height: 56px; }
+.tab { font-size: 16px; }
+.eyebrow { font: 700 12px var(--display); letter-spacing: .24em; text-transform: uppercase; color: #8a5a2b; margin: 6px 0 0; display: flex; align-items: center; gap: 10px; }
+.eyebrow::before { content: ""; width: 22px; height: 22px; background: url('../../assets/ui-hd/losango.webp') center/contain no-repeat; }
+h1 { font-size: 36px; margin: 0; line-height: 1.1; }
+.divider { margin: 4px 0 8px; width: 300px; }
+.hint { margin: 0 0 20px; max-width: 64ch; font: italic 17px/1.4 var(--body); color: #7a6240; }
+.hint b { font-style: normal; color: var(--ink); }
+
+/* nivel 1: cartao de foco */
+.card.hero { filter: drop-shadow(0 4px 8px #3a28145a); }
+.card.hero > h2 { font-size: 15px; letter-spacing: .22em; }
+.card.hero .body { padding: 14px 18px 18px; }
+.herogrid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: center; }
+.herogrid .ribbon { max-width: 400px; }
+.herogrid .line { font-size: 22px; }
+
+/* nivel 3: bloco de apoio (leve, sem faixa marrom) */
+.sub { border-style: solid; border-width: 14px; border-image: url('../../assets/ui-hd/faixa-clara.webp') 42 fill / 14px stretch; padding: 0 2px 4px; }
+.sub > h3 { margin: 0 0 4px; display: flex; align-items: center; gap: 10px; font: 700 12px var(--display); letter-spacing: .2em; text-transform: uppercase; color: #8a5a2b; }
+.sub > h3::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, #8a6b2f99, transparent); }
+.sub.weak > h3 { color: #8e2330; }
+.sub .line { font-size: 19px; min-height: 42px; }
+.grid2 { display: grid; grid-template-columns: 3fr 2fr; gap: 22px; align-items: start; margin-top: 22px; }
+.tagnum { font: 700 11px var(--display); color: #8a5a2b; width: 18px; text-align: center; flex: none; }
+
+/* acao principal x secundarias */
+.btn.primary { height: 58px; padding: 0 30px; font-size: 20px; filter: drop-shadow(0 0 9px #e0bd6299) drop-shadow(0 3px 3px #0006); }
+.btn.ghost { color: var(--ink); text-shadow: 0 1px 0 #fff8; border-image: url('../../assets/ui-hd/faixa-clara.webp') 0 42 fill / 0 14px stretch; border-width: 0 14px; font-weight: 600; }
+.btn.ghost img { filter: invert(.85) sepia(.6) brightness(.4); }
+.btn.icononly { width: 52px; padding: 0; }
+.exports { align-items: center; margin: 22px 0 10px; }
+.exports .btn.primary { height: 68px; font-size: 22px; padding: 0 38px; }
+
+/* lateral e progresso */
+.step { font-size: 15px; color: #7d6643; }
+.step .n { filter: grayscale(.9) brightness(1.25) opacity(.7); }
+.step.done { color: var(--ink-soft); }
+.step.done .n { filter: none; font-size: 0; }
+.step.done .n::after { content: "\2713"; font-size: 12px; }
+.step[aria-current="step"] { font-size: 16px; }
+.step[aria-current="step"] .n { filter: none; }
+.pbar { display: flex; gap: 3px; }
+.pbar i { height: 5px; flex: 1; border-radius: 3px; background: #8a6b2f40; }
+.pbar i.on { background: linear-gradient(90deg, #4d7a3f, #79a342); }
+@media (max-width: 860px) { .herogrid, .grid2 { grid-template-columns: 1fr; } h1 { font-size: 28px; } .exports .btn.primary { width: 100%; } }
+
+/* ===== v4.1: título do passo centralizado ===== */
+.view > .eyebrow { justify-content: center; }
+.view > h1 { text-align: center; }
+.view > .divider { margin: 4px auto 8px; }
+.view > .hint { margin-left: auto; margin-right: auto; text-align: center; }
+body:not(.home-on) .demo-switch { display: none; }
+
+/* ===== v4: tela inicial ===== */
+#home { display: none; position: relative; z-index: 1; min-height: 100vh; padding: 18px 22px 16px; overflow: hidden; }
+body.home-on #home { display: grid; justify-items: center; align-content: center; gap: 12px; }
+body.home-on .app { display: none; }
+.home-logo { width: min(380px, 78vw); filter: drop-shadow(0 4px 6px #0003); }
+.tagline { margin: 0; font: italic 21px/1.35 var(--body); color: var(--ink-soft); text-align: center; max-width: 46ch; }
+.home-actions { width: min(540px, 100%); display: grid; gap: 14px; justify-items: stretch; margin-top: 8px; position: relative; z-index: 2; }
+.home-actions .btn { width: 100%; }
+.home-actions .btn.primary { height: 66px; font-size: 22px; }
+.resume { position: relative; }
+.resume .who { display: flex; align-items: center; gap: 14px; }
+.resume .who img { width: 52px; flex: none; }
+.resume .who b { display: block; font: 700 22px var(--display); letter-spacing: .03em; }
+.resume .who span { color: var(--ink-soft); font-size: 16px; }
+.resume .pbar { margin: 12px 0 4px; }
+.resume .small { font: 600 12px var(--display); letter-spacing: .14em; color: #7d6643; text-transform: uppercase; display: flex; justify-content: space-between; }
+.rowbtns { display: grid; grid-template-columns: 1fr auto; gap: 10px; margin-top: 12px; align-items: center; }
+.rowbtns .btn.primary { height: 58px; font-size: 20px; }
+.home-secondary { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.home-secondary .btn { height: 52px; }
+#home:not(.has-saved) .home-secondary { grid-template-columns: 1fr; }
+#home .only-empty, #home .only-saved { display: none; }
+#home.has-saved .only-saved { display: block; }
+#home.has-saved .only-saved.grid { display: grid; }
+#home:not(.has-saved) .only-empty { display: block; }
+.how { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; width: min(760px, 100%); margin-top: 6px; position: relative; z-index: 2; }
+.how div { display: grid; justify-items: center; text-align: center; gap: 4px; }
+.how img { width: 40px; }
+.how b { font: 700 14px var(--display); letter-spacing: .14em; text-transform: uppercase; color: #8a5a2b; }
+.how span { font-size: 16px; color: var(--ink-soft); line-height: 1.3; }
+.home-foot { margin-top: 6px; font: italic 14px var(--body); color: #7d6643; text-align: center; position: relative; z-index: 2; }
+.home-foot button { background: none; border: 0; color: #5b4527; text-decoration: underline; cursor: pointer; font: inherit; min-height: 44px; padding: 0 8px; }
+.demo-switch { position: fixed; right: 12px; top: 10px; z-index: 5; font: 600 12px var(--display); letter-spacing: .08em; }
+.menu-btn { margin-left: auto; }
+.topbar .menu-btn { min-height: 38px; }
+@media (max-width: 1100px) { #home .deco { display: none; } }
+@media (max-width: 700px) { .how { grid-template-columns: 1fr; gap: 12px; } .home-secondary, .rowbtns { grid-template-columns: 1fr; } .demo-switch { display: none; } }
+
+/* ===== v4.3: lateral sem espada, altura do conteúdo (não estica) ===== */
+.side { align-self: start; min-height: 0; padding-bottom: 22px; }
+
+/* ===== v4.2: rótulo do passo acima do botão Próximo (canto inferior direito) ===== */
+.bottom .steplabel { flex: 0 0 100%; order: -2; margin: 0 0 2px; display: flex; align-items: center; gap: 10px; justify-content: flex-end; text-align: right;
+  font: 700 12px var(--display); letter-spacing: .24em; text-transform: uppercase; color: #8a5a2b; }
+.bottom .steplabel::before { content: ""; width: 22px; height: 22px; background: url('../../assets/ui-hd/losango.webp') center/contain no-repeat; }
+
+/* ===== v4.4: telas de Mochila, Estados e Promessa ===== */
+.step[aria-current="step"] { height: auto; min-height: 48px; margin: 2px -14px; padding: 8px 8px; width: calc(100% + 28px); line-height: 1.15; }
+.tiers { display: flex; justify-content: center; flex-wrap: wrap; }
+.tier { flex-direction: column; gap: 0; min-height: 60px; }
+.tier small { font: 700 11px var(--display); letter-spacing: .08em; color: var(--ink-soft); margin-top: -4px; }
+.promise .dot { width: 46px; height: 46px; }
+.promise .tier { min-width: 64px; }
+.cap { margin: 0; text-align: center; font: italic 16px var(--body); color: var(--ink-soft); }
+.sub summary { cursor: pointer; list-style: none; display: flex; align-items: center; gap: 10px; min-height: 44px; font: 700 12px var(--display); letter-spacing: .2em; text-transform: uppercase; color: #8a5a2b; }
+.sub summary::-webkit-details-marker { display: none; }
+.sub summary::after { content: "\25BE"; margin-left: auto; font-size: 14px; }
+.sub[open] summary::after { content: "\25B4"; }
+.card details > summary { cursor: pointer; list-style: none; min-height: 40px; display: flex; align-items: center; font: 700 11px var(--display); letter-spacing: .18em; text-transform: uppercase; color: #8a5a2b; }
+.card details > summary::-webkit-details-marker { display: none; }
+.card details > summary::after { content: "\25BE"; margin-left: auto; }
+.card details[open] > summary::after { content: "\25B4"; }
+.card details .line { font-size: 17px; min-height: 40px; }
+</style>
+</head>
+<body>
+<section id="home" class="has-saved" aria-label="Tela inicial">
+  <img class="deco" src="../../assets/ui-hd/espada-flores.webp" alt="" style="left: 3%; bottom: 0; width: 150px">
+  <img class="deco" src="../../assets/ui-hd/flores-grandes.webp" alt="" style="right: 4%; bottom: 0; width: 190px">
+  <img class="deco" src="../../assets/ui-hd/flores-azuis.webp" alt="" style="right: 17%; bottom: 0; width: 120px">
+  <img class="deco" src="../../assets/ui-hd/passaro.webp" alt="" style="right: 5%; bottom: 190px; width: 96px">
+  <img class="deco" src="../../assets/ui-hd/borboleta.webp" alt="" style="left: 17%; top: 16%; width: 54px">
+
+  <img class="home-logo" src="../../assets/ui-hd/logo.webp" alt="Legend in the Mist">
+  <img class="divider" src="../../assets/ui-hd/divisor-a.webp" alt="" style="width: 300px; margin: 0">
+  <h1 style="font-size:30px;text-align:center">Ficha de Herói</h1>
+  <p class="tagline">Crie o seu herói passo a passo e baixe a ficha oficial em PDF, pronta para a mesa.</p>
+
+  <div class="home-actions">
+    <!-- sem personagem salvo -->
+    <div class="only-empty">
+      <button class="btn primary" id="btn-new"><img src="../../assets/ui-hd/ic-mais.webp" alt="" style="width:24px">Criar novo herói</button>
+    </div>
+
+    <!-- com personagem salvo -->
+    <section class="sub resume only-saved" aria-label="Personagem salvo neste navegador">
+      <h3>Continuar de onde parou</h3>
+      <div class="who"><img src="../../assets/ui-hd/ornamento-folha-a.webp" alt=""><div><b>Thalía Éowyn</b><span>Ferreiro de aldeia · Mensageira da corte · +2 temas</span></div></div>
+      <div class="pbar" id="home-pbar"></div>
+      <div class="small"><span>Passo 3 de 10</span><span>Salvo há 2 dias</span></div>
+      <div class="rowbtns">
+        <button class="btn primary" id="btn-resume">Continuar →</button>
+        <button class="btn ghost" title="Apagar este personagem" aria-label="Apagar este personagem"><img src="../../assets/ui-hd/botao-lixeira.webp" alt="" style="width:26px;filter:none"></button>
+      </div>
+    </section>
+
+    <div class="home-secondary">
+      <button class="btn ghost only-saved" id="btn-new2"><img src="../../assets/ui-hd/ic-mais.webp" alt="">Novo herói</button>
+      <button class="btn ghost"><img src="../../assets/ui-hd/ic-livro.webp" alt="">Abrir save (.json)</button>
+    </div>
+  </div>
+
+  <div class="how" aria-label="Como funciona">
+    <div><img src="../../assets/ui-hd/icone-estrela.webp" alt=""><b>10 passos</b><span>Temas, Companhia, Mochila e mais, um assunto por vez.</span></div>
+    <div><img src="../../assets/ui-hd/icone-livro.webp" alt=""><b>Salvo sozinho</b><span>O progresso fica neste navegador. Baixe o save para guardar.</span></div>
+    <div><img src="../../assets/ui-hd/icone-coroa.webp" alt=""><b>PDF oficial</b><span>No fim, baixe a ficha oficial já preenchida.</span></div>
+  </div>
+  <p class="home-foot">Ficha não oficial feita por fãs. Legend in the Mist é de Son of Oak Game Studio. · <button type="button">Como usar</button></p>
+</section>
+<div class="demo-switch"><button class="btn ghost" id="demo" style="height:38px;font-size:12px">Demo: alternar com/sem personagem</button></div>
+
+<div class="app">
+  <nav class="topbar" role="tablist" aria-label="Seções da ficha">
+    <button class="tab" role="tab" data-view="personagem" aria-selected="true"><img src="../../assets/ui-hd/ic-pessoa.webp" alt="">Personagem</button>
+    <button class="tab" role="tab" data-view="temas" aria-selected="false"><img src="../../assets/ui-hd/ic-estrela.webp" alt="">Temas</button>
+    <button class="tab" role="tab" data-view="detalhes" aria-selected="false"><img src="../../assets/ui-hd/ic-livro.webp" alt="">Detalhes</button>
+    <button class="tab" role="tab" data-view="exportar" aria-selected="false"><img src="../../assets/ui-hd/ic-baixar.webp" alt="">Exportar</button>
+    <span class="save-note">Salvo neste navegador</span><button class="btn ghost menu-btn" id="btn-menu" style="height:40px;font-size:14px;padding:0 8px">☰ Menu</button>
+  </nav>
+
+  <aside class="side">
+    <img class="logo" src="../../assets/ui-hd/logo.webp" alt="Legend in the Mist">
+    <img class="rule" src="../../assets/ui-hd/divisor-a.webp" alt="">
+    <ol class="steps" id="steps"></ol>
+  </aside>
+
+  <main class="stage">
+    <img class="deco" src="../../assets/ui-hd/borboleta.webp" alt="" style="right: 14px; top: -6px; width: 46px; opacity:.95">
+
+    <!-- ===== Personagem ===== -->
+    <section class="view on" id="v-personagem">
+      <h1>Identidade</h1><img class="divider" src="../../assets/ui-hd/divisor-b.webp" alt="">
+      <p class="hint">Quem é o seu herói e quem joga com ele.</p>
+      <div class="grid">
+        <div class="col">
+          <div class="card hero"><h2>Nome do personagem</h2><div class="body"><input class="line" style="font-size:26px" value="Thalía Éowyn" aria-label="Nome do personagem"></div></div>
+          <section class="sub"><h3>Nome do jogador</h3><input class="line" value="Matheus" aria-label="Nome do jogador"></section>
+        </div>
+        <div style="display:grid;place-items:center"><img src="../../assets/ui-hd/moldura-paisagem.webp" alt="" style="width:min(100%,280px);filter:drop-shadow(0 3px 5px #0004)"></div>
+      </div>
+    </section>
+
+    <!-- ===== Temas ===== -->
+    <section class="view" id="v-temas">
+      <h1>Tema 1</h1><img class="divider" src="../../assets/ui-hd/divisor-b.webp" alt="">
+      <p class="hint">A 1ª tag de poder é o <b>título do tema</b> e deve combinar com a Magnitude. Tags de poder devem ser úteis; a de fraqueza deve limitar.</p>
+
+      <div class="card hero"><h2>Identidade do tema</h2><div class="body herogrid">
+        <div>
+          <label class="fld" style="text-align:center">Título do tema · 1ª tag de poder</label>
+          <div class="ribbon"><input value="Ferreiro de aldeia" aria-label="Título do tema"></div>
+        </div>
+        <div style="display:grid;gap:6px">
+          <label class="fld">Tipo de tema<input class="line" value="Habilidade ou Ofício"></label>
+          <div class="might" role="group" aria-label="Magnitude">
+            <button class="medal" aria-pressed="true"><span class="ring"><img src="../../assets/ui-hd/ornamento-folha-a.webp" alt=""></span>Origem</button>
+            <button class="medal" aria-pressed="false"><span class="ring"><img src="../../assets/ui-hd/ornamento-estrela.webp" alt=""></span>Aventura</button>
+            <button class="medal" aria-pressed="false"><span class="ring"><img src="../../assets/ui-hd/ornamento-coroa.webp" alt=""></span>Grandeza</button>
+          </div>
+        </div>
+      </div></div>
+
+      <div class="grid2">
+        <div class="card"><h2>Tags de poder</h2><div class="body">
+          <div class="row"><span class="tagnum">2</span><input class="line" value="Martelo de guerra" aria-label="Tag de poder 2"><button class="hit"><span class="scratch" aria-pressed="false"></span></button></div>
+          <div class="row"><span class="tagnum">3</span><input class="line" value="Olhar para o metal" aria-label="Tag de poder 3"><button class="hit"><span class="scratch" aria-pressed="true"></span></button></div>
+          <div class="row"><span class="tagnum">4</span><input class="line" placeholder="Tag de poder 4" aria-label="Tag de poder 4"><button class="hit"><span class="scratch" aria-pressed="false"></span></button></div>
+          <div class="row"><span class="tagnum">5</span><input class="line" placeholder="Tag de poder 5" aria-label="Tag de poder 5"><button class="hit"><span class="scratch" aria-pressed="false"></span></button></div>
+          <div class="row"><span class="tagnum">6</span><input class="line" placeholder="Tag de poder 6" aria-label="Tag de poder 6"><button class="hit"><span class="scratch" aria-pressed="false"></span></button></div>
+          <div class="row"><span class="tagnum">7</span><input class="line" placeholder="Tag de poder 7" aria-label="Tag de poder 7"><button class="hit"><span class="scratch" aria-pressed="false"></span></button></div>
+        </div></div>
+        <div class="col">
+          <section class="sub weak"><h3>Tags de fraqueza</h3>
+            <input class="line" value="Mãos sempre queimadas" aria-label="Fraqueza 1">
+            <input class="line" placeholder="Tag de fraqueza 2" aria-label="Fraqueza 2">
+          </section>
+          <section class="sub"><h3>Busca</h3>
+            <input class="line" value="Forjar a espada do meu mestre" aria-label="Busca">
+            <div class="quest">
+              <div>Abandonar<span class="dots"><button class="hit"><span class="dot" aria-pressed="false"></span></button><button class="hit"><span class="dot" aria-pressed="false"></span></button><button class="hit"><span class="dot" aria-pressed="false"></span></button></span></div>
+              <div>Melhoria<span class="dots"><button class="hit"><span class="dot" aria-pressed="true"></span></button><button class="hit"><span class="dot" aria-pressed="false"></span></button><button class="hit"><span class="dot" aria-pressed="false"></span></button></span></div>
+              <div>Marco<span class="dots"><button class="hit"><span class="dot" aria-pressed="true"></span></button><button class="hit"><span class="dot" aria-pressed="true"></span></button><button class="hit"><span class="dot" aria-pressed="false"></span></button></span></div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Companhia ===== -->
+    <section class="view" id="v-companhia">
+      <h1>Companhia</h1><img class="divider" src="../../assets/ui-hd/divisor-b.webp" alt="">
+      <p class="hint">A Companhia é o grupo. Anote cada <b>companheiro</b> e a tag da relação do seu herói com ele.</p>
+      <div class="grid2" style="margin-top:0">
+        <div class="card hero"><h2>Relações</h2><div class="body">
+          <div class="row"><input class="line" value="Borin" aria-label="Companheiro 1"><input class="line" value="Dívida de honra" aria-label="Relação 1"></div>
+          <div class="row"><input class="line" value="Lirael" aria-label="Companheiro 2"><input class="line" placeholder="Tag de relação" aria-label="Relação 2"></div>
+          <div class="row"><input class="line" placeholder="Companheiro 3" aria-label="Companheiro 3"><input class="line" placeholder="Tag de relação" aria-label="Relação 3"></div>
+        </div></div>
+        <div class="col">
+          <section class="sub"><h3>Tags da Companhia</h3>
+            <div class="row"><input class="line" value="Estrada comum" aria-label="Tag 1"><button class="hit"><span class="scratch" aria-pressed="false"></span></button></div>
+            <div class="row"><input class="line" placeholder="Tag 2" aria-label="Tag 2"><button class="hit"><span class="scratch" aria-pressed="false"></span></button></div>
+          </section>
+          <section class="sub weak"><h3>Fraqueza</h3><input class="line" placeholder="Fraqueza da Companhia" aria-label="Fraqueza"></section>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Mochila e Quintessências ===== -->
+    <section class="view" id="v-mochila">
+      <h1>Mochila e Quintessências</h1><img class="divider" src="../../assets/ui-hd/divisor-b.webp" alt="">
+      <p class="hint">Escolha ao menos uma <b>tag de mochila</b>: um item que o herói carrega (veja a Loja Geral do livro, p. 132). Quintessências são as essências mágicas que ele reuniu.</p>
+      <div class="grid2" style="margin-top:0">
+        <div class="card hero"><h2>Tags de mochila</h2><div class="body">
+          <div class="row"><span class="tagnum">1</span><input class="line" value="Corda e gancho" aria-label="Tag de mochila 1"></div>
+          <div class="row"><span class="tagnum">2</span><input class="line" value="Pederneira e isca" aria-label="Tag de mochila 2"></div>
+          <div class="row"><span class="tagnum">3</span><input class="line" placeholder="Tag de mochila 3" aria-label="Tag de mochila 3"></div>
+          <div class="row"><span class="tagnum">4</span><input class="line" placeholder="Tag de mochila 4" aria-label="Tag de mochila 4"></div>
+          <div class="row"><span class="tagnum">5</span><input class="line" placeholder="Tag de mochila 5" aria-label="Tag de mochila 5"></div>
+        </div></div>
+        <section class="sub"><h3>Quintessências</h3>
+          <input class="line" value="Essência de bosque antigo" aria-label="Quintessência 1"><input class="line" placeholder="Quintessência 2" aria-label="Quintessência 2"><input class="line" placeholder="Quintessência 3" aria-label="Quintessência 3"><input class="line" placeholder="Quintessência 4" aria-label="Quintessência 4">
+        </section>
+      </div>
+    </section>
+
+    <!-- ===== Estados atuais ===== -->
+    <section class="view" id="v-estados">
+      <h1>Estados atuais</h1><img class="divider" src="../../assets/ui-hd/divisor-b.webp" alt="">
+      <p class="hint">Estados que afetam o herói agora. Marque o <b>nível</b> (1 a 6) de cada um. Pode deixar em branco ao criar o herói.</p>
+      <div class="grid">
+        <div class="card"><h2>Estado 1</h2><div class="body"><input class="line" value="Exausto" aria-label="Nome do estado 1"><div class="tiers" role="group" aria-label="Nível do estado 1"><button class="hit tier" aria-label="Nível 1"><span class="dot" aria-pressed="true"></span><small>1</small></button><button class="hit tier" aria-label="Nível 2"><span class="dot" aria-pressed="true"></span><small>2</small></button><button class="hit tier" aria-label="Nível 3"><span class="dot" aria-pressed="false"></span><small>3</small></button><button class="hit tier" aria-label="Nível 4"><span class="dot" aria-pressed="false"></span><small>4</small></button><button class="hit tier" aria-label="Nível 5"><span class="dot" aria-pressed="false"></span><small>5</small></button><button class="hit tier" aria-label="Nível 6"><span class="dot" aria-pressed="false"></span><small>6</small></button></div><details><summary>Notas (opcional)</summary><input class="line" value="Desde a travessia do rio" aria-label="Nota 1 do estado 1"><input class="line" placeholder="Nota 2" aria-label="Nota 2 do estado 1"><input class="line" placeholder="Nota 3" aria-label="Nota 3 do estado 1"></details></div></div>
+        <div class="card"><h2>Estado 2</h2><div class="body"><input class="line" placeholder="Nome do estado" aria-label="Nome do estado 2"><div class="tiers" role="group" aria-label="Nível do estado 2"><button class="hit tier" aria-label="Nível 1"><span class="dot" aria-pressed="false"></span><small>1</small></button><button class="hit tier" aria-label="Nível 2"><span class="dot" aria-pressed="false"></span><small>2</small></button><button class="hit tier" aria-label="Nível 3"><span class="dot" aria-pressed="false"></span><small>3</small></button><button class="hit tier" aria-label="Nível 4"><span class="dot" aria-pressed="false"></span><small>4</small></button><button class="hit tier" aria-label="Nível 5"><span class="dot" aria-pressed="false"></span><small>5</small></button><button class="hit tier" aria-label="Nível 6"><span class="dot" aria-pressed="false"></span><small>6</small></button></div><details><summary>Notas (opcional)</summary><input class="line" placeholder="Nota 1" aria-label="Nota 1 do estado 2"><input class="line" placeholder="Nota 2" aria-label="Nota 2 do estado 2"><input class="line" placeholder="Nota 3" aria-label="Nota 3 do estado 2"></details></div></div>
+        <div class="card"><h2>Estado 3</h2><div class="body"><input class="line" placeholder="Nome do estado" aria-label="Nome do estado 3"><div class="tiers" role="group" aria-label="Nível do estado 3"><button class="hit tier" aria-label="Nível 1"><span class="dot" aria-pressed="false"></span><small>1</small></button><button class="hit tier" aria-label="Nível 2"><span class="dot" aria-pressed="false"></span><small>2</small></button><button class="hit tier" aria-label="Nível 3"><span class="dot" aria-pressed="false"></span><small>3</small></button><button class="hit tier" aria-label="Nível 4"><span class="dot" aria-pressed="false"></span><small>4</small></button><button class="hit tier" aria-label="Nível 5"><span class="dot" aria-pressed="false"></span><small>5</small></button><button class="hit tier" aria-label="Nível 6"><span class="dot" aria-pressed="false"></span><small>6</small></button></div><details><summary>Notas (opcional)</summary><input class="line" placeholder="Nota 1" aria-label="Nota 1 do estado 3"><input class="line" placeholder="Nota 2" aria-label="Nota 2 do estado 3"><input class="line" placeholder="Nota 3" aria-label="Nota 3 do estado 3"></details></div></div>
+        <div class="card"><h2>Estado 4</h2><div class="body"><input class="line" placeholder="Nome do estado" aria-label="Nome do estado 4"><div class="tiers" role="group" aria-label="Nível do estado 4"><button class="hit tier" aria-label="Nível 1"><span class="dot" aria-pressed="false"></span><small>1</small></button><button class="hit tier" aria-label="Nível 2"><span class="dot" aria-pressed="false"></span><small>2</small></button><button class="hit tier" aria-label="Nível 3"><span class="dot" aria-pressed="false"></span><small>3</small></button><button class="hit tier" aria-label="Nível 4"><span class="dot" aria-pressed="false"></span><small>4</small></button><button class="hit tier" aria-label="Nível 5"><span class="dot" aria-pressed="false"></span><small>5</small></button><button class="hit tier" aria-label="Nível 6"><span class="dot" aria-pressed="false"></span><small>6</small></button></div><details><summary>Notas (opcional)</summary><input class="line" placeholder="Nota 1" aria-label="Nota 1 do estado 4"><input class="line" placeholder="Nota 2" aria-label="Nota 2 do estado 4"><input class="line" placeholder="Nota 3" aria-label="Nota 3 do estado 4"></details></div></div>
+      </div>
+      <section class="sub" style="margin-top:22px"><h3>Notas adicionais</h3>
+        <input class="line" placeholder="Nota adicional 1" aria-label="Nota adicional 1"><input class="line" placeholder="Nota adicional 2" aria-label="Nota adicional 2">
+      </section>
+    </section>
+
+    <!-- ===== Promessa, História e Notas ===== -->
+    <section class="view" id="v-promessa">
+      <h1>Promessa, História e Notas</h1><img class="divider" src="../../assets/ui-hd/divisor-b.webp" alt="">
+      <p class="hint">A <b>Promessa</b> tem 5 círculos que se marcam ao longo do jogo. Em História, escreva o passado do herói em poucas linhas; em Notas, o que quiser lembrar.</p>
+      <div class="card hero promise"><h2>Promessa</h2><div class="body">
+        <div class="tiers" role="group" aria-label="Círculos da Promessa"><button class="hit tier" aria-label="Círculo 1"><span class="dot" aria-pressed="true"></span><small>1</small></button><button class="hit tier" aria-label="Círculo 2"><span class="dot" aria-pressed="true"></span><small>2</small></button><button class="hit tier" aria-label="Círculo 3"><span class="dot" aria-pressed="false"></span><small>3</small></button><button class="hit tier" aria-label="Círculo 4"><span class="dot" aria-pressed="false"></span><small>4</small></button><button class="hit tier" aria-label="Círculo 5"><span class="dot" aria-pressed="false"></span><small>5</small></button></div>
+        <p class="cap">Marque os círculos conforme o herói cumpre a sua promessa.</p>
+      </div></div>
+      <div class="grid2">
+        <div class="card"><h2>História</h2><div class="body">
+          <input class="line" value="Filho de um ferreiro da aldeia de Pedraluz." aria-label="Linha 1"><input class="line" value="Deixou a forja quando a estrada o chamou." aria-label="Linha 2"><input class="line" placeholder="Linha 3" aria-label="Linha 3"><input class="line" placeholder="Linha 4" aria-label="Linha 4"><input class="line" placeholder="Linha 5" aria-label="Linha 5"><input class="line" placeholder="Linha 6" aria-label="Linha 6"><input class="line" placeholder="Linha 7" aria-label="Linha 7"><input class="line" placeholder="Linha 8" aria-label="Linha 8">
+        </div></div>
+        <details class="sub"><summary>Notas (opcional)</summary>
+          <input class="line" placeholder="Linha de nota 1" aria-label="Linha de nota 1"><input class="line" placeholder="Linha de nota 2" aria-label="Linha de nota 2"><input class="line" placeholder="Linha de nota 3" aria-label="Linha de nota 3"><input class="line" placeholder="Linha de nota 4" aria-label="Linha de nota 4"><input class="line" placeholder="Linha de nota 5" aria-label="Linha de nota 5">
+          <p class="cap" style="margin-top:6px">A ficha tem 23 linhas de notas.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- ===== Exportar ===== -->
+    <section class="view" id="v-exportar">
+      <h1>Revisão e download</h1><img class="divider" src="../../assets/ui-hd/divisor-b.webp" alt="">
+      <p class="hint">Confira o resumo. O PDF é a <b>ficha oficial preenchida</b>; o save (.json) permite reabrir e editar depois.</p>
+      <div class="exports">
+        <button class="btn wine primary"><img src="../../assets/ui-hd/ic-baixar.webp" alt="" style="width:24px">Baixar PDF da ficha</button>
+        <button class="btn ghost"><img src="../../assets/ui-hd/ic-disquete.webp" alt="">Baixar save (.json)</button>
+        <button class="btn ghost"><img src="../../assets/ui-hd/ic-livro.webp" alt="">Abrir save</button>
+      </div>
+      <div class="aviso" role="status" style="margin-bottom:20px">✔ PDF gerado.</div>
+      <div class="sumgrid">
+        <section class="sub"><h3>Tema 1 · Origem</h3><div class="sum"><img src="../../assets/ui-hd/ornamento-folha-a.webp" alt=""><div><b>Ferreiro de aldeia</b><span>Habilidade ou Ofício · 3 tags</span></div></div></section>
+        <section class="sub"><h3>Tema 2 · Aventura</h3><div class="sum"><img src="../../assets/ui-hd/ornamento-estrela.webp" alt=""><div><b>Mensageira da corte</b><span>Dever · 4 tags</span></div></div></section>
+        <section class="sub"><h3>Tema 3 · Grandeza</h3><div class="sum"><img src="../../assets/ui-hd/ornamento-coroa.webp" alt=""><div><b>Herdeira do trono</b><span>Destino · 2 tags</span></div></div></section>
+        <section class="sub"><h3>Tema 4 · Aventura</h3><div class="sum"><img src="../../assets/ui-hd/ornamento-estrela.webp" alt=""><div><b>Lobo-guardião</b><span>Companheiro · 3 tags</span></div></div></section>
+      </div>
+    </section>
+  </main>
+
+  <div class="bottom">
+    <p class="steplabel" id="steplabel"></p>
+    <button class="btn ghost" id="prev">← Anterior</button>
+    <div class="mid" id="counter"><div class="pbar" id="pbar"></div></div>
+    <div class="right">
+      <button class="btn ghost icononly" title="Baixar save (.json)" aria-label="Baixar save (.json)"><img src="../../assets/ui-hd/ic-disquete.webp" alt=""></button>
+      <button class="btn primary" id="next">Próximo →</button>
+    </div>
+  </div>
+  
+</div>
+
+<script>
+const steps = [
+  ['Identidade', 'personagem'], ['Tema 1', 'temas'], ['Tema 2', 'temas'], ['Tema 3', 'temas'], ['Tema 4', 'temas'],
+  ['Companhia', 'companhia'], ['Mochila e Quintessências', 'mochila'], ['Estados atuais', 'estados'], ['Promessa e História', 'promessa'],
+  ['Revisão e download', 'exportar'],
+];
+const SECTION = { personagem: 'personagem', temas: 'temas', companhia: 'detalhes', mochila: 'detalhes', estados: 'detalhes', promessa: 'detalhes', exportar: 'exportar' };
+const SECTION_NAME = { personagem: 'Personagem', temas: 'Temas', detalhes: 'Detalhes', exportar: 'Exportar' };
+let cur = 1;
+const $ = (s) => document.querySelector(s);
+const ol = $('#steps');
+steps.forEach(([t], i) => {
+  const li = document.createElement('li');
+  li.innerHTML = `<button class="step"><span class="n">${i + 1}</span>${t}</button>`;
+  li.firstChild.addEventListener('click', () => go(i));
+  ol.append(li);
+});
+function go(i) {
+  cur = Math.max(0, Math.min(steps.length - 1, i));
+  const [title, view] = steps[cur];
+  document.querySelectorAll('.view').forEach((v) => v.classList.toggle('on', v.id === 'v-' + view));
+  document.querySelectorAll('.tab').forEach((t) => t.setAttribute('aria-selected', t.dataset.view === SECTION[view]));
+  document.querySelectorAll('.step').forEach((b, k) => {
+    k === cur ? b.setAttribute('aria-current', 'step') : b.removeAttribute('aria-current');
+    b.classList.toggle('done', k < cur);
+  });
+  if (view === 'temas') $('#v-temas h1').textContent = title;
+  const secao = SECTION_NAME[SECTION[view]];
+  $('#steplabel').textContent = `Passo ${cur + 1} de ${steps.length} · ${secao}`;
+  $('#pbar').innerHTML = steps.map((_, k) => `<i class="${k <= cur ? 'on' : ''}"></i>`).join('');
+  $('#prev').disabled = cur === 0;
+  $('#next').style.display = cur === steps.length - 1 ? 'none' : '';
+}
+document.querySelectorAll('.tab').forEach((t) => t.addEventListener('click', () => go(steps.findIndex((s) => SECTION[s[1]] === t.dataset.view))));
+$('#prev').addEventListener('click', () => go(cur - 1));
+$('#next').addEventListener('click', () => go(cur + 1));
+document.querySelectorAll('.medal').forEach((m) => m.addEventListener('click', () => document.querySelectorAll('.medal').forEach((o) => o.setAttribute('aria-pressed', o === m))));
+document.querySelectorAll('.hit').forEach((b) => b.addEventListener('click', () => { const d = b.firstElementChild; d.setAttribute('aria-pressed', d.getAttribute('aria-pressed') !== 'true'); }));
+go(1);
+
+// ===== v4: tela inicial =====
+const home = $('#home');
+$('#home-pbar').innerHTML = Array.from({ length: 10 }, (_, k) => `<i class="${k <= 2 ? 'on' : ''}"></i>`).join('');
+function showHome(on) { document.body.classList.toggle('home-on', on); window.scrollTo(0, 0); }
+showHome(true);
+$('#btn-new').addEventListener('click', () => { go(0); showHome(false); });
+$('#btn-new2').addEventListener('click', () => { go(0); showHome(false); });
+$('#btn-resume').addEventListener('click', () => { go(2); showHome(false); });
+$('#btn-menu').addEventListener('click', () => showHome(true));
+$('#demo').addEventListener('click', () => home.classList.toggle('has-saved'));
+</script>
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mockup — Ficha em pergaminho</title>
+<style>
+:root {
+  --parch: #ead9b0;
+  --parch-2: #dcc794;
+  --parch-3: #f3e7c7;
+  --ink: #3a2814;
+  --ink-soft: #6b5233;
+  --brown: #9a6330;
+  --brown-d: #6f4220;
+  --green: #31503a;
+  --green-d: #203726;
+  --green-l: #4d7a3f;
+  --leaf: #79a342;
+  --leaf-d: #4e7a2a;
+  --wine: #7d2231;
+  --gold: #e0bd62;
+  --noise: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/><feColorMatrix values='0 0 0 0 .35  0 0 0 0 .25  0 0 0 0 .12  0 0 0 .22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  --display: "Cinzel", "Trajan Pro", Georgia, "Times New Roman", serif;
+  --body: "Crimson Text", Georgia, "Times New Roman", serif;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0; color: var(--ink); font: 17px/1.4 var(--body);
+  background:
+    radial-gradient(ellipse at 20% 10%, #f0e1bb 0, transparent 55%),
+    radial-gradient(ellipse at 90% 90%, #cdb785 0, transparent 50%),
+    var(--parch);
+}
+body::before { content: ""; position: fixed; inset: 0; background: var(--noise); pointer-events: none; z-index: 0; }
+
+.app { position: relative; z-index: 1; min-height: 100vh; display: grid; grid-template-columns: 232px 1fr; grid-template-rows: auto 1fr auto; gap: 14px 18px; padding: 14px 18px 12px; }
+
+/* ---------- barra superior ---------- */
+.topbar {
+  grid-column: 2; display: flex; align-items: center; gap: 8px; padding: 8px 12px;
+  background: linear-gradient(#3b5d44, var(--green-d)); border: 2px solid var(--green-d); border-radius: 18px;
+  box-shadow: inset 0 0 0 2px #6d8a5e55, 0 3px 8px #0003;
+}
+.tab {
+  font: 600 16px var(--display); letter-spacing: .04em; color: #dfe8cf; background: transparent; border: 0;
+  padding: 10px 22px; border-radius: 10px; cursor: pointer; display: flex; gap: 8px; align-items: center; min-height: 44px;
+}
+.tab:hover { background: #ffffff14; }
+.tab[aria-selected="true"] { background: linear-gradient(var(--parch-3), var(--parch)); color: var(--ink); box-shadow: 0 2px 0 #0004; }
+.save-note { margin-left: auto; color: #b9cdaa; font-size: 14px; font-style: italic; padding-right: 8px; }
+
+/* ---------- lateral ---------- */
+.side {
+  grid-row: 1 / span 3; position: relative; overflow: hidden; padding: 16px 14px 220px;
+  background: linear-gradient(#f0e2bd, #e3d1a1); border: 2px solid #b69a63; border-radius: 22px; box-shadow: inset 0 0 22px #8a6b2f40;
+}
+.logo { text-align: center; font-family: var(--display); color: #8e2330; line-height: .95; margin: 4px 0 8px; text-shadow: 0 1px 0 #fff6; }
+.logo b { display: block; font-size: 34px; letter-spacing: .02em; }
+.logo i { display: block; font-size: 15px; font-style: normal; letter-spacing: .3em; margin: 2px 0; }
+.rule { height: 12px; margin: 8px 0 14px; background: radial-gradient(circle at 50% 50%, #8a6b2f 0 3px, transparent 4px), linear-gradient(#8a6b2f, #8a6b2f) 0 50% / 100% 1px no-repeat; opacity: .7; }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.step {
+  width: 100%; display: flex; align-items: center; gap: 10px; text-align: left; min-height: 44px; padding: 6px 12px;
+  font: 600 16px var(--body); color: var(--ink-soft); background: #fff3; border: 1px solid #b69a6366; border-radius: 12px; cursor: pointer;
+}
+.step span { font: 700 12px var(--display); width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; border: 1.5px solid currentColor; flex: none; }
+.step[aria-current="step"] { background: linear-gradient(#3b5d44, var(--green-d)); color: #f6ecd0; border-color: var(--green-d); box-shadow: 0 2px 5px #0004; }
+.vines { position: absolute; left: -10px; right: -10px; bottom: -6px; height: 230px; pointer-events: none; }
+
+/* ---------- moldura central ---------- */
+.stage { grid-column: 2; position: relative; padding: 14px; background: var(--green); border: 3px solid var(--green-d); border-radius: 12px; box-shadow: inset 0 0 0 2px #84a27455, 0 4px 14px #0003; }
+.sheet { background: linear-gradient(#efe0b8, #e2cf9d); border: 2px solid #b69a63; border-radius: 8px; padding: 18px 20px 22px; min-height: 480px; position: relative; overflow: hidden; }
+.sheet::before { content: ""; position: absolute; inset: 0; background: var(--noise); opacity: .6; pointer-events: none; }
+.sheet > * { position: relative; }
+.view { display: none; }
+.view.on { display: block; }
+h1 { font: 700 26px var(--display); letter-spacing: .05em; margin: 0 0 4px; color: var(--ink); }
+.note { margin: 8px 0 16px; padding: 10px 14px; font-style: italic; color: var(--ink-soft); background: #fff4d855; border: 1px dashed #9a7b46; border-radius: 6px; }
+
+.grid { display: grid; gap: 16px; grid-template-columns: 1fr 1fr; }
+.card { background: #f6ecd0cc; border: 2px solid #8a6b2f; border-radius: 6px; overflow: hidden; box-shadow: 0 2px 5px #5a3f1a33; }
+.card > h2 { margin: 0; padding: 7px 12px; text-align: center; font: 700 14px var(--display); letter-spacing: .14em; text-transform: uppercase; color: #fbefd0; background: linear-gradient(var(--brown), var(--brown-d)); text-shadow: 0 1px 0 #0006; border-bottom: 2px solid #5a3417; }
+.card .body { padding: 12px 14px 14px; display: grid; gap: 10px; }
+label.fld { display: grid; gap: 2px; font: 600 12px var(--display); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); }
+.line {
+  width: 100%; min-height: 44px; padding: 8px 10px; font: italic 19px var(--body); color: var(--ink);
+  background: linear-gradient(transparent 92%, #8a6b2f99 92%); border: 0; border-radius: 3px 3px 0 0; outline: none;
+}
+.line:focus { background: linear-gradient(#fff6 0 0, #fff6 0 0), linear-gradient(transparent 92%, var(--brown) 92%); box-shadow: 0 2px 0 var(--brown); }
+.line::placeholder { color: #8a7656aa; }
+.row { display: flex; gap: 8px; align-items: center; }
+.row .line { flex: 1; }
+
+/* medalhões de Magnitude */
+.might { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.medal { display: grid; justify-items: center; gap: 4px; background: none; border: 0; cursor: pointer; font: 700 12px var(--display); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); min-height: 44px; }
+.medal i { font-style: normal; width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center; font-size: 26px; color: var(--ink-soft); background: radial-gradient(circle at 35% 30%, #fff8, transparent 60%), var(--parch-2); border: 3px double #8a6b2f; }
+.medal[aria-pressed="true"] { color: var(--ink); }
+.medal[aria-pressed="true"] i { color: #fff4d0; background: radial-gradient(circle at 35% 30%, #cfe6a0, var(--leaf) 55%, var(--leaf-d)); border-color: var(--green-d); box-shadow: 0 0 0 3px #79a34255; }
+
+/* folha do título do tema */
+.leaf { position: relative; display: grid; place-items: center; min-height: 84px; }
+.leaf svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.leaf input { position: relative; width: 70%; text-align: center; font: italic 700 21px var(--body); color: #1d3411; background: #f1f6dccc; border: 1px solid #4e7a2a; border-radius: 4px; min-height: 44px; outline: none; }
+.leaf small { position: absolute; top: 4px; font: 700 10px var(--display); letter-spacing: .2em; color: #e6f1c8; }
+
+/* círculos de marcação */
+.dots { display: flex; gap: 8px; align-items: center; }
+.dot { width: 28px; height: 28px; border-radius: 50%; border: 2px solid #8a6b2f; background: #fff3; cursor: pointer; padding: 0; position: relative; }
+.dot[aria-pressed="true"]::after { content: ""; position: absolute; inset: 4px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #cfe6a0, var(--leaf-d)); }
+.dot.scratch { width: 26px; height: 26px; border-style: dashed; }
+.dot.scratch[aria-pressed="true"]::after { background: #8e2330; border-radius: 2px; transform: rotate(45deg); inset: 11px 3px; height: 3px; }
+.hit { min-width: 44px; min-height: 44px; display: grid; place-items: center; background: none; border: 0; cursor: pointer; }
+.quest { display: flex; justify-content: space-around; gap: 6px; flex-wrap: wrap; }
+.quest div { display: grid; justify-items: center; font: 700 11px var(--display); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); }
+
+/* resumo e exportar */
+.sumgrid { display: grid; gap: 12px; grid-template-columns: repeat(2, 1fr); margin-bottom: 18px; }
+.sum { display: flex; gap: 12px; align-items: center; padding: 10px 14px; }
+.sum svg { width: 64px; flex: none; }
+.sum b { font: 700 16px var(--display); display: block; }
+.sum span { color: var(--ink-soft); font-size: 15px; }
+.exports { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* botões */
+.btn { font: 700 16px var(--display); letter-spacing: .05em; min-height: 44px; padding: 8px 22px; border-radius: 10px; cursor: pointer; color: #f6ecd0; background: linear-gradient(#3b5d44, var(--green-d)); border: 2px solid var(--green-d); box-shadow: inset 0 0 0 1px #84a27488, 0 2px 5px #0004; display: inline-flex; gap: 8px; align-items: center; justify-content: center; }
+.btn:hover:not(:disabled) { filter: brightness(1.12); }
+.btn:disabled { opacity: .45; cursor: default; }
+.btn.wine { background: linear-gradient(#9a2c3c, var(--wine)); border-color: #4e1019; }
+.btn.paper { color: var(--ink); background: linear-gradient(var(--parch-3), var(--parch-2)); border-color: #8a6b2f; box-shadow: 0 2px 4px #0003; }
+.btn.big { padding: 12px 28px; font-size: 18px; }
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+/* barra inferior */
+.bottom { grid-column: 2; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.bottom .mid { flex: 1; text-align: center; font: 600 15px var(--display); letter-spacing: .1em; color: var(--ink-soft); }
+.bottom .right { display: flex; gap: 10px; }
+
+.legend { grid-column: 2; font-size: 14px; color: var(--ink-soft); font-style: italic; text-align: center; }
+
+@media (max-width: 860px) {
+  .app { grid-template-columns: 1fr; padding: 10px; }
+  .side { display: none; }
+  .topbar, .stage, .bottom, .legend { grid-column: 1; }
+  .topbar { overflow-x: auto; }
+  .tab { padding: 10px 14px; font-size: 14px; }
+  .save-note { display: none; }
+  .grid, .sumgrid { grid-template-columns: 1fr; }
+  .bottom .mid { order: -1; flex-basis: 100%; }
+  .bottom .btn { flex: 1; padding: 8px 12px; }
+  .bottom .right { flex: 1 1 100%; }
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="leaf" viewBox="0 0 100 52"><path d="M2 26 Q50 -16 98 26 Q50 68 2 26Z" fill="#79a342" stroke="#3d6320" stroke-width="2"/><path d="M6 26 H94" stroke="#3d632055" stroke-width="1.5"/><path d="M2 26 Q50 -4 98 26" fill="none" stroke="#c7e08e" stroke-width="2" opacity=".6"/></symbol>
+    <symbol id="sprig" viewBox="0 0 120 40"><path d="M2 36 C30 30 60 24 116 6" fill="none" stroke="#4d6b34" stroke-width="2.2"/><g fill="#6f9a3e" stroke="#3d6320" stroke-width="1"><ellipse cx="22" cy="28" rx="9" ry="4.5" transform="rotate(-28 22 28)"/><ellipse cx="42" cy="30" rx="9" ry="4.5" transform="rotate(32 42 30)"/><ellipse cx="60" cy="21" rx="9" ry="4.5" transform="rotate(-28 60 21)"/><ellipse cx="80" cy="20" rx="9" ry="4.5" transform="rotate(30 80 20)"/><ellipse cx="98" cy="12" rx="9" ry="4.5" transform="rotate(-25 98 12)"/></g></symbol>
+  </defs>
+</svg>
+
+<div class="app">
+  <nav class="topbar" role="tablist" aria-label="Seções da ficha">
+    <button class="tab" role="tab" data-view="personagem" aria-selected="true">Personagem</button>
+    <button class="tab" role="tab" data-view="temas" aria-selected="false">Temas</button>
+    <button class="tab" role="tab" data-view="detalhes" aria-selected="false">Detalhes</button>
+    <button class="tab" role="tab" data-view="exportar" aria-selected="false">Exportar</button>
+    <span class="save-note">Salvo neste navegador</span>
+  </nav>
+
+  <aside class="side">
+    <div class="logo"><b>Legend</b><i>in the</i><b>Mist</b></div>
+    <div class="rule"></div>
+    <ol class="steps" id="steps"></ol>
+    <svg class="vines" viewBox="0 0 240 230" aria-hidden="true">
+      <path d="M-10 230 C20 160 10 110 40 60 C55 35 70 20 90 14" fill="none" stroke="#4d6b34" stroke-width="3"/>
+      <path d="M30 230 C70 190 90 190 130 200 C170 210 200 200 250 170" fill="none" stroke="#4d6b34" stroke-width="2.5"/>
+      <g fill="#6f9a3e" stroke="#3d6320" stroke-width="1">
+        <ellipse cx="22" cy="150" rx="16" ry="7" transform="rotate(-35 22 150)"/><ellipse cx="38" cy="110" rx="16" ry="7" transform="rotate(30 38 110)"/>
+        <ellipse cx="52" cy="72" rx="16" ry="7" transform="rotate(-40 52 72)"/><ellipse cx="86" cy="196" rx="16" ry="7" transform="rotate(-20 86 196)"/>
+        <ellipse cx="140" cy="206" rx="16" ry="7" transform="rotate(25 140 206)"/><ellipse cx="190" cy="190" rx="16" ry="7" transform="rotate(-30 190 190)"/>
+      </g>
+      <g stroke="#6b3b12" stroke-width="1">
+        <circle cx="18" cy="196" r="14" fill="#d9772e"/><circle cx="18" cy="196" r="5" fill="#f1c24a"/>
+        <circle cx="54" cy="214" r="12" fill="#e8a33a"/><circle cx="54" cy="214" r="4" fill="#f6e08a"/>
+        <circle cx="168" cy="214" r="11" fill="#8b6fc4"/><circle cx="168" cy="214" r="4" fill="#f1c24a"/>
+        <circle cx="214" cy="176" r="10" fill="#c85a4a"/><circle cx="214" cy="176" r="4" fill="#f6e08a"/>
+      </g>
+      <g transform="translate(96 150) rotate(12)"><rect x="-3" y="-60" width="6" height="64" fill="#8c8c7a" stroke="#4a4a3c"/><rect x="-16" y="2" width="32" height="6" fill="#8a5a2b" stroke="#4a2c10"/><rect x="-3" y="8" width="6" height="26" fill="#7a4a22" stroke="#4a2c10"/></g>
+    </svg>
+  </aside>
+
+  <main class="stage">
+    <div class="sheet">
+
+      <!-- ===== Personagem ===== -->
+      <section class="view on" id="v-personagem">
+        <h1>Identidade</h1>
+        <p class="note">Quem é o seu herói e quem joga com ele.</p>
+        <div class="grid">
+          <div class="card"><h2>Nome do personagem</h2><div class="body"><input class="line" value="Thalía Éowyn" aria-label="Nome do personagem"></div></div>
+          <div class="card"><h2>Nome do jogador</h2><div class="body"><input class="line" value="Matheus" aria-label="Nome do jogador"></div></div>
+        </div>
+      </section>
+
+      <!-- ===== Temas ===== -->
+      <section class="view" id="v-temas">
+        <h1>Tema 1</h1>
+        <p class="note">A 1ª tag de poder é o título do tema e deve combinar com a Magnitude. Tags de poder devem ser úteis; a de fraqueza deve limitar.</p>
+        <div class="grid">
+          <div style="display:grid;gap:16px;align-content:start">
+            <div class="card"><h2>Tipo e Magnitude</h2><div class="body">
+              <label class="fld">Tipo de tema<input class="line" value="Habilidade ou Ofício" list="t"></label>
+              <datalist id="t"><option>Circunstância</option><option>Devoção</option><option>Passado</option></datalist>
+              <div class="might" role="group" aria-label="Magnitude">
+                <button class="medal" aria-pressed="true"><i>⌂</i>Origem</button>
+                <button class="medal" aria-pressed="false"><i>✧</i>Aventura</button>
+                <button class="medal" aria-pressed="false"><i>♛</i>Grandeza</button>
+              </div></div></div>
+            <div class="card"><h2>Busca</h2><div class="body">
+              <input class="line" value="Forjar a espada do meu mestre" aria-label="Busca">
+              <div class="quest">
+                <div>Abandonar<span class="dots"><button class="hit"><span class="dot" aria-pressed="false"></span></button><button class="hit"><span class="dot" aria-pressed="false"></span></button><button class="hit"><span class="dot" aria-pressed="false"></span></button></span></div>
+                <div>Melhoria<span class="dots"><button class="hit"><span class="dot" aria-pressed="true"></span></button><button class="hit"><span class="dot" aria-pressed="false"></span></button><button class="hit"><span class="dot" aria-pressed="false"></span></button></span></div>
+                <div>Marco<span class="dots"><button class="hit"><span class="dot" aria-pressed="true"></span></button><button class="hit"><span class="dot" aria-pressed="true"></span></button><button class="hit"><span class="dot" aria-pressed="false"></span></button></span></div>
+              </div></div></div>
+          </div>
+          <div style="display:grid;gap:16px;align-content:start">
+            <div class="card"><h2>Tags de poder</h2><div class="body">
+              <label class="fld">Título do tema (1ª tag de poder)</label>
+              <div class="leaf"><svg viewBox="0 0 100 52" preserveAspectRatio="none"><use href="#leaf"/></svg><input value="Ferreiro de aldeia" aria-label="Título do tema"></div>
+              <div class="row"><input class="line" placeholder="Tag de poder 2" value="Martelo de guerra"><button class="hit"><span class="dot scratch" aria-pressed="false"></span></button></div>
+              <div class="row"><input class="line" placeholder="Tag de poder 3" value="Olhar para o metal"><button class="hit"><span class="dot scratch" aria-pressed="true"></span></button></div>
+              <div class="row"><input class="line" placeholder="Tag de poder 4"><button class="hit"><span class="dot scratch" aria-pressed="false"></span></button></div>
+            </div></div>
+            <div class="card"><h2>Tags de fraqueza</h2><div class="body">
+              <input class="line" value="Mãos sempre queimadas" aria-label="Fraqueza 1">
+              <input class="line" placeholder="Tag de fraqueza 2" aria-label="Fraqueza 2">
+            </div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Detalhes ===== -->
+      <section class="view" id="v-detalhes">
+        <h1>Companhia</h1>
+        <p class="note">A Companhia é o grupo. Anote cada companheiro e a tag da relação do seu herói com ele.</p>
+        <div class="grid">
+          <div class="card"><h2>Relações</h2><div class="body">
+            <div class="row"><input class="line" value="Borin" aria-label="Companheiro 1"><input class="line" value="Dívida de honra" aria-label="Relação 1"></div>
+            <div class="row"><input class="line" value="Lirael" aria-label="Companheiro 2"><input class="line" placeholder="Tag de relação" aria-label="Relação 2"></div>
+            <div class="row"><input class="line" placeholder="Companheiro 3" aria-label="Companheiro 3"><input class="line" placeholder="Tag de relação" aria-label="Relação 3"></div>
+          </div></div>
+          <div class="card"><h2>Tema da Companhia</h2><div class="body">
+            <div class="row"><input class="line" value="Estrada comum" aria-label="Tag 1"><button class="hit"><span class="dot scratch" aria-pressed="false"></span></button></div>
+            <div class="row"><input class="line" placeholder="Tag 2" aria-label="Tag 2"><button class="hit"><span class="dot scratch" aria-pressed="false"></span></button></div>
+            <div class="row"><input class="line" placeholder="Fraqueza" aria-label="Fraqueza"></div>
+          </div></div>
+        </div>
+      </section>
+
+      <!-- ===== Exportar ===== -->
+      <section class="view" id="v-exportar">
+        <h1>Revisão e download</h1>
+        <p class="note">Confira o resumo. O PDF é a ficha oficial preenchida; o save (.json) permite reabrir e editar depois.</p>
+        <div class="sumgrid">
+          <div class="card sum"><svg viewBox="0 0 100 52"><use href="#leaf"/></svg><div><b>Tema 1 · Ferreiro de aldeia</b><span>Habilidade ou Ofício · Origem · 3 tags</span></div></div>
+          <div class="card sum"><svg viewBox="0 0 100 52"><use href="#leaf"/></svg><div><b>Tema 2 · Mensageira da corte</b><span>Dever · Aventura · 4 tags</span></div></div>
+          <div class="card sum"><svg viewBox="0 0 100 52"><use href="#leaf"/></svg><div><b>Tema 3 · Herdeira do trono</b><span>Destino · Grandeza · 2 tags</span></div></div>
+          <div class="card sum"><svg viewBox="0 0 100 52"><use href="#leaf"/></svg><div><b>Tema 4 · Lobo-guardião</b><span>Companheiro · Aventura · 3 tags</span></div></div>
+        </div>
+        <div class="exports">
+          <button class="btn wine big">⬇ Baixar PDF da ficha</button>
+          <button class="btn paper big">Baixar save (.json)</button>
+          <button class="btn paper big">Abrir save (.json)</button>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <div class="bottom">
+    <button class="btn" id="prev">← Anterior</button>
+    <div class="mid" id="counter">1 / 10</div>
+    <div class="right">
+      <button class="btn paper">Salvar .json</button>
+      <button class="btn wine">Baixar PDF</button>
+      <button class="btn" id="next">Próximo →</button>
+    </div>
+  </div>
+  <p class="legend">Mockup de direção visual — textos de exemplo; a navegação é de demonstração.</p>
+</div>
+
+<script>
+const steps = [
+  ['Identidade', 'personagem'], ['Tema 1', 'temas'], ['Tema 2', 'temas'], ['Tema 3', 'temas'], ['Tema 4', 'temas'],
+  ['Companhia', 'detalhes'], ['Mochila e Quintessências', 'detalhes'], ['Estados atuais', 'detalhes'], ['Promessa e História', 'detalhes'],
+  ['Revisão e download', 'exportar'],
+];
+let cur = 0;
+const $ = (s) => document.querySelector(s);
+const ol = $('#steps');
+steps.forEach(([t], i) => {
+  const li = document.createElement('li');
+  li.innerHTML = `<button class="step"><span>${i + 1}</span>${t}</button>`;
+  li.firstChild.addEventListener('click', () => go(i));
+  ol.append(li);
+});
+function go(i) {
+  cur = Math.max(0, Math.min(steps.length - 1, i));
+  const [title, view] = steps[cur];
+  document.querySelectorAll('.view').forEach((v) => v.classList.toggle('on', v.id === 'v-' + view));
+  document.querySelectorAll('.tab').forEach((t) => t.setAttribute('aria-selected', t.dataset.view === view));
+  document.querySelectorAll('.step').forEach((b, k) => k === cur ? b.setAttribute('aria-current', 'step') : b.removeAttribute('aria-current'));
+  const h = document.querySelector('#v-' + view + ' h1'); if (view === 'temas') h.textContent = title;
+  $('#counter').textContent = `${cur + 1} / ${steps.length}`;
+  $('#prev').disabled = cur === 0; $('#next').disabled = cur === steps.length - 1;
+}
+document.querySelectorAll('.tab').forEach((t) => t.addEventListener('click', () => go(steps.findIndex((s) => s[1] === t.dataset.view))));
+$('#prev').addEventListener('click', () => go(cur - 1));
+$('#next').addEventListener('click', () => go(cur + 1));
+document.querySelectorAll('.medal').forEach((m) => m.addEventListener('click', () => document.querySelectorAll('.medal').forEach((o) => o.setAttribute('aria-pressed', o === m))));
+document.querySelectorAll('.hit').forEach((b) => b.addEventListener('click', () => { const d = b.firstElementChild; d.setAttribute('aria-pressed', d.getAttribute('aria-pressed') !== 'true'); }));
+go(1);
+</script>
+</body>
+</html>
