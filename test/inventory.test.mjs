@@ -17,3 +17,10 @@ test('campos-chave existem com o tipo certo', () => {
   assert.equal(by['Character Name'].type, 'text');
   assert.equal(by['Promise 0'].type, 'check');
 });
+
+test('campos estão distribuídos pelas 2 páginas (Special Improvements na página 2)', () => {
+  const pages = new Set(fields.map((f) => f.page));
+  assert.deepEqual([...pages].sort(), [0, 1]);
+  const si = fields.find((f) => f.name === 'Theme Card 0 Special Improvements 0');
+  assert.equal(si.page, 1);
+});

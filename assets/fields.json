@@ -44,17 +44,6 @@
   ]
  },
  {
-  "name": "History 0",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   20.9,
-   684,
-   138.9,
-   692.6
-  ]
- },
- {
   "name": "Player Name",
   "type": "text",
   "page": 0,
@@ -132,17 +121,6 @@
   ]
  },
  {
-  "name": "History 1",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   20.9,
-   674.5,
-   138.9,
-   683.1
-  ]
- },
- {
   "name": "Tag 0 Note 2",
   "type": "text",
   "page": 0,
@@ -151,28 +129,6 @@
    670.9,
    574.4,
    691.2
-  ]
- },
- {
-  "name": "History 2",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   20.9,
-   665.4,
-   138.9,
-   674
-  ]
- },
- {
-  "name": "History 3",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   20.9,
-   655.9,
-   138.9,
-   664.1
   ]
  },
  {
@@ -187,17 +143,6 @@
   ]
  },
  {
-  "name": "History 4",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   20.9,
-   646.4,
-   138.9,
-   655
-  ]
- },
- {
   "name": "Backpack Tags 1",
   "type": "text",
   "page": 0,
@@ -206,17 +151,6 @@
    642.3,
    138.8,
    651.4
-  ]
- },
- {
-  "name": "History 5",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   20.9,
-   636.9,
-   138.9,
-   645
   ]
  },
  {
@@ -242,17 +176,6 @@
   ]
  },
  {
-  "name": "History 6",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   20.9,
-   627.3,
-   138.9,
-   635.5
-  ]
- },
- {
   "name": "Backpack Tags 3",
   "type": "text",
   "page": 0,
@@ -261,17 +184,6 @@
    624.6,
    138.8,
    633.3
-  ]
- },
- {
-  "name": "History 7",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   20.9,
-   617.4,
-   138.9,
-   625.6
   ]
  },
  {
@@ -327,17 +239,6 @@
    608.2,
    576.1,
    628.1
-  ]
- },
- {
-  "name": "Fellowship Special Improvements 0",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   169.9,
-   606,
-   269.9,
-   622
   ]
  },
  {
@@ -429,28 +330,6 @@
   ]
  },
  {
-  "name": "Fellowship Special Improvements 1",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   169.9,
-   588.8,
-   269.9,
-   604.8
-  ]
- },
- {
-  "name": "Notes 0",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   21.4,
-   586.3,
-   138.4,
-   594.4
-  ]
- },
- {
   "name": "Tag 1 Note 2",
   "type": "text",
   "page": 0,
@@ -473,17 +352,6 @@
   ]
  },
  {
-  "name": "Notes 1",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   21.9,
-   576.8,
-   138.4,
-   584.9
-  ]
- },
- {
   "name": "Fellowship 2",
   "type": "text",
   "page": 0,
@@ -492,17 +360,6 @@
    575.7,
    263.4,
    591.7
-  ]
- },
- {
-  "name": "Fellowship Special Improvements 2",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   169.9,
-   572.3,
-   269.9,
-   587.9
   ]
  },
  {
@@ -528,17 +385,6 @@
   ]
  },
  {
-  "name": "Notes 2",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   21.9,
-   567.6,
-   138.4,
-   575.9
-  ]
- },
- {
   "name": "Fellowship Scratched 3",
   "type": "check",
   "page": 0,
@@ -561,28 +407,6 @@
   ]
  },
  {
-  "name": "Notes 3",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   21.9,
-   557.6,
-   138.9,
-   566.4
-  ]
- },
- {
-  "name": "Fellowship Special Improvements 3",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   169.9,
-   555.9,
-   269.9,
-   571.9
-  ]
- },
- {
   "name": "Companion 1",
   "type": "text",
   "page": 0,
@@ -602,17 +426,6 @@
    554.5,
    145.3,
    567.9
-  ]
- },
- {
-  "name": "Notes 4",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   21.9,
-   548.6,
-   138.9,
-   557.3
   ]
  },
  {
@@ -649,28 +462,6 @@
   ]
  },
  {
-  "name": "Fellowship Special Improvements 4",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   169.9,
-   539.9,
-   269.9,
-   555.9
-  ]
- },
- {
-  "name": "Notes 5",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   21.9,
-   539.1,
-   138.9,
-   547.8
-  ]
- },
- {
   "name": "Companion 2",
   "type": "text",
   "page": 0,
@@ -690,17 +481,6 @@
    536.4,
    145.3,
    549.8
-  ]
- },
- {
-  "name": "Notes 6",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   21.4,
-   529.5,
-   138.9,
-   537.8
   ]
  },
  {
@@ -737,17 +517,6 @@
   ]
  },
  {
-  "name": "Fellowship Special Improvements 5",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   169.9,
-   523.4,
-   269.9,
-   539.4
-  ]
- },
- {
   "name": "Tag 2 Note 1",
   "type": "text",
   "page": 0,
@@ -756,17 +525,6 @@
    521.7,
    577.4,
    541.6
-  ]
- },
- {
-  "name": "Notes 7",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   21.4,
-   520,
-   138.9,
-   528.3
   ]
  },
  {
@@ -803,17 +561,6 @@
   ]
  },
  {
-  "name": "Notes 8",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   21.4,
-   510.1,
-   138.9,
-   518.3
-  ]
- },
- {
   "name": "Fellowship 6",
   "type": "text",
   "page": 0,
@@ -822,17 +569,6 @@
    510,
    263.4,
    525.5
-  ]
- },
- {
-  "name": "Fellowship Special Improvements 6",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   169.9,
-   506.5,
-   269.9,
-   522.5
   ]
  },
  {
@@ -913,17 +649,6 @@
   ]
  },
  {
-  "name": "Notes 9",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   21.4,
-   500.6,
-   138.9,
-   509.3
-  ]
- },
- {
   "name": "Companion 4",
   "type": "text",
   "page": 0,
@@ -965,28 +690,6 @@
    493.1,
    263.4,
    509.5
-  ]
- },
- {
-  "name": "Notes 10",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   21.4,
-   491.5,
-   138.9,
-   499.8
-  ]
- },
- {
-  "name": "Fellowship Special Improvements 7",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   169.9,
-   490.1,
-   269.9,
-   506.1
   ]
  },
  {
@@ -1045,17 +748,6 @@
   ]
  },
  {
-  "name": "Notes 11",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   21.4,
-   482,
-   138.9,
-   490.6
-  ]
- },
- {
   "name": "Fellowship Weakness 0",
   "type": "text",
   "page": 0,
@@ -1064,39 +756,6 @@
    476.2,
    268.2,
    492.7
-  ]
- },
- {
-  "name": "Fellowship Special Improvements 8",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   169.9,
-   474.1,
-   269.9,
-   490.1
-  ]
- },
- {
-  "name": "Notes 12",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   21.4,
-   472.9,
-   138.9,
-   481.5
-  ]
- },
- {
-  "name": "Notes 13",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   21.4,
-   463.4,
-   138.9,
-   471.1
   ]
  },
  {
@@ -1111,17 +770,6 @@
   ]
  },
  {
-  "name": "Fellowship Special Improvements 9",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   169.9,
-   456.4,
-   269.9,
-   472.4
-  ]
- },
- {
   "name": "Tag 3 Note 0",
   "type": "text",
   "page": 0,
@@ -1130,39 +778,6 @@
    455,
    578.7,
    475.8
-  ]
- },
- {
-  "name": "Notes 14",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   20.9,
-   452.5,
-   138.4,
-   461.3
-  ]
- },
- {
-  "name": "Notes 15",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   20.9,
-   443.5,
-   138.4,
-   451.8
-  ]
- },
- {
-  "name": "Fellowship Special Improvements 10",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   169.9,
-   439.5,
-   269.9,
-   455
   ]
  },
  {
@@ -1188,17 +803,6 @@
   ]
  },
  {
-  "name": "Notes 16",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   20.9,
-   434.4,
-   138.4,
-   442.6
-  ]
- },
- {
   "name": "Tag 3 Note 1",
   "type": "text",
   "page": 0,
@@ -1207,28 +811,6 @@
    434.3,
    579.1,
    454.2
-  ]
- },
- {
-  "name": "Notes 17",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   20.9,
-   425.3,
-   138.4,
-   433.5
-  ]
- },
- {
-  "name": "Fellowship Special Improvements 11",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   169.9,
-   423,
-   269.9,
-   439
   ]
  },
  {
@@ -1251,17 +833,6 @@
    417.8,
    141.4,
    438.6
-  ]
- },
- {
-  "name": "Notes 18",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   20.9,
-   416.3,
-   138.4,
-   424.4
   ]
  },
  {
@@ -1342,28 +913,6 @@
   ]
  },
  {
-  "name": "Notes 19",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   20.9,
-   407.1,
-   138.4,
-   415.4
-  ]
- },
- {
-  "name": "Fellowship Special Improvements 12",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   169.9,
-   407,
-   269.9,
-   423
-  ]
- },
- {
   "name": "Fellowship Quest 1",
   "type": "text",
   "page": 0,
@@ -1386,28 +935,6 @@
   ]
  },
  {
-  "name": "Notes 20",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   21.4,
-   397.1,
-   138.9,
-   405.4
-  ]
- },
- {
-  "name": "Fellowship Special Improvements 13",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   169.9,
-   390.6,
-   269.9,
-   406.6
-  ]
- },
- {
   "name": "Fellowship Quest 2",
   "type": "text",
   "page": 0,
@@ -1416,17 +943,6 @@
    389.3,
    268.6,
    405.3
-  ]
- },
- {
-  "name": "Notes 21",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   20.9,
-   387.6,
-   138.4,
-   395.9
   ]
  },
  {
@@ -1540,17 +1056,6 @@
   ]
  },
  {
-  "name": "Notes 22",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   20.9,
-   377.8,
-   138.4,
-   386
-  ]
- },
- {
   "name": "Quintessences 3",
   "type": "text",
   "page": 0,
@@ -1559,17 +1064,6 @@
    377.6,
    141.9,
    398.8
-  ]
- },
- {
-  "name": "Fellowship Special Improvements 14",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   169.9,
-   373.3,
-   269.9,
-   389.3
   ]
  },
  {
@@ -1793,39 +1287,6 @@
   ]
  },
  {
-  "name": "Theme Card 1 Special Improvements 0",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   145.3,
-   257.4,
-   243.4,
-   273.4
-  ]
- },
- {
-  "name": "Theme Card 3 Special Improvements 0",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   393.1,
-   257.4,
-   491.3,
-   273
-  ]
- },
- {
-  "name": "Theme Card 0 Special Improvements 0",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   19.9,
-   256.9,
-   117.6,
-   272.5
-  ]
- },
- {
   "name": "Theme Card 1 Power Tag 0",
   "type": "text",
   "page": 0,
@@ -1834,17 +1295,6 @@
    256.9,
    234.4,
    272.1
-  ]
- },
- {
-  "name": "Theme Card 2 Special Improvements 0",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   269,
-   256.9,
-   367.6,
-   273
   ]
  },
  {
@@ -1925,28 +1375,6 @@
   ]
  },
  {
-  "name": "Theme Card 1 Special Improvements 1",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   145.3,
-   240.9,
-   243.4,
-   256.9
-  ]
- },
- {
-  "name": "Theme Card 2 Special Improvements 1",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   269,
-   240.9,
-   367.6,
-   256.1
-  ]
- },
- {
   "name": "Theme Card 2 Scratched 1",
   "type": "check",
   "page": 0,
@@ -1955,28 +1383,6 @@
    240.9,
    371.1,
    252.6
-  ]
- },
- {
-  "name": "Theme Card 3 Special Improvements 1",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   393.1,
-   240.9,
-   491.3,
-   256.5
-  ]
- },
- {
-  "name": "Theme Card 0 Special Improvements 1",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   19.9,
-   240.5,
-   117.6,
-   256.1
   ]
  },
  {
@@ -2068,17 +1474,6 @@
   ]
  },
  {
-  "name": "Theme Card 1 Special Improvements 2",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   145.3,
-   224,
-   243.4,
-   239.3
-  ]
- },
- {
   "name": "Theme Card 1 Power Tag 2",
   "type": "text",
   "page": 0,
@@ -2090,28 +1485,6 @@
   ]
  },
  {
-  "name": "Theme Card 2 Special Improvements 2",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   269,
-   223.6,
-   367.6,
-   239.3
-  ]
- },
- {
-  "name": "Theme Card 3 Special Improvements 2",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   393.1,
-   223.6,
-   491.3,
-   239.3
-  ]
- },
- {
   "name": "Theme Card 3 Power Tag 2",
   "type": "text",
   "page": 0,
@@ -2120,17 +1493,6 @@
    223.6,
    483.1,
    239.2
-  ]
- },
- {
-  "name": "Theme Card 0 Special Improvements 2",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   19.9,
-   223.3,
-   117.6,
-   238.8
   ]
  },
  {
@@ -2178,17 +1540,6 @@
   ]
  },
  {
-  "name": "Theme Card 1 Special Improvements 3",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   145.3,
-   208,
-   243.4,
-   223.3
-  ]
- },
- {
   "name": "Theme Card 0 Scratched 3",
   "type": "check",
   "page": 0,
@@ -2211,28 +1562,6 @@
   ]
  },
  {
-  "name": "Theme Card 2 Special Improvements 3",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   269,
-   207.3,
-   367.6,
-   222.8
-  ]
- },
- {
-  "name": "Theme Card 3 Special Improvements 3",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   393.1,
-   207.3,
-   491.3,
-   222.8
-  ]
- },
- {
   "name": "Theme Card 1  Power Tag 3",
   "type": "text",
   "page": 0,
@@ -2240,17 +1569,6 @@
    144.9,
    207.2,
    234.4,
-   222.8
-  ]
- },
- {
-  "name": "Theme Card 0 Special Improvements 3",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   19.9,
-   206.8,
-   117.6,
    222.8
   ]
  },
@@ -2321,17 +1639,6 @@
   ]
  },
  {
-  "name": "Theme Card 1 Special Improvements 4",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   145.3,
-   191.6,
-   243.4,
-   206.8
-  ]
- },
- {
   "name": "Theme Card 3 Scratched 4",
   "type": "check",
   "page": 0,
@@ -2343,17 +1650,6 @@
   ]
  },
  {
-  "name": "Theme Card 0 Special Improvements 4",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   19.9,
-   190.8,
-   117.6,
-   206.4
-  ]
- },
- {
   "name": "Theme Card 1 Power Tag 4",
   "type": "text",
   "page": 0,
@@ -2362,28 +1658,6 @@
    190.8,
    234.4,
    205.9
-  ]
- },
- {
-  "name": "Theme Card 2 Special Improvements 4",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   269,
-   190.8,
-   367.6,
-   206.4
-  ]
- },
- {
-  "name": "Theme Card 3 Special Improvements 4",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   393.1,
-   190.8,
-   491.3,
-   206.8
   ]
  },
  {
@@ -2453,17 +1727,6 @@
   ]
  },
  {
-  "name": "Theme Card 1 Special Improvements 5",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   145.3,
-   174.8,
-   243.4,
-   190.4
-  ]
- },
- {
   "name": "Theme Card 2 Scratched 5",
   "type": "check",
   "page": 0,
@@ -2472,39 +1735,6 @@
    174.8,
    371.5,
    186.4
-  ]
- },
- {
-  "name": "Theme Card 3 Special Improvements 5",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   393.1,
-   174.8,
-   491.3,
-   190.4
-  ]
- },
- {
-  "name": "Theme Card 0 Special Improvements 5",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   19.9,
-   174.4,
-   117.6,
-   189.9
-  ]
- },
- {
-  "name": "Theme Card 2 Special Improvements 5",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   269,
-   174.4,
-   367.6,
-   190.4
   ]
  },
  {
@@ -2596,50 +1826,6 @@
   ]
  },
  {
-  "name": "Theme Card 1 Special Improvements 6",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   145.3,
-   158.4,
-   243.4,
-   174.4
-  ]
- },
- {
-  "name": "Theme Card 3 Special Improvements 6",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   393.1,
-   158.4,
-   491.3,
-   173.9
-  ]
- },
- {
-  "name": "Theme Card 0 Special Improvements 6",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   19.9,
-   157.9,
-   117.6,
-   173.5
-  ]
- },
- {
-  "name": "Theme Card 2 Special Improvements 6",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   269,
-   157.9,
-   367.6,
-   173.9
-  ]
- },
- {
   "name": "Theme Card 1 Power Tag 6",
   "type": "text",
   "page": 0,
@@ -2681,50 +1867,6 @@
    157,
    359.4,
    173
-  ]
- },
- {
-  "name": "Theme Card 1 Special Improvements 7",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   145.3,
-   141.5,
-   243.4,
-   157.5
-  ]
- },
- {
-  "name": "Theme Card 2 Special Improvements 7",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   269,
-   141,
-   367.6,
-   156.6
-  ]
- },
- {
-  "name": "Theme Card 3 Special Improvements 7",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   393.1,
-   141,
-   491.3,
-   156.6
-  ]
- },
- {
-  "name": "Theme Card 0 Special Improvements 7",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   19.9,
-   140.6,
-   117.6,
-   156.1
   ]
  },
  {
@@ -2772,50 +1914,6 @@
   ]
  },
  {
-  "name": "Theme Card 1 Special Improvements 8",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   145.3,
-   125.5,
-   243.4,
-   140.6
-  ]
- },
- {
-  "name": "Theme Card 3 Special Improvements 8",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   393.1,
-   125,
-   491.3,
-   140.1
-  ]
- },
- {
-  "name": "Theme Card 2 Special Improvements 8",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   269,
-   124.6,
-   367.6,
-   140.1
-  ]
- },
- {
-  "name": "Theme Card 0 Special Improvements 8",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   19.9,
-   124.1,
-   117.6,
-   140.1
-  ]
- },
- {
   "name": "Theme Card 0 Weakness Tag 3",
   "type": "text",
   "page": 0,
@@ -2857,94 +1955,6 @@
    122.4,
    367.6,
    138
-  ]
- },
- {
-  "name": "Theme Card 1 Special Improvements 9",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   145.3,
-   109,
-   243.4,
-   124.1
-  ]
- },
- {
-  "name": "Theme Card 2 Special Improvements 9",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   269,
-   108.1,
-   367.6,
-   123.8
-  ]
- },
- {
-  "name": "Theme Card 3 Special Improvements 9",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   393.1,
-   108.1,
-   491.3,
-   123.8
-  ]
- },
- {
-  "name": "Theme Card 0 Special Improvements 9",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   19.9,
-   107.8,
-   117.6,
-   123.8
-  ]
- },
- {
-  "name": "Theme Card 1 Special Improvements 10",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   145.3,
-   91.8,
-   243.4,
-   107.8
-  ]
- },
- {
-  "name": "Theme Card 3 Special Improvements 10",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   393.1,
-   91.8,
-   491.3,
-   107.3
-  ]
- },
- {
-  "name": "Theme Card 0 Special Improvements 10",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   19.9,
-   90.9,
-   117.6,
-   106.9
-  ]
- },
- {
-  "name": "Theme Card 2 Special Improvements 10",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   269,
-   90.9,
-   367.6,
-   107.3
   ]
  },
  {
@@ -2992,50 +2002,6 @@
   ]
  },
  {
-  "name": "Theme Card 1 Special Improvements 11",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   145.3,
-   74.9,
-   243.4,
-   90.9
-  ]
- },
- {
-  "name": "Theme Card 2 Special Improvements 11",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   269,
-   74.9,
-   367.6,
-   90.4
-  ]
- },
- {
-  "name": "Theme Card 3 Special Improvements 11",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   393.1,
-   74.9,
-   491.3,
-   90.4
-  ]
- },
- {
-  "name": "Theme Card 0 Special Improvements 11",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   19.9,
-   74.4,
-   117.6,
-   90
-  ]
- },
- {
   "name": "Theme 1 Quest 1",
   "type": "text",
   "page": 0,
@@ -3077,50 +2043,6 @@
    68.3,
    117.2,
    84.3
-  ]
- },
- {
-  "name": "Theme Card 1 Special Improvements 12",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   145.3,
-   58.4,
-   243.4,
-   73.5
-  ]
- },
- {
-  "name": "Theme Card 2 Special Improvements 12",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   269,
-   58,
-   367.6,
-   73.5
-  ]
- },
- {
-  "name": "Theme Card 3 Special Improvements 12",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   393.1,
-   58,
-   491.3,
-   73.5
-  ]
- },
- {
-  "name": "Theme Card 0 Special Improvements 12",
-  "type": "text",
-  "page": 0,
-  "rect": [
-   19.9,
-   57.5,
-   117.6,
-   73.1
   ]
  },
  {
@@ -3561,6 +2483,1084 @@
    41.8,
    110.1,
    50
+  ]
+ },
+ {
+  "name": "History 0",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   20.9,
+   684,
+   138.9,
+   692.6
+  ]
+ },
+ {
+  "name": "History 1",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   20.9,
+   674.5,
+   138.9,
+   683.1
+  ]
+ },
+ {
+  "name": "History 2",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   20.9,
+   665.4,
+   138.9,
+   674
+  ]
+ },
+ {
+  "name": "History 3",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   20.9,
+   655.9,
+   138.9,
+   664.1
+  ]
+ },
+ {
+  "name": "History 4",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   20.9,
+   646.4,
+   138.9,
+   655
+  ]
+ },
+ {
+  "name": "History 5",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   20.9,
+   636.9,
+   138.9,
+   645
+  ]
+ },
+ {
+  "name": "History 6",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   20.9,
+   627.3,
+   138.9,
+   635.5
+  ]
+ },
+ {
+  "name": "History 7",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   20.9,
+   617.4,
+   138.9,
+   625.6
+  ]
+ },
+ {
+  "name": "Fellowship Special Improvements 0",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   169.9,
+   606,
+   269.9,
+   622
+  ]
+ },
+ {
+  "name": "Fellowship Special Improvements 1",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   169.9,
+   588.8,
+   269.9,
+   604.8
+  ]
+ },
+ {
+  "name": "Notes 0",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   21.4,
+   586.3,
+   138.4,
+   594.4
+  ]
+ },
+ {
+  "name": "Notes 1",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   21.9,
+   576.8,
+   138.4,
+   584.9
+  ]
+ },
+ {
+  "name": "Fellowship Special Improvements 2",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   169.9,
+   572.3,
+   269.9,
+   587.9
+  ]
+ },
+ {
+  "name": "Notes 2",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   21.9,
+   567.6,
+   138.4,
+   575.9
+  ]
+ },
+ {
+  "name": "Notes 3",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   21.9,
+   557.6,
+   138.9,
+   566.4
+  ]
+ },
+ {
+  "name": "Fellowship Special Improvements 3",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   169.9,
+   555.9,
+   269.9,
+   571.9
+  ]
+ },
+ {
+  "name": "Notes 4",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   21.9,
+   548.6,
+   138.9,
+   557.3
+  ]
+ },
+ {
+  "name": "Fellowship Special Improvements 4",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   169.9,
+   539.9,
+   269.9,
+   555.9
+  ]
+ },
+ {
+  "name": "Notes 5",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   21.9,
+   539.1,
+   138.9,
+   547.8
+  ]
+ },
+ {
+  "name": "Notes 6",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   21.4,
+   529.5,
+   138.9,
+   537.8
+  ]
+ },
+ {
+  "name": "Fellowship Special Improvements 5",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   169.9,
+   523.4,
+   269.9,
+   539.4
+  ]
+ },
+ {
+  "name": "Notes 7",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   21.4,
+   520,
+   138.9,
+   528.3
+  ]
+ },
+ {
+  "name": "Notes 8",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   21.4,
+   510.1,
+   138.9,
+   518.3
+  ]
+ },
+ {
+  "name": "Fellowship Special Improvements 6",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   169.9,
+   506.5,
+   269.9,
+   522.5
+  ]
+ },
+ {
+  "name": "Notes 9",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   21.4,
+   500.6,
+   138.9,
+   509.3
+  ]
+ },
+ {
+  "name": "Notes 10",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   21.4,
+   491.5,
+   138.9,
+   499.8
+  ]
+ },
+ {
+  "name": "Fellowship Special Improvements 7",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   169.9,
+   490.1,
+   269.9,
+   506.1
+  ]
+ },
+ {
+  "name": "Notes 11",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   21.4,
+   482,
+   138.9,
+   490.6
+  ]
+ },
+ {
+  "name": "Fellowship Special Improvements 8",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   169.9,
+   474.1,
+   269.9,
+   490.1
+  ]
+ },
+ {
+  "name": "Notes 12",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   21.4,
+   472.9,
+   138.9,
+   481.5
+  ]
+ },
+ {
+  "name": "Notes 13",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   21.4,
+   463.4,
+   138.9,
+   471.1
+  ]
+ },
+ {
+  "name": "Fellowship Special Improvements 9",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   169.9,
+   456.4,
+   269.9,
+   472.4
+  ]
+ },
+ {
+  "name": "Notes 14",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   20.9,
+   452.5,
+   138.4,
+   461.3
+  ]
+ },
+ {
+  "name": "Notes 15",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   20.9,
+   443.5,
+   138.4,
+   451.8
+  ]
+ },
+ {
+  "name": "Fellowship Special Improvements 10",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   169.9,
+   439.5,
+   269.9,
+   455
+  ]
+ },
+ {
+  "name": "Notes 16",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   20.9,
+   434.4,
+   138.4,
+   442.6
+  ]
+ },
+ {
+  "name": "Notes 17",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   20.9,
+   425.3,
+   138.4,
+   433.5
+  ]
+ },
+ {
+  "name": "Fellowship Special Improvements 11",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   169.9,
+   423,
+   269.9,
+   439
+  ]
+ },
+ {
+  "name": "Notes 18",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   20.9,
+   416.3,
+   138.4,
+   424.4
+  ]
+ },
+ {
+  "name": "Notes 19",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   20.9,
+   407.1,
+   138.4,
+   415.4
+  ]
+ },
+ {
+  "name": "Fellowship Special Improvements 12",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   169.9,
+   407,
+   269.9,
+   423
+  ]
+ },
+ {
+  "name": "Notes 20",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   21.4,
+   397.1,
+   138.9,
+   405.4
+  ]
+ },
+ {
+  "name": "Fellowship Special Improvements 13",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   169.9,
+   390.6,
+   269.9,
+   406.6
+  ]
+ },
+ {
+  "name": "Notes 21",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   20.9,
+   387.6,
+   138.4,
+   395.9
+  ]
+ },
+ {
+  "name": "Notes 22",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   20.9,
+   377.8,
+   138.4,
+   386
+  ]
+ },
+ {
+  "name": "Fellowship Special Improvements 14",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   169.9,
+   373.3,
+   269.9,
+   389.3
+  ]
+ },
+ {
+  "name": "Theme Card 1 Special Improvements 0",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   145.3,
+   257.4,
+   243.4,
+   273.4
+  ]
+ },
+ {
+  "name": "Theme Card 3 Special Improvements 0",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   393.1,
+   257.4,
+   491.3,
+   273
+  ]
+ },
+ {
+  "name": "Theme Card 0 Special Improvements 0",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   19.9,
+   256.9,
+   117.6,
+   272.5
+  ]
+ },
+ {
+  "name": "Theme Card 2 Special Improvements 0",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   269,
+   256.9,
+   367.6,
+   273
+  ]
+ },
+ {
+  "name": "Theme Card 1 Special Improvements 1",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   145.3,
+   240.9,
+   243.4,
+   256.9
+  ]
+ },
+ {
+  "name": "Theme Card 2 Special Improvements 1",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   269,
+   240.9,
+   367.6,
+   256.1
+  ]
+ },
+ {
+  "name": "Theme Card 3 Special Improvements 1",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   393.1,
+   240.9,
+   491.3,
+   256.5
+  ]
+ },
+ {
+  "name": "Theme Card 0 Special Improvements 1",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   19.9,
+   240.5,
+   117.6,
+   256.1
+  ]
+ },
+ {
+  "name": "Theme Card 1 Special Improvements 2",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   145.3,
+   224,
+   243.4,
+   239.3
+  ]
+ },
+ {
+  "name": "Theme Card 2 Special Improvements 2",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   269,
+   223.6,
+   367.6,
+   239.3
+  ]
+ },
+ {
+  "name": "Theme Card 3 Special Improvements 2",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   393.1,
+   223.6,
+   491.3,
+   239.3
+  ]
+ },
+ {
+  "name": "Theme Card 0 Special Improvements 2",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   19.9,
+   223.3,
+   117.6,
+   238.8
+  ]
+ },
+ {
+  "name": "Theme Card 1 Special Improvements 3",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   145.3,
+   208,
+   243.4,
+   223.3
+  ]
+ },
+ {
+  "name": "Theme Card 2 Special Improvements 3",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   269,
+   207.3,
+   367.6,
+   222.8
+  ]
+ },
+ {
+  "name": "Theme Card 3 Special Improvements 3",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   393.1,
+   207.3,
+   491.3,
+   222.8
+  ]
+ },
+ {
+  "name": "Theme Card 0 Special Improvements 3",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   19.9,
+   206.8,
+   117.6,
+   222.8
+  ]
+ },
+ {
+  "name": "Theme Card 1 Special Improvements 4",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   145.3,
+   191.6,
+   243.4,
+   206.8
+  ]
+ },
+ {
+  "name": "Theme Card 0 Special Improvements 4",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   19.9,
+   190.8,
+   117.6,
+   206.4
+  ]
+ },
+ {
+  "name": "Theme Card 2 Special Improvements 4",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   269,
+   190.8,
+   367.6,
+   206.4
+  ]
+ },
+ {
+  "name": "Theme Card 3 Special Improvements 4",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   393.1,
+   190.8,
+   491.3,
+   206.8
+  ]
+ },
+ {
+  "name": "Theme Card 1 Special Improvements 5",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   145.3,
+   174.8,
+   243.4,
+   190.4
+  ]
+ },
+ {
+  "name": "Theme Card 3 Special Improvements 5",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   393.1,
+   174.8,
+   491.3,
+   190.4
+  ]
+ },
+ {
+  "name": "Theme Card 0 Special Improvements 5",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   19.9,
+   174.4,
+   117.6,
+   189.9
+  ]
+ },
+ {
+  "name": "Theme Card 2 Special Improvements 5",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   269,
+   174.4,
+   367.6,
+   190.4
+  ]
+ },
+ {
+  "name": "Theme Card 1 Special Improvements 6",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   145.3,
+   158.4,
+   243.4,
+   174.4
+  ]
+ },
+ {
+  "name": "Theme Card 3 Special Improvements 6",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   393.1,
+   158.4,
+   491.3,
+   173.9
+  ]
+ },
+ {
+  "name": "Theme Card 0 Special Improvements 6",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   19.9,
+   157.9,
+   117.6,
+   173.5
+  ]
+ },
+ {
+  "name": "Theme Card 2 Special Improvements 6",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   269,
+   157.9,
+   367.6,
+   173.9
+  ]
+ },
+ {
+  "name": "Theme Card 1 Special Improvements 7",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   145.3,
+   141.5,
+   243.4,
+   157.5
+  ]
+ },
+ {
+  "name": "Theme Card 2 Special Improvements 7",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   269,
+   141,
+   367.6,
+   156.6
+  ]
+ },
+ {
+  "name": "Theme Card 3 Special Improvements 7",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   393.1,
+   141,
+   491.3,
+   156.6
+  ]
+ },
+ {
+  "name": "Theme Card 0 Special Improvements 7",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   19.9,
+   140.6,
+   117.6,
+   156.1
+  ]
+ },
+ {
+  "name": "Theme Card 1 Special Improvements 8",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   145.3,
+   125.5,
+   243.4,
+   140.6
+  ]
+ },
+ {
+  "name": "Theme Card 3 Special Improvements 8",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   393.1,
+   125,
+   491.3,
+   140.1
+  ]
+ },
+ {
+  "name": "Theme Card 2 Special Improvements 8",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   269,
+   124.6,
+   367.6,
+   140.1
+  ]
+ },
+ {
+  "name": "Theme Card 0 Special Improvements 8",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   19.9,
+   124.1,
+   117.6,
+   140.1
+  ]
+ },
+ {
+  "name": "Theme Card 1 Special Improvements 9",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   145.3,
+   109,
+   243.4,
+   124.1
+  ]
+ },
+ {
+  "name": "Theme Card 2 Special Improvements 9",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   269,
+   108.1,
+   367.6,
+   123.8
+  ]
+ },
+ {
+  "name": "Theme Card 3 Special Improvements 9",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   393.1,
+   108.1,
+   491.3,
+   123.8
+  ]
+ },
+ {
+  "name": "Theme Card 0 Special Improvements 9",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   19.9,
+   107.8,
+   117.6,
+   123.8
+  ]
+ },
+ {
+  "name": "Theme Card 1 Special Improvements 10",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   145.3,
+   91.8,
+   243.4,
+   107.8
+  ]
+ },
+ {
+  "name": "Theme Card 3 Special Improvements 10",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   393.1,
+   91.8,
+   491.3,
+   107.3
+  ]
+ },
+ {
+  "name": "Theme Card 0 Special Improvements 10",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   19.9,
+   90.9,
+   117.6,
+   106.9
+  ]
+ },
+ {
+  "name": "Theme Card 2 Special Improvements 10",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   269,
+   90.9,
+   367.6,
+   107.3
+  ]
+ },
+ {
+  "name": "Theme Card 1 Special Improvements 11",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   145.3,
+   74.9,
+   243.4,
+   90.9
+  ]
+ },
+ {
+  "name": "Theme Card 2 Special Improvements 11",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   269,
+   74.9,
+   367.6,
+   90.4
+  ]
+ },
+ {
+  "name": "Theme Card 3 Special Improvements 11",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   393.1,
+   74.9,
+   491.3,
+   90.4
+  ]
+ },
+ {
+  "name": "Theme Card 0 Special Improvements 11",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   19.9,
+   74.4,
+   117.6,
+   90
+  ]
+ },
+ {
+  "name": "Theme Card 1 Special Improvements 12",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   145.3,
+   58.4,
+   243.4,
+   73.5
+  ]
+ },
+ {
+  "name": "Theme Card 2 Special Improvements 12",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   269,
+   58,
+   367.6,
+   73.5
+  ]
+ },
+ {
+  "name": "Theme Card 3 Special Improvements 12",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   393.1,
+   58,
+   491.3,
+   73.5
+  ]
+ },
+ {
+  "name": "Theme Card 0 Special Improvements 12",
+  "type": "text",
+  "page": 1,
+  "rect": [
+   19.9,
+   57.5,
+   117.6,
+   73.1
   ]
  }
 ]

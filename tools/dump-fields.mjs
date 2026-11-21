@@ -5,10 +5,13 @@ import { PDFDocument, PDFTextField, PDFCheckBox } from 'pdf-lib';
 const root = new URL('../', import.meta.url);
 const doc = await PDFDocument.load(readFileSync(new URL('assets/ficha.pdf', root)));
 const pages = doc.getPages();
-const pageIndexOf = (widget) => {
-  const ref = widget.P();
-  const i = pages.findIndex((p) => p.ref === ref);
-  return i < 0 ? 0 : i;
+// Página pelo conjunto de anotações (/Annots) de cada página; o /P do widget nem sempre existe.
+const annotRefs = pages.map((p) => new Set((p.node.Annots()?.asArray() ?? []).map((r) => r.toString())));
+const pageIndexOf = (field, widget) => {
+  const ref = (doc.context.getObjectRef(widget.dict) ?? field.ref).toString();
+  const i = annotRefs.findIndex((set) => set.has(ref));
+  if (i < 0) throw new Error(`Campo sem página: ${field.getName()}`);
+  return i;
 };
 
 const out = [];
@@ -20,7 +23,7 @@ for (const field of doc.getForm().getFields()) {
   out.push({
     name: field.getName(),
     type,
-    page: pageIndexOf(widget),
+    page: pageIndexOf(field, widget),
     rect: [r.x, r.y, r.x + r.width, r.y + r.height].map((n) => Math.round(n * 10) / 10),
   });
 }
