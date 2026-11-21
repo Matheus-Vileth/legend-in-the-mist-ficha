@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mockup do guia (Piu) — posição</title>
+<style>
+:root { --ink: #3a2814; --bg: #e8d9b4; --panel: #f3e7c8; --line: #b69a63; --accent: #8a5a2b; --green: #31503a; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.4 Georgia, serif; }
+header { position: sticky; top: 0; z-index: 10; background: var(--panel); border-bottom: 2px solid var(--line); padding: 10px 16px; display: grid; gap: 8px; }
+h1 { margin: 0; font-size: 18px; }
+.grupo { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.grupo b { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); min-width: 78px; }
+button.op { min-height: 40px; padding: 0 14px; border: 2px solid var(--line); background: #fff8e2; color: var(--ink); border-radius: 8px; cursor: pointer; font: inherit; }
+button.op[aria-pressed="true"] { background: var(--green); color: #f6ecd0; border-color: #1c2e22; }
+.nota { font-size: 14px; color: #5b4527; max-width: 110ch; }
+.palco { padding: 14px; display: grid; justify-items: center; }
+.moldura { background: #fff; border: 3px solid var(--line); border-radius: 10px; overflow: hidden; box-shadow: 0 6px 18px #0004; transform-origin: top left; }
+.moldura iframe { display: block; border: 0; width: 100%; height: 100%; background: #e6d4a8; }
+.comparativo { max-width: 1100px; margin: 8px auto 30px; padding: 0 16px; display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.comparativo section { background: var(--panel); border: 2px solid var(--line); border-radius: 10px; padding: 10px 14px; }
+.comparativo h2 { margin: 0 0 4px; font-size: 15px; color: var(--accent); }
+.comparativo p { margin: 0; font-size: 14px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Piu, o guia — onde ele fica?</h1>
+  <div class="grupo" id="g-pos"><b>Posição</b>
+    <button class="op" data-v="esq" aria-pressed="false">A · Canto esquerdo (fixo)</button>
+    <button class="op" data-v="dir" aria-pressed="false">B · Canto direito (fixo)</button>
+    <button class="op" data-v="topo" aria-pressed="true">C · Acima do título (no fluxo)</button>
+  </div>
+  <div class="grupo" id="g-est"><b>Estado</b>
+    <button class="op" data-v="aberto" aria-pressed="true">Balão aberto</button>
+    <button class="op" data-v="recolhido" aria-pressed="false">Recolhido</button>
+    <button class="op" data-v="glossario" aria-pressed="false">Glossário aberto</button>
+    <button class="op" data-v="desligado" aria-pressed="false">Guia desligado</button>
+  </div>
+  <div class="grupo" id="g-tela"><b>Tela</b>
+    <button class="op" data-v="desktop" aria-pressed="true">Desktop</button>
+    <button class="op" data-v="celular" aria-pressed="false">Celular (375 px)</button>
+  </div>
+  <p class="nota" id="nota"></p>
+</header>
+
+<main class="palco"><div class="moldura" id="moldura"><iframe id="quadro" title="Site real com o guia injetado"></iframe></div></main>
+
+<section class="comparativo" aria-label="Comparativo das posições">
+  <section><h2>A · Canto esquerdo, fixo</h2><p>O mascote acompanha a rolagem e fica sempre à vista. Cobre a parte de baixo da coluna esquerda dos formulários (por exemplo, as tags de poder) enquanto o balão está aberto; recolher resolve.</p></section>
+  <section><h2>B · Canto direito, fixo</h2><p>Mesma ideia, do outro lado. Cobre os cartões de fraqueza e Busca, e disputa o canto com o Próximo e o rótulo do passo.</p></section>
+  <section><h2>C · Acima do título, no fluxo (recomendo)</h2><p>O balão faz parte da página: empurra o conteúdo para baixo em vez de cobri-lo, então nunca tapa um campo. Em compensação, rola junto com a página e some quando você desce; ao trocar de passo você o vê de novo.</p></section>
+</section>
+
+<script>
+const estado = { pos: 'topo', est: 'aberto', tela: 'desktop' };
+const NOTAS = {
+  esq: 'A: fixo no canto inferior esquerdo da área central. Cobre parte dos formulários com o balão aberto.',
+  dir: 'B: fixo no canto inferior direito. Cobre parte dos cartões da direita.',
+  topo: 'C: dentro da página, acima do título do passo. Não cobre nada; rola com a página.',
+};
+const $ = (s) => document.querySelector(s);
+const quadro = $('#quadro'), moldura = $('#moldura');
+
+const CSS = `
+.g-toggle { gap: 8px; height: 40px !important; font-size: 14px !important; padding: 0 8px !important; }
+.g-toggle img { width: 24px; height: auto; }
+.g-toggle .sw { width: 34px; height: 18px; border-radius: 999px; background: #8a7656; position: relative; flex: none; transition: background .15s; }
+.g-toggle .sw::after { content: ""; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: #fff3d2; transition: left .15s; }
+.g-toggle[aria-pressed="true"] .sw { background: #4d7a3f; }
+.g-toggle[aria-pressed="true"] .sw::after { left: 18px; }
+
+.g { z-index: 40; display: flex; flex-direction: column; align-items: flex-start; gap: 0; font-family: var(--body); }
+.g--esq { position: fixed; left: 304px; bottom: 14px; }
+.g--dir { position: fixed; right: 22px; bottom: 14px; align-items: flex-end; }
+.g--topo { position: relative; flex-direction: row; align-items: flex-end; gap: 6px; margin: 0 0 14px; }
+.piu { width: 88px; height: 88px; padding: 0; border: 0; background: none; cursor: pointer; flex: none; filter: drop-shadow(0 3px 4px #0005); animation: balanca 3.2s ease-in-out infinite; transform-origin: 50% 90%; }
+.piu img { width: 100%; height: 100%; object-fit: contain; display: block; }
+@keyframes balanca { 0%,100% { transform: rotate(-2deg); } 50% { transform: rotate(2deg); } }
+@media (prefers-reduced-motion: reduce) { .piu { animation: none; } }
+.balao { position: relative; width: min(340px, calc(100vw - 32px)); margin: 0 0 10px; padding: 0 4px;
+  border-style: solid; border-width: 14px; border-image: url(/assets/ui-hd/faixa-clara.webp) 42 fill / 14px stretch; filter: drop-shadow(0 4px 8px #3a281455); color: #3a2814; }
+.g--topo .balao { width: auto; flex: 1; margin: 0 0 14px; max-width: 760px; }
+.balao::after { content: ""; position: absolute; width: 20px; height: 20px; background: #f4e2bf; border-right: 2px solid #b08a4a; border-bottom: 2px solid #b08a4a; transform: rotate(45deg); }
+.g--esq .balao::after { left: 38px; bottom: -22px; }
+.g--dir .balao::after { right: 38px; bottom: -22px; }
+.g--topo .balao::after { left: -24px; bottom: 28px; transform: rotate(135deg); }
+.balao header { display: flex; align-items: center; gap: 8px; margin: 0 0 4px; font: 700 12px var(--display); letter-spacing: .16em; text-transform: uppercase; color: #8a5a2b; }
+.balao header span { flex: 1; }
+.balao header button { width: 36px; height: 36px; border: 0; background: none; cursor: pointer; font-size: 18px; color: #6b5233; }
+.balao ul { margin: 0 0 8px; padding-left: 18px; display: grid; gap: 6px; font-size: 16px; line-height: 1.35; }
+.balao .termo, .hint .termo { background: none; border: 0; padding: 0; font: inherit; color: inherit; cursor: pointer; border-bottom: 2px dotted #8a5a2b; }
+.balao footer { display: flex; justify-content: flex-end; }
+.balao footer .btn { height: 44px; font-size: 15px; }
+.glos .body { display: grid; gap: 8px; max-height: 60vh; overflow: auto; }
+.glos dl { margin: 0; display: grid; gap: 8px; }
+.glos dt { font: 700 15px var(--display); }
+.glos dt i { font: italic 400 14px var(--body); color: #6b5233; margin-left: 6px; }
+.glos dd { margin: 0; font-size: 15px; line-height: 1.35; }
+.glos dd small { color: #7d6643; }
+@media (max-width: 860px) {
+  .g--esq, .g--dir { left: 8px; right: 8px; bottom: 10px; align-items: flex-start; }
+  .g--dir { align-items: flex-end; }
+  .piu { width: 60px; height: 60px; }
+  .balao { width: 100%; }
+  .g--topo { flex-direction: column; align-items: flex-start; }
+  .g--topo .balao { width: 100%; }
+  .g--topo .balao::after { left: 28px; bottom: auto; top: -12px; transform: rotate(225deg); }
+}
+`;
+
+const TIPS = [
+  'Um <button class="termo">tema</button> é um aspecto do seu herói. Você terá quatro. Comece pelo título: a primeira <button class="termo">tag de poder</button>.',
+  'Escolha a <button class="termo">Magnitude</button>: Origem é comum, Aventura é acima do comum, Grandeza é épica.',
+  'Cada tema precisa de uma <button class="termo">tag de fraqueza</button> e de uma <button class="termo">Busca</button>: o que o herói quer ou defende.',
+];
+const GLOSSARIO = [
+  ['Busca', 'Quest', 'Um desejo, uma verdade, um lar ou uma pergunta que move o tema do herói.'],
+  ['Magnitude', 'Might', 'O tamanho do tema: Origem, Aventura ou Grandeza. Combine o tom das tags com ela.'],
+  ['Tag de fraqueza', 'Weakness tag', 'Uma tag que atrapalha o herói. Quando é usada contra você, você marca Melhoria.'],
+  ['Tag de poder', 'Power tag', 'Uma tag que ajuda. A primeira de cada tema é o título do tema.'],
+  ['Tema', 'Theme', 'Um conjunto de tags e uma Busca. Cada herói tem quatro.'],
+];
+
+function montar() {
+  const doc = quadro.contentDocument;
+  doc.querySelectorAll('[data-g]').forEach((e) => e.remove());
+  const ligado = estado.est !== 'desligado';
+  // estilo
+  const st = doc.createElement('style'); st.dataset.g = '1'; st.textContent = CSS; doc.head.append(st);
+  // interruptor no topo
+  const menu = doc.querySelector('.menu-btn'); if (!menu) return;
+  const t = doc.createElement('button'); t.dataset.g = '1'; t.type = 'button'; t.className = 'btn ghost g-toggle'; t.setAttribute('aria-pressed', String(ligado)); t.title = 'Ligar ou desligar o guia';
+  t.innerHTML = '<img src="/assets/ui-hd/passaro.webp" alt=""> Guia <span class="sw"></span>'; menu.before(t);
+  // sublinhados no texto de apoio (só ligado)
+  const hint = doc.querySelector('#view .hint'); if (hint) { if (!hint.dataset.orig) hint.dataset.orig = hint.textContent; hint.innerHTML = ligado ? 'Escolha o tipo e a <button class="termo">Magnitude</button>. A 1ª <button class="termo">tag de poder</button> é o título do tema; a de fraqueza deve limitar. A <button class="termo">Busca</button> pode ser um Desejo, uma Verdade, um Lar ou uma Pergunta.' : hint.dataset.orig; }
+  if (!ligado) return;
+  const g = doc.createElement('div'); g.dataset.g = '1'; g.className = 'g g--' + estado.pos; g.setAttribute('role', 'complementary'); g.setAttribute('aria-label', 'Guia do jogo');
+  const aberto = estado.est === 'aberto' || estado.est === 'glossario';
+  g.innerHTML = (aberto ? `<div class="balao"><header><span>Piu, seu guia</span><button type="button" aria-label="Recolher o guia">–</button></header><ul>${TIPS.map((x) => `<li>${x}</li>`).join('')}</ul><footer><button type="button" class="btn ghost">Glossário</button></footer></div>` : '')
+    + `<button type="button" class="piu" aria-label="Piu, o guia"><img src="/assets/ui-hd/passaro.webp" alt=""></button>`;
+  if (estado.pos === 'topo') { const v = doc.querySelector('#view .view'); v.prepend(g); const b = g.querySelector('.balao'); if (b) g.append(b); } else doc.body.append(g);
+  if (estado.est === 'glossario') {
+    const m = doc.createElement('div'); m.dataset.g = '1'; m.className = 'modal';
+    m.innerHTML = `<div class="card hero glos" role="dialog" aria-modal="true" style="width:min(560px,100%)"><h2>Glossário</h2><div class="body"><input class="line" placeholder="Buscar termo…" aria-label="Buscar termo"><dl>${GLOSSARIO.map(([pt, en, d]) => `<div><dt>${pt}<i>${en}</i></dt><dd>${d}</dd></div>`).join('')}</dl></div></div>`;
+    doc.body.append(m);
+  }
+}
+
+function dimensionar() {
+  const cel = estado.tela === 'celular';
+  const w = cel ? 375 : 1280, h = cel ? 760 : 720;
+  const escala = cel ? 1 : Math.min(1, (window.innerWidth - 40) / w);
+  moldura.style.width = w + 'px'; moldura.style.height = h + 'px'; moldura.style.transform = `scale(${escala})`;
+  moldura.parentElement.style.height = h * escala + 'px'; moldura.parentElement.style.width = w * escala + 'px';
+}
+
+function atualizarBotoes() {
+  for (const [id, chave] of [['g-pos', 'pos'], ['g-est', 'est'], ['g-tela', 'tela']]) document.querySelectorAll(`#${id} .op`).forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === estado[chave])));
+  $('#nota').textContent = NOTAS[estado.pos];
+}
+
+function carregar() {
+  localStorage.setItem('lim-ficha-v1', JSON.stringify({ v: 1, slide: 1, values: { 'Character Name': 'Thalía', 'Theme Card 0 Power Tag 0': 'Ferreiro de aldeia' }, savedAt: Date.now() }));
+  dimensionar();
+  quadro.src = '../../dist/index.html?cache=' + Date.now();
+}
+quadro.addEventListener('load', () => {
+  const doc = quadro.contentDocument; const esp = (ms) => new Promise((r) => setTimeout(r, ms));
+  (async () => { await esp(500); const cont = doc.querySelector('#home .btn.primary'); if (cont) cont.click(); await esp(250); doc.querySelectorAll('.step')[1]?.click(); await esp(150); montar(); })();
+});
+for (const [id, chave] of [['g-pos', 'pos'], ['g-est', 'est'], ['g-tela', 'tela']]) {
+  document.querySelectorAll(`#${id} .op`).forEach((b) => b.addEventListener('click', () => {
+    estado[chave] = b.dataset.v; atualizarBotoes();
+    if (chave === 'tela') carregar(); else montar();
+  }));
+}
+atualizarBotoes(); carregar();
+window.addEventListener('resize', dimensionar);
+</script>
+</body>
+</html>
