@@ -74,3 +74,46 @@ test('THEME_TYPES tem as 4 categorias e 21 tipos', () => {
 test('todo slide tem título e dica em português (não vazios)', () => {
   for (const s of SLIDES) { assert.ok(s.title.length > 2); assert.ok(s.hint.length > 10); }
 });
+
+// ---- novo visual: grupos mais finos e seções ----
+const labelsOf = (id) => SLIDES.find((s) => s.id === id).groups.map((g) => g.label);
+const QUEST = ['Busca', 'Marcos', 'Abandonar', 'Melhoria'];
+
+test('rótulos de grupo por slide são os do plano e únicos', () => {
+  const tema = ['Título do tema', 'Tipo de tema', 'Magnitude', 'Tags de poder', 'Tags de fraqueza', ...QUEST, 'Melhorias especiais'];
+  const esperado = {
+    identidade: ['Nome do personagem', 'Nome do jogador'],
+    tema1: tema, tema2: tema, tema3: tema, tema4: tema,
+    companhia: ['Relações', 'Tags da Companhia', 'Tags de fraqueza', ...QUEST, 'Melhorias especiais'],
+    mochila: ['Tags de mochila', 'Quintessências'],
+    estados: ['Estado 1', 'Estado 2', 'Estado 3', 'Estado 4', 'Notas adicionais'],
+    promessa: ['Promessa', 'História', 'Notas'],
+  };
+  for (const [id, labels] of Object.entries(esperado)) {
+    assert.deepEqual(labelsOf(id), labels, id);
+    assert.equal(new Set(labelsOf(id)).size, labelsOf(id).length, `rótulo repetido em ${id}`);
+  }
+});
+
+test('cada slide de edição tem section', () => {
+  const sec = SLIDES.map((s) => s.section);
+  assert.deepEqual(sec, ['personagem', 'temas', 'temas', 'temas', 'temas', 'detalhes', 'detalhes', 'detalhes', 'detalhes']);
+});
+
+test('notas dos Estados têm fold e o resto não', () => {
+  const estados = SLIDES.find((s) => s.id === 'estados');
+  const folded = estados.groups.flatMap((g) => g.fields).filter((f) => f.fold);
+  assert.equal(folded.length, 12);
+  assert.ok(folded.every((f) => /^Tag \d Note \d$/.test(f.name)));
+  const outros = SLIDES.filter((s) => s.id !== 'estados').flatMap((s) => s.groups.flatMap((g) => g.fields));
+  assert.ok(outros.every((f) => !f.fold));
+});
+
+test('"Título do tema" tem exatamente a tag de poder 1 e a sua riscada', () => {
+  for (let c = 0; c < 4; c++) {
+    const g = SLIDES[1 + c].groups.find((x) => x.label === 'Título do tema');
+    assert.deepEqual(g.fields.map((f) => f.role), ['power0', 'scratch0']);
+    const poder = SLIDES[1 + c].groups.find((x) => x.label === 'Tags de poder');
+    assert.deepEqual(poder.fields.filter((f) => f.kind === 'text').map((f) => f.role), ['power1', 'power2', 'power3', 'power4', 'power5', 'power6']);
+  }
+});
