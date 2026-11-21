@@ -81,6 +81,7 @@ body.home-on .app { display: none; }
 .grid2 { display: grid; gap: 22px; align-items: start; margin-top: 22px; }
 .grid2:first-child { margin-top: 0; }
 .col { display: grid; gap: 22px; align-content: start; min-width: 0; }
+.grid.has-decor { align-items: center; } /* cartões e moldura da paisagem alinhados pelo centro vertical */
 .decor { display: grid; place-items: center; }
 .decor img { width: min(100%, 280px); filter: drop-shadow(0 3px 5px #0004); }
 
