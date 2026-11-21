@@ -53,12 +53,14 @@ function themeSlide(card) {
   ]);
   return {
     id: `tema${n}`,
+    section: 'temas',
     title: `Tema ${n}`,
     hint:
       'Escolha o tipo e a Magnitude. A 1ª tag de poder é o título do tema e deve combinar com a Magnitude ' +
       '(Origem: comum; Aventura: acima do comum; Grandeza: grandioso). Tags de poder devem ser úteis; a de fraqueza deve limitar. ' +
       'A Busca pode ser um Desejo, uma Verdade, um Lar ou uma Pergunta.',
     groups: [
+      { label: 'Título do tema', fields: powers.slice(0, 2) },
       { label: 'Tipo de tema', fields: [text(`Theme Card ${card} Type`, 'Tipo de tema', { options: Object.values(THEME_TYPES).flat() })] },
       {
         label: 'Magnitude',
@@ -69,7 +71,7 @@ function themeSlide(card) {
           check(greatnessName(card), 'Grandeza'),
         ],
       },
-      { label: 'Tags de poder', fields: powers },
+      { label: 'Tags de poder', fields: powers.slice(2) },
       { label: 'Tags de fraqueza', fields: range(2).map((i) => text(weaknessName(card, i), `Tag de fraqueza ${i + 1}`)) },
       ...questGroups(`Theme ${card}`, range(3).map((j) => `Theme ${card} Quest ${j}`)),
       {
@@ -83,9 +85,13 @@ function themeSlide(card) {
 export const SLIDES = [
   {
     id: 'identidade',
+    section: 'personagem',
     title: 'Identidade',
     hint: 'Quem é o seu herói e quem joga com ele.',
-    groups: [{ label: 'Nomes', fields: [text('Character Name', 'Nome do personagem'), text('Player Name', 'Nome do jogador')] }],
+    groups: [
+      { label: 'Nome do personagem', fields: [text('Character Name', 'Nome do personagem')] },
+      { label: 'Nome do jogador', fields: [text('Player Name', 'Nome do jogador')] },
+    ],
   },
   themeSlide(0),
   themeSlide(1),
@@ -93,13 +99,14 @@ export const SLIDES = [
   themeSlide(3),
   {
     id: 'companhia',
+    section: 'detalhes',
     title: 'Companhia',
     hint:
       'A Companhia é o grupo. Anote cada companheiro e a tag da relação do seu herói com ele. ' +
       'As tags da Companhia seguem a mesma regra dos temas: úteis de poder, limitantes de fraqueza.',
     groups: [
       {
-        label: 'Relações (companheiro e tag de relação)',
+        label: 'Relações',
         fields: range(5).flatMap((i) => [
           text(`Companion ${i}`, `Companheiro ${i + 1}`),
           text(`Relationship ${i}`, `Tag de relação ${i + 1}`),
@@ -119,6 +126,7 @@ export const SLIDES = [
   },
   {
     id: 'mochila',
+    section: 'detalhes',
     title: 'Mochila e Quintessências',
     hint:
       'Escolha uma tag de mochila (um item que o herói carrega; veja a Loja Geral do livro, p. 132). ' +
@@ -130,6 +138,7 @@ export const SLIDES = [
   },
   {
     id: 'estados',
+    section: 'detalhes',
     title: 'Estados atuais',
     hint: 'Estados que afetam o herói agora. Marque o nível (1 a 6) de cada um. Pode deixar em branco ao criar o herói.',
     groups: [
@@ -138,7 +147,7 @@ export const SLIDES = [
         fields: [
           text(`Tag ${i}`, 'Nome do estado'),
           ...range(6).map((t) => check(`Tag ${i} Tier ${t}`, `Nível ${t + 1}`)),
-          ...range(3).map((j) => text(`Tag ${i} Note ${j}`, `Nota ${j + 1}`)),
+          ...range(3).map((j) => text(`Tag ${i} Note ${j}`, `Nota ${j + 1}`, { fold: true })),
         ],
       })),
       { label: 'Notas adicionais', fields: range(2).map((i) => text(`Tag Additional Notes ${i}`, `Nota adicional ${i + 1}`)) },
@@ -146,6 +155,7 @@ export const SLIDES = [
   },
   {
     id: 'promessa',
+    section: 'detalhes',
     title: 'Promessa, História e Notas',
     hint:
       'A Promessa tem 5 círculos que se marcam ao longo do jogo. Em História, escreva o passado do herói em poucas linhas; em Notas, o que quiser lembrar.',
