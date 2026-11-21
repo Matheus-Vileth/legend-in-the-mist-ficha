@@ -33,3 +33,9 @@ export function stepLabel(i) {
   const k = clampSlide(i);
   return `Passo ${k + 1} de ${TOTAL_SLIDES} · ${SECTION_LABELS[sectionOf(k)]}`;
 }
+
+/** Id do slide (chave do conteúdo do guia); o último passo é a revisão. */
+export function slideIdAt(i) {
+  const k = clampSlide(i);
+  return k < SLIDES.length ? SLIDES[k].id : 'revisao';
+}

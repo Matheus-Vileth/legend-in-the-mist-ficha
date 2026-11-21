@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  TOTAL_SLIDES, clampSlide, nextSlide, prevSlide, SECTION_LABELS, sectionOf, firstSlideOf, stepLabel, slideTitle,
+  TOTAL_SLIDES, clampSlide, nextSlide, prevSlide, SECTION_LABELS, sectionOf, firstSlideOf, stepLabel, slideTitle, slideIdAt,
 } from '../src/carousel.js';
 import { SLIDES } from '../src/fieldmap.js';
 
@@ -51,4 +51,11 @@ test('slideTitle devolve o título do slide e "Revisão e download" no último',
   assert.equal(slideTitle(0), 'Identidade');
   assert.equal(slideTitle(2), 'Tema 2');
   assert.equal(slideTitle(9), 'Revisão e download');
+});
+
+test('slideIdAt devolve o id do slide e "revisao" no último', () => {
+  assert.equal(slideIdAt(0), 'identidade');
+  assert.equal(slideIdAt(2), 'tema2');
+  assert.equal(slideIdAt(8), 'promessa');
+  assert.equal(slideIdAt(9), 'revisao');
 });

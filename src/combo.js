@@ -1,6 +1,7 @@
+import { norm } from './text.js';
+
 // Filtro das sugestões do campo "Tipo de tema" (lista própria do site; o datalist nativo abre no lugar errado).
 
-const norm = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
 
 /** Opções que casam com o texto (sem diferenciar maiúsculas nem acentos); quem começa com o texto vem primeiro. */
 export function filterOptions(options, query) {
