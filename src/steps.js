@@ -243,7 +243,7 @@ export function renderStep(index, ctx) {
   const layout = LAYOUTS[slide.id];
   const blocks = layout.blocks.map((b) => renderBlock(b, slide, ctx));
   const body = layout.decor === 'paisagem'
-    ? h('div', { class: 'grid' }, h('div', { class: 'col' }, ...blocks), h('div', { class: 'decor' }, img('moldura-paisagem')))
+    ? h('div', { class: 'grid has-decor' }, h('div', { class: 'col' }, ...blocks), h('div', { class: 'decor' }, img('moldura-paisagem')))
     : blocks;
   return h('div', { class: 'view' },
     h('h1', { tabIndex: -1 }, slide.title),
