@@ -12,6 +12,7 @@ import { renderStep } from './steps.js';
 import { renderReview } from './review.js';
 import { renderHome } from './home.js';
 import { confirmDialog } from './dialog.js';
+import { guardWindowDrops } from './portrait-ui.js';
 
 const storage = (() => {
   try { return window.localStorage; } catch { return null; }
@@ -206,5 +207,6 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'ArrowLeft') go(prevSlide(state.slide));
 });
 
+guardWindowDrops();
 render();
 showHome(true);
