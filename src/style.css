@@ -156,6 +156,13 @@ label.fld.center { text-align: center; }
 .medal .vh:checked + .ring img { opacity: 1; }
 .medal:has(.vh:checked) { color: var(--ink); }
 
+/* sugestões do Tipo de tema */
+.combo { position: relative; }
+.combo-list { position: absolute; z-index: 30; left: 0; right: 0; top: 100%; margin: 2px 0 0; padding: 4px; list-style: none; max-height: 240px; overflow: auto; background: var(--paper-card); border: 2px solid #8a6b2f; border-radius: 6px; box-shadow: 0 8px 18px #3a281466; }
+.combo-list li { min-height: 44px; display: flex; align-items: center; padding: 6px 12px; cursor: pointer; border-radius: 4px; font: 600 17px var(--body); letter-spacing: 0; text-transform: none; color: var(--ink); }
+.combo-list li:hover, .combo-list li.on { background: #d9b56a66; }
+.card.raise { z-index: 20; }
+
 /* botões */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 9px; height: 47px; padding: 0 14px; cursor: pointer; color: #f4e9cc;

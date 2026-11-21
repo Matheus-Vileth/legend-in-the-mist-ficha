@@ -3,6 +3,7 @@ import { SLIDES } from './fieldmap.js';
 import { LAYOUTS } from './layouts.js';
 import { setValue, setExclusive } from './state.js';
 import { h, img } from './ui.js';
+import { filterOptions } from './combo.js';
 
 export const MIGHT_ICON = { Origem: 'ornamento-folha-a', Aventura: 'ornamento-estrela', Grandeza: 'ornamento-coroa' };
 const QUEST_TITLE = { Marcos: 'Marco' };
@@ -16,16 +17,81 @@ const isSingleText = (g) => g.fields.length === 1 && g.fields[0].kind === 'text'
 let seq = 0;
 const uid = () => `f${seq++}`;
 
-/** Campo de texto ligado ao estado. Devolve uma lista (o input e, se houver opções, o datalist). */
+/** Campo de texto ligado ao estado. Devolve uma lista de nós (campos com `options` ganham a lista de sugestões). */
 function textInput(f, ctx, { cls = 'line' } = {}) {
   const id = uid();
   const input = h('input', {
     type: 'text', id, class: cls, value: ctx.getState().values[f.name] ?? '', placeholder: f.label, 'aria-label': f.label,
-    autocomplete: 'off', maxLength: 500, list: f.options ? `${id}-list` : null,
+    autocomplete: 'off', maxLength: 500,
     onInput: (e) => ctx.commit(setValue(ctx.getState(), f.name, e.target.value)),
   });
-  if (!f.options) return [input];
-  return [input, h('datalist', { id: `${id}-list` }, f.options.map((o) => h('option', { value: o })))];
+  return f.options ? [combo(input, f, ctx, id)] : [input];
+}
+
+/** Texto livre com sugestões (lista do próprio site, logo abaixo do campo; teclado: setas, Enter, Esc). */
+function combo(input, f, ctx, id) {
+  const list = h('ul', { id: `${id}-list`, class: 'combo-list', role: 'listbox', hidden: true });
+  input.setAttribute('role', 'combobox');
+  input.setAttribute('aria-autocomplete', 'list');
+  input.setAttribute('aria-expanded', 'false');
+  input.setAttribute('aria-controls', `${id}-list`);
+  let items = [];
+  let active = -1;
+
+  const paint = () => {
+    list.replaceChildren(...items.map((o, i) =>
+      h('li', {
+        role: 'option', id: `${id}-o${i}`, class: i === active ? 'on' : '', 'aria-selected': String(i === active),
+        onMousedown: (e) => { e.preventDefault(); choose(o); },
+      }, o)));
+    if (active >= 0) input.setAttribute('aria-activedescendant', `${id}-o${active}`);
+    else input.removeAttribute('aria-activedescendant');
+  };
+  const open = () => {
+    items = filterOptions(f.options, input.value);
+    active = -1;
+    paint();
+    list.hidden = items.length === 0;
+    input.setAttribute('aria-expanded', String(!list.hidden));
+    input.closest('.card')?.classList.toggle('raise', !list.hidden); // por cima dos cartões seguintes
+  };
+  const close = () => {
+    list.hidden = true;
+    active = -1;
+    input.setAttribute('aria-expanded', 'false');
+    input.removeAttribute('aria-activedescendant');
+    input.closest('.card')?.classList.remove('raise');
+  };
+  const choose = (o) => {
+    input.value = o;
+    ctx.commit(setValue(ctx.getState(), f.name, o));
+    close();
+  };
+
+  input.addEventListener('focus', open);
+  input.addEventListener('click', () => { if (list.hidden) open(); });
+  input.addEventListener('input', open);
+  input.addEventListener('blur', close);
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (list.hidden) open();
+      if (!items.length) return;
+      const down = e.key === 'ArrowDown';
+      active = active < 0 ? (down ? 0 : items.length - 1) : (active + (down ? 1 : -1) + items.length) % items.length;
+      paint();
+      list.children[active]?.scrollIntoView({ block: 'nearest' });
+    } else if (e.key === 'Enter' && active >= 0) {
+      e.preventDefault();
+      choose(items[active]);
+    } else if (e.key === 'Escape' && !list.hidden) {
+      e.preventDefault();
+      e.stopPropagation();
+      close();
+    }
+  });
+  list.addEventListener('click', (e) => e.preventDefault()); // o <label> pai não deve reabrir o campo
+  return h('div', { class: 'combo' }, input, list);
 }
 
 /** Marca (losango ou riscada): checkbox real escondido + desenho. */
