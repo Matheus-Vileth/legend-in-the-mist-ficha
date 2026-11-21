@@ -83,7 +83,22 @@ body.home-on .app { display: none; }
 .col { display: grid; gap: 22px; align-content: start; min-width: 0; }
 .grid.has-decor { align-items: center; } /* cartões e moldura da paisagem alinhados pelo centro vertical */
 .decor { display: grid; place-items: center; }
-.decor img { width: min(100%, 280px); filter: drop-shadow(0 3px 5px #0004); }
+/* retrato do personagem */
+.portrait { display: grid; justify-items: center; gap: 10px; }
+.portrait-zone { position: relative; width: min(100%, 280px); aspect-ratio: 597 / 699; cursor: pointer; border-radius: 6px; filter: drop-shadow(0 3px 5px #0004); }
+.portrait-zone img { position: absolute; display: block; user-select: none; -webkit-user-drag: none; }
+.portrait-empty, .portrait-frame { inset: 0; width: 100%; height: 100%; }
+.portrait-photo { left: 5.5%; top: 5.2%; width: 89%; height: 89.6%; object-fit: cover; }
+.portrait-frame { z-index: 2; }
+.portrait-zone:not(.has-photo) .portrait-photo, .portrait-zone:not(.has-photo) .portrait-frame { display: none; }
+.portrait-zone.has-photo .portrait-empty { display: none; }
+.portrait-hint { position: absolute; z-index: 3; left: 50%; bottom: 9%; transform: translateX(-50%); padding: 7px 16px; border-radius: 999px; background: #2a1c0ccc; color: #f6ecd0; font: 600 15px var(--body); white-space: nowrap; pointer-events: none; transition: opacity .15s; }
+.portrait-zone.has-photo .portrait-hint { opacity: 0; }
+.portrait-zone.has-photo:hover .portrait-hint, .portrait-zone.has-photo:focus-visible .portrait-hint, .portrait-zone.drag .portrait-hint { opacity: 1; }
+.portrait-zone.drag { outline: 3px dashed var(--gold); outline-offset: 5px; }
+.portrait-actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.portrait-actions .btn { height: 44px; font-size: 15px; padding: 0 12px; }
+.portrait-msg.err { color: var(--wine); font-style: normal; font-weight: 600; }
 
 /* cartão (moldura verde + faixa marrom no topo) */
 .card {

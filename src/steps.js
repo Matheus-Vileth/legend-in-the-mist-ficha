@@ -4,6 +4,7 @@ import { LAYOUTS } from './layouts.js';
 import { setValue, setExclusive } from './state.js';
 import { h, img } from './ui.js';
 import { filterOptions } from './combo.js';
+import { renderPortrait } from './portrait-ui.js';
 
 export const MIGHT_ICON = { Origem: 'ornamento-folha-a', Aventura: 'ornamento-estrela', Grandeza: 'ornamento-coroa' };
 const QUEST_TITLE = { Marcos: 'Marco' };
@@ -243,7 +244,7 @@ export function renderStep(index, ctx) {
   const layout = LAYOUTS[slide.id];
   const blocks = layout.blocks.map((b) => renderBlock(b, slide, ctx));
   const body = layout.decor === 'paisagem'
-    ? h('div', { class: 'grid has-decor' }, h('div', { class: 'col' }, ...blocks), h('div', { class: 'decor' }, img('moldura-paisagem')))
+    ? h('div', { class: 'grid has-decor' }, h('div', { class: 'col' }, ...blocks), h('div', { class: 'decor' }, renderPortrait(ctx)))
     : blocks;
   return h('div', { class: 'view' },
     h('h1', { tabIndex: -1 }, slide.title),

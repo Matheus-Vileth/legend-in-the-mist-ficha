@@ -68,3 +68,10 @@ test('sheetFileName usa kebab-case sem acento e tem fallback', () => {
   assert.equal(sheetFileName(undefined), 'ficha-sem-nome.pdf');
   assert.equal(sheetFileName('🗡️🗡️'), 'ficha-sem-nome.pdf');
 });
+
+test('fillSheet ignora o retrato (data URL guardada no estado) sem lançar', async () => {
+  const out = await fillSheet(pdfBytes, { Retrato: 'data:image/jpeg;base64,AAAA', 'Character Name': 'Ana' });
+  const doc = await PDFDocument.load(out);
+  assert.equal(doc.getPageCount(), 2);
+  assert.equal(doc.getForm().getTextField('Character Name').getText(), 'Ana');
+});
