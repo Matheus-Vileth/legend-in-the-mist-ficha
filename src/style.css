@@ -57,10 +57,13 @@ body.home-on .app { display: none; }
 .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px; }
 .step { width: 100%; min-width: 0; display: flex; align-items: center; justify-content: center; gap: 10px; text-align: center; min-height: 44px; padding: 6px 4px; font: 600 15px var(--body); color: #7d6643; background: none; border: 0; cursor: pointer; border-radius: 6px; }
 .step:hover { background: #ffffff40; }
-.step .n { width: 24px; height: 24px; flex: none; display: grid; place-items: center; background: var(--img-losango) center/contain no-repeat; font: 700 11px var(--display); color: #f2e6c8; text-shadow: 0 1px 0 #0008; filter: grayscale(.9) brightness(1.25) opacity(.7); }
+.step .n { width: 24px; height: 24px; flex: none; display: flex; align-items: center; justify-content: center; background: var(--img-losango-vazio) center/contain no-repeat; font: 700 11px/1 "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif; font-variant-numeric: lining-nums tabular-nums; color: #f2e6c8; text-shadow: 0 1px 0 #0008; filter: grayscale(.9) brightness(1.25) opacity(.7); }
+/* algarismos alinhados (todos da mesma altura); medido: a tinta fica 0,5 px abaixo do centro, e 1 px de respiro embaixo sobe o número 0,5 px */
+.step:not(.done) .n { padding-bottom: 1px; }
 .step.done { color: var(--ink-soft); }
 .step.done .n { filter: none; font-size: 0; }
-.step.done .n::after { content: "\2713"; font-size: 12px; }
+/* ✓ desenhado (independe de fonte): L girado 45°; o deslocamento de -1,41px centraliza a tinta no losango */
+.step.done .n::after { content: ""; box-sizing: content-box; width: 4px; height: 8px; border: solid #f2e6c8; border-width: 0 2px 2px 0; transform: translateY(-1.41px) rotate(45deg); }
 .step[aria-current="step"] {
   color: var(--cream); font-weight: 700; font-size: 16px; background: none; line-height: 1.15;
   border-style: solid; border-width: 0 18px; border-image: var(--img-placa-verde) 0 54 fill / 0 18px stretch;
