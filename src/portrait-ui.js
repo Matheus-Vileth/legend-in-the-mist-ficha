@@ -44,28 +44,39 @@ export function guardWindowDrops() {
   for (const type of ['dragover', 'drop']) window.addEventListener(type, (e) => { if (hasFiles(e)) e.preventDefault(); });
 }
 
+const SVG_NS = 'http://www.w3.org/2000/svg';
+
+/** Seta subindo para uma bandeja (enviar imagem); durante o arrastar, a seta gira e aponta para baixo (soltar). */
+function uploadIcon() {
+  const svg = document.createElementNS(SVG_NS, 'svg');
+  svg.setAttribute('viewBox', '0 0 64 64');
+  svg.setAttribute('class', 'portrait-icon');
+  svg.setAttribute('aria-hidden', 'true');
+  svg.setAttribute('focusable', 'false');
+  svg.innerHTML = '<circle class="pi-bg" cx="32" cy="32" r="30"/><g class="pi-arrow"><path d="M32 42V21M22.5 30.5L32 21l9.5 9.5"/></g><path d="M17 44v6h30v-6"/>';
+  return svg;
+}
+
 /** ctx = { getState(), commit(next) } */
 export function renderPortrait(ctx) {
-  const HINT_EMPTY = 'Clique ou arraste uma imagem';
-  const HINT_FULL = 'Trocar imagem';
-  const HINT_DROP = 'Solte a imagem aqui';
+  const CAPTION = 'Retrato do personagem';
+  const CAPTION_DROP = 'Solte a imagem aqui';
 
   const input = h('input', {
     type: 'file', accept: 'image/png,image/jpeg,image/webp,image/gif,image/bmp', hidden: true,
     onChange: (e) => { const file = e.target.files[0]; e.target.value = ''; if (file) accept(file); },
   });
   const photo = h('img', { class: 'portrait-photo', alt: 'Retrato do personagem' });
-  const hint = h('span', { class: 'portrait-hint' }, HINT_EMPTY);
   const zone = h('div', {
-    class: 'portrait-zone', role: 'button', tabIndex: 0, 'aria-label': 'Escolher a imagem do retrato do personagem',
+    class: 'portrait-zone', role: 'button', tabIndex: 0, 'aria-label': 'Escolher a imagem do retrato do personagem', title: 'Clique ou arraste uma imagem',
     onClick: () => input.click(),
     onKeydown: (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); input.click(); } },
   },
   photo,
   img('moldura-retrato', { class: 'portrait-frame' }),
   img('moldura-paisagem', { class: 'portrait-empty' }),
-  hint);
-  const msg = h('p', { class: 'cap portrait-msg', role: 'status' }, 'Retrato do personagem');
+  uploadIcon());
+  const msg = h('p', { class: 'cap portrait-msg', role: 'status' }, CAPTION);
   const swap = h('button', { type: 'button', class: 'btn ghost', onClick: () => input.click() }, 'Trocar imagem');
   const remove = h('button', {
     type: 'button', class: 'btn ghost',
@@ -80,7 +91,6 @@ export function renderPortrait(ctx) {
     zone.classList.toggle('has-photo', has);
     if (has) photo.src = value; else photo.removeAttribute('src');
     actions.hidden = !has;
-    hint.textContent = has ? HINT_FULL : HINT_EMPTY;
   };
 
   async function accept(file) {
@@ -98,9 +108,10 @@ export function renderPortrait(ctx) {
 
   // arrastar e soltar
   let depth = 0; // dragenter/dragleave disparam também para os filhos
+  let captionBefore = CAPTION;
   const hasFiles = (e) => [...(e.dataTransfer?.types ?? [])].includes('Files');
-  const endDrag = () => { depth = 0; zone.classList.remove('drag'); paint(); };
-  zone.addEventListener('dragenter', (e) => { if (!hasFiles(e)) return; e.preventDefault(); depth++; zone.classList.add('drag'); hint.textContent = HINT_DROP; });
+  const endDrag = () => { if (zone.classList.contains('drag')) say(captionBefore); depth = 0; zone.classList.remove('drag'); paint(); };
+  zone.addEventListener('dragenter', (e) => { if (!hasFiles(e)) return; e.preventDefault(); if (!depth++) captionBefore = msg.textContent; zone.classList.add('drag'); say(CAPTION_DROP); });
   zone.addEventListener('dragover', (e) => { if (!hasFiles(e)) return; e.preventDefault(); e.dataTransfer.dropEffect = 'copy'; });
   zone.addEventListener('dragleave', () => { if (--depth <= 0) endDrag(); });
   zone.addEventListener('drop', (e) => {
@@ -112,5 +123,5 @@ export function renderPortrait(ctx) {
   });
 
   paint();
-  return h('div', { class: 'portrait' }, zone, actions, msg, input);
+  return h('div', { class: 'portrait' }, zone, h('div', { class: 'portrait-side' }, actions, msg), input);
 }
