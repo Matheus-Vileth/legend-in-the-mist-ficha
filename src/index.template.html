@@ -7,26 +7,8 @@
 <script>{{UI_MAP}}</script>
 <style>{{CSS}}</style>
 </head>
-<body>
-<header class="top">
-  <div class="wrap">
-    <p class="kicker">Legend in the Mist</p>
-    <h1>Ficha de Herói</h1>
-    <p id="save-note" class="muted small" role="status"></p>
-  </div>
-</header>
-<main class="wrap">
-  <section id="slide" aria-live="off"></section>
-  <p id="status" class="status" role="status" aria-live="polite"></p>
-</main>
-<nav class="bar" aria-label="Navegação da ficha">
-  <div class="wrap bar-inner">
-    <button id="prev" type="button" class="btn">← Anterior</button>
-    <ol id="dots" class="dots"></ol>
-    <span id="counter" aria-hidden="true"></span>
-    <button id="next" type="button" class="btn primary">Próximo →</button>
-  </div>
-</nav>
+<body class="home-on">
+<div id="root"></div>
 <script>{{PDF_B64}}</script>
 <script>{{JS}}</script>
 </body>

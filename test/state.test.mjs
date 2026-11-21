@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
   VERSION, createState, setValue, setExclusive, loadState, saveState, exportJson, importJson, setSlide,
-  hasSaved, clearState, savedAgo, homeSummary,
+  hasSaved, clearState, savedAgo, homeSummary, themeCards,
 } from '../src/state.js';
 
 const memory = () => {
@@ -154,4 +154,21 @@ test('homeSummary traz nome, títulos dos temas preenchidos, passo e total', () 
   s = setSlide(s, 2);
   assert.deepEqual(homeSummary(s), { name: 'Thalía', themes: ['Ferreiro de aldeia', 'Herdeira do trono'], step: 3, total: 10 });
   assert.deepEqual(homeSummary(createState()), { name: '', themes: [], step: 1, total: 10 });
+});
+
+test('themeCards resume os 4 temas (título, tipo, Magnitude e nº de tags de poder)', () => {
+  let s = createState();
+  s = setValue(s, 'Theme Card 0 Power Tag 0', 'Ferreiro');
+  s = setValue(s, 'Theme Card 0  Power Tag 3', 'Martelo');
+  s = setValue(s, 'Theme Card 0 Type', 'Habilidade ou Ofício');
+  s = setValue(s, 'Theme Card 0 Adventure', true);
+  const c = themeCards(s);
+  assert.equal(c.length, 4);
+  assert.deepEqual(c[0], { n: 1, title: 'Ferreiro', type: 'Habilidade ou Ofício', might: 'Aventura', tags: 2 });
+  assert.deepEqual(c[1], { n: 2, title: '', type: '', might: '', tags: 0 });
+});
+
+test('themeCards entende a Magnitude Grandeza do Tema 3 (campo Greatness1)', () => {
+  const s = setValue(createState(), 'Theme Card 2 Greatness1', true);
+  assert.equal(themeCards(s)[2].might, 'Grandeza');
 });

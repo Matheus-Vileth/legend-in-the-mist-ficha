@@ -105,15 +105,32 @@ export function savedAgo(savedAt, now) {
   return d === 1 ? 'há 1 dia' : `há ${d} dias`;
 }
 
-const TITLE_FIELDS = SLIDES.filter((s) => s.section === 'temas').map(
-  (s) => s.groups.flatMap((g) => g.fields).find((f) => f.role === 'power0').name,
-);
+const THEMES = SLIDES.filter((s) => s.section === 'temas').map((s) => {
+  const fields = s.groups.flatMap((g) => g.fields);
+  return {
+    title: fields.find((f) => f.role === 'power0').name,
+    type: fields.find((f) => f.label === 'Tipo de tema').name,
+    mights: s.groups.find((g) => g.exclusive).fields,
+    powers: fields.filter((f) => f.kind === 'text' && /^power\d$/.test(f.role ?? '')).map((f) => f.name),
+  };
+});
 
 export function homeSummary(state) {
   return {
     name: state.values['Character Name'] ?? '',
-    themes: TITLE_FIELDS.map((n) => state.values[n]).filter(Boolean),
+    themes: THEMES.map((t) => state.values[t.title]).filter(Boolean),
     step: state.slide + 1,
     total: TOTAL_SLIDES,
   };
+}
+
+/** Resumo dos 4 temas para a tela de revisão. */
+export function themeCards(state) {
+  return THEMES.map((t, i) => ({
+    n: i + 1,
+    title: state.values[t.title] ?? '',
+    type: state.values[t.type] ?? '',
+    might: t.mights.find((f) => state.values[f.name])?.label ?? '',
+    tags: t.powers.filter((n) => state.values[n]).length,
+  }));
 }

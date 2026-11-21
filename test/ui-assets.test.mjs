@@ -20,7 +20,8 @@ test('todo "--img-X" e ui("X") citado em src/ está em UI_USED', () => {
     if (!/\.(css|js|html)$/.test(f) || f === 'ui-names.js') continue;
     const txt = readFileSync(new URL(f, dir), 'utf8');
     for (const m of txt.matchAll(/--img-([a-z0-9-]+)/g)) citados.add(m[1]);
-    for (const m of txt.matchAll(/\bui\(\s*['"]([a-z0-9-]+)['"]\s*\)/g)) citados.add(m[1]);
+    for (const m of txt.matchAll(/\b(?:ui|img)\(\s*['"]([a-z0-9-]+)['"]/g)) citados.add(m[1]);
+    for (const m of txt.matchAll(/\b(?:Origem|Aventura|Grandeza): '([a-z0-9-]+)'/g)) citados.add(m[1]);
   }
   for (const n of citados) assert.ok(UI_USED.includes(n), `"${n}" é citado em src/ mas não está em UI_USED`);
 });
