@@ -5,6 +5,7 @@ import {
   setValue, setExclusive, setSlide, loadState, saveState, exportJson, importJson,
 } from './state.js';
 import { fillSheet, sheetFileName } from './pdf.js';
+import { eventName } from './dom.js';
 
 const $ = (sel) => document.querySelector(sel);
 const storage = (() => {
@@ -23,7 +24,7 @@ function h(tag, attrs = {}, ...children) {
   for (const [k, v] of Object.entries(attrs)) {
     if (v === false || v == null) continue;
     if (k === 'class') el.className = v;
-    else if (k.startsWith('on')) el.addEventListener(k.slice(2), v);
+    else if (eventName(k)) el.addEventListener(eventName(k), v);
     else if (k in el && k !== 'list') el[k] = v;
     else el.setAttribute(k, v === true ? '' : v);
   }
