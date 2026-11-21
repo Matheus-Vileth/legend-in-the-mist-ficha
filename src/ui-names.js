@@ -7,5 +7,5 @@ export const UI_USED = [
   'espada-flores', 'faixa-clara', 'fita-louros-a', 'flores-azuis', 'flores-grandes',
   'ic-baixar', 'ic-disquete', 'ic-estrela', 'ic-livro', 'ic-mais', 'ic-pessoa',
   'icone-coroa', 'icone-estrela', 'icone-livro', 'logo', 'losango', 'medalhao', 'moldura-paisagem',
-  'ornamento-coroa', 'ornamento-estrela', 'ornamento-folha-a', 'passaro', 'pergaminho-rasgado', 'placa-verde',
+  'ornamento-coroa', 'ornamento-estrela', 'ornamento-folha-a', 'passaro', 'pergaminho-continuo', 'placa-verde',
 ];

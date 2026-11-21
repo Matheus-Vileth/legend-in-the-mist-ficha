@@ -45,11 +45,13 @@ body.home-on .app { display: none; }
 
 /* lateral */
 .side {
-  grid-row: 1 / span 3; align-self: start; position: relative; padding: 22px 26px 22px;
-  border-style: solid; border-width: 34px 26px; border-image: var(--img-pergaminho-rasgado) 102 78 102 78 / 34px 26px 34px 26px round;
-  background: var(--paper-side); background-clip: padding-box; box-shadow: inset 0 0 30px #8a6b2f30;
+  grid-row: 1 / span 3; align-self: start; position: relative; padding: 22px 26px 100px;
+  /* O pergaminho original inteiro (com o papel dele, sem "camada" por cima). Cortes largos: as duas plantas ficam inteiras nos cantos.
+     Cortes em pixels da imagem (3x): 300 118 290 190, desenhados a 0,5x. O trecho do meio repete sem emenda (tools/normalize-sidebar.py). */
+  border-style: solid; border-width: 34px 26px; border-image: var(--img-pergaminho-continuo) 300 118 290 190 fill / 150px 59px 145px 95px round;
   filter: drop-shadow(0 3px 5px #0003);
 }
+.side > * { position: relative; z-index: 1; }
 .side .logo { display: block; width: 100%; margin: -8px 0 6px; }
 .side .rule { display: block; width: 100%; margin: 0 0 12px; opacity: .9; }
 .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
