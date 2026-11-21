@@ -13,6 +13,8 @@ test('npm run build gera dist/index.html autossuficiente', () => {
   assert.ok(size > 1_000_000 && size < 12_000_000, `tamanho inesperado: ${size}`);
   assert.match(html, /<title>Ficha — Legend in the Mist<\/title>/);
   assert.match(html, /__FICHA_PDF_B64__/);
+  assert.match(html, /window\.__UI__=\{/);
+  assert.match(html, /data:image\/webp;base64,/);
   assert.doesNotMatch(html, /(src|href)=["']https?:/i);
-  assert.doesNotMatch(html, /\{\{(CSS|JS|PDF_B64)\}\}/);
+  assert.doesNotMatch(html, /\{\{(CSS|JS|PDF_B64|UI_MAP)\}\}/);
 });
