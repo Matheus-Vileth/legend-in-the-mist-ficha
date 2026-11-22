@@ -89,7 +89,6 @@ export function createGuide({ storage, onChange = () => {} }) {
           h('dd', {}, t.curto, t.pagina ? h('small', {}, ` (livro, p. ${t.pagina})`) : null),
         ])
         : [h('dd', {}, 'Nenhum termo encontrado.')]));
-      if (focusId) list.querySelector(`#glos-${focusId}`)?.scrollIntoView({ block: 'center' });
     };
     const finish = () => {
       document.removeEventListener('keydown', onKey, true);
@@ -111,7 +110,9 @@ export function createGuide({ storage, onChange = () => {} }) {
     document.addEventListener('keydown', onKey, true);
     fill(termId && findTerm(termId) ? termId : null);
     document.body.append(overlay);
-    (termId ? close : search).focus();
+    (termId ? close : search).focus({ preventScroll: true });
+    const alvo = termId && list.querySelector(`#glos-${termId}`);
+    if (alvo) box.querySelector('.body').scrollTop = alvo.offsetTop - search.offsetHeight - 24; // a palavra clicada fica no topo da lista
   }
 
   paint();
