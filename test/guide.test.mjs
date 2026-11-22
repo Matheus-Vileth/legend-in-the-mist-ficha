@@ -69,9 +69,13 @@ test('findTerm acha por id e devolve null se não existe', () => {
 });
 
 test('searchTerms ignora acento e caixa e busca em pt, en e curto', () => {
-  assert.deepEqual(searchTerms('QUEST').map((t) => t.id), ['busca']);
-  assert.deepEqual(searchTerms('magnitude').map((t) => t.id), ['magnitude']);
-  assert.deepEqual(searchTerms('zzzz'), []);
+  const termos = [
+    { id: 'busca', pt: 'Busca', en: 'Quest', curto: 'Move o tema.' },
+    { id: 'magnitude', pt: 'Magnitude', en: 'Might', curto: 'O tamanho do tema.' },
+  ];
+  assert.deepEqual(searchTerms('QUEST', termos).map((t) => t.id), ['busca']);
+  assert.deepEqual(searchTerms('magnitude', termos).map((t) => t.id), ['magnitude']);
+  assert.deepEqual(searchTerms('zzzz', termos), []);
 });
 
 test('searchTerms vazio devolve todos em ordem alfabética de pt', () => {
