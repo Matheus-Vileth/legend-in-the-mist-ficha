@@ -1,7 +1,7 @@
 // Casca do site: tela inicial, abas, lateral de passos, rodapé. Liga estado, PDF e save.
 import { SLIDES } from './fieldmap.js';
 import {
-  TOTAL_SLIDES, SECTION_LABELS, clampSlide, nextSlide, prevSlide, sectionOf, firstSlideOf, stepLabel, slideTitle,
+  TOTAL_SLIDES, SECTION_LABELS, slideIdAt, clampSlide, nextSlide, prevSlide, sectionOf, firstSlideOf, stepLabel, slideTitle,
 } from './carousel.js';
 import {
   createState, setSlide, loadState, saveState, clearState, exportJson, importJson, hasSaved,
@@ -13,6 +13,7 @@ import { renderReview } from './review.js';
 import { renderHome } from './home.js';
 import { confirmDialog } from './dialog.js';
 import { guardWindowDrops } from './portrait-ui.js';
+import { createGuide } from './guide-ui.js';
 
 const storage = (() => {
   try { return window.localStorage; } catch { return null; }
@@ -35,8 +36,9 @@ if (!storage) saveNote.classList.add('warn');
 const tabEls = TABS.map(([section, icon]) =>
   h('button', { type: 'button', class: 'tab', role: 'tab', 'aria-selected': 'false', 'data-section': section, onClick: () => go(firstSlideOf(section)) },
     img(icon), SECTION_LABELS[section]));
+const guide = createGuide({ storage, onChange: () => render() });
 const topbar = h('nav', { class: 'topbar', role: 'tablist', 'aria-label': 'Seções da ficha' },
-  ...tabEls, saveNote,
+  ...tabEls, saveNote, guide.toggle,
   h('button', { type: 'button', class: 'btn ghost menu-btn', onClick: () => showHome(true) }, '☰ Menu'));
 
 const stepEls = Array.from({ length: TOTAL_SLIDES }, (_, i) =>
@@ -47,7 +49,7 @@ const side = h('aside', { class: 'side' },
   h('ol', { class: 'steps' }, ...stepEls.map((b) => h('li', {}, b))));
 
 const view = h('div', { id: 'view' });
-const stage = h('main', { class: 'stage' }, img('borboleta', { class: 'deco', style: 'right:14px;top:-6px;width:46px' }), view);
+const stage = h('main', { class: 'stage' }, img('borboleta', { class: 'deco', style: 'right:14px;top:-6px;width:46px' }), guide.el, view);
 
 const stepLabelEl = h('p', { class: 'steplabel' });
 const pbar = h('div', { class: 'pbar' });
@@ -78,7 +80,7 @@ function aviso(id, message, kind = 'ok') {
   el.className = kind === 'err' ? 'aviso err' : 'aviso';
 }
 
-const stepCtx = { getState: () => state, commit };
+const stepCtx = { getState: () => state, commit, link: (t) => guide.link(t) };
 
 // ---------- downloads e save ----------
 function download(blob, filename) {
@@ -176,7 +178,8 @@ function showHome(on) {
 // ---------- navegação ----------
 function render() {
   const i = state.slide;
-  const reviewCtx = { getState: () => state, onPdf: onDownloadPdf, onJson: onDownloadJson, onImport: onImportInApp };
+  const reviewCtx = { getState: () => state, onPdf: onDownloadPdf, onJson: onDownloadJson, onImport: onImportInApp, link: (t) => guide.link(t) };
+  guide.update(slideIdAt(i));
   view.replaceChildren(i < SLIDES.length ? renderStep(i, stepCtx) : renderReview(reviewCtx));
   const section = sectionOf(i);
   for (const t of tabEls) t.setAttribute('aria-selected', String(t.getAttribute('data-section') === section));
@@ -202,7 +205,7 @@ function go(i, focus = true) {
 
 document.addEventListener('keydown', (e) => {
   if (document.body.classList.contains('home-on')) return;
-  if (e.altKey || e.ctrlKey || e.metaKey || e.target.closest('input, textarea, select, [contenteditable]')) return;
+  if (e.altKey || e.ctrlKey || e.metaKey || e.target.closest('input, textarea, select, [contenteditable], [role="dialog"]')) return;
   if (e.key === 'ArrowRight') go(nextSlide(state.slide));
   if (e.key === 'ArrowLeft') go(prevSlide(state.slide));
 });

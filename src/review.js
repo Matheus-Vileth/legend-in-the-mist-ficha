@@ -21,7 +21,7 @@ export function renderReview(ctx) {
   return h('div', { class: 'view' },
     h('h1', { tabIndex: -1 }, 'Revisão e download'),
     img('divisor-b', { class: 'divider' }),
-    h('p', { class: 'hint' }, 'Confira o resumo. O PDF baixado é a ficha oficial preenchida (os rótulos impressos são em inglês; o que você escreveu fica em português). O save (.json) permite reabrir e editar depois.'),
+    h('p', { class: 'hint' }, ...(ctx.link ?? ((t) => [t]))('Confira o resumo. O PDF baixado é a ficha oficial preenchida (os rótulos impressos são em inglês; o que você escreveu fica em português). O save (.json) permite reabrir e editar depois.')),
     h('div', { class: 'exports' },
       h('button', { type: 'button', class: 'btn wine primary', onClick: ctx.onPdf }, img('ic-baixar', { style: 'width:24px' }), 'Baixar PDF da ficha'),
       h('button', { type: 'button', class: 'btn ghost', onClick: ctx.onJson }, img('ic-disquete'), 'Baixar save (.json)'),

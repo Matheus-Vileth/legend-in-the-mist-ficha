@@ -249,6 +249,6 @@ export function renderStep(index, ctx) {
   return h('div', { class: 'view' },
     h('h1', { tabIndex: -1 }, slide.title),
     img('divisor-b', { class: 'divider' }),
-    h('p', { class: 'hint' }, slide.hint),
+    h('p', { class: 'hint' }, ...(ctx.link ? ctx.link(slide.hint) : [slide.hint])),
     body);
 }
