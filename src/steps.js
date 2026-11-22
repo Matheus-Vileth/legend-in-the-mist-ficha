@@ -29,8 +29,16 @@ function textInput(f, ctx, { cls = 'line' } = {}) {
   return f.options ? [combo(input, f, ctx, id)] : [input];
 }
 
+/** Linha de explicação do tipo de tema sob a opção ativa (só com o guia ligado). */
+const typeNote = (o) => {
+  const t = tipText(o);
+  return t ? h('small', { class: 'opt-note' }, t) : null;
+};
+let tipText = () => null;
+
 /** Texto livre com sugestões (lista do próprio site, logo abaixo do campo; teclado: setas, Enter, Esc). */
 function combo(input, f, ctx, id) {
+  tipText = (o) => ctx.typeInfo?.(o)?.replace(/^[^:]+: /, '') ?? null;
   const list = h('ul', { id: `${id}-list`, class: 'combo-list', role: 'listbox', hidden: true });
   input.setAttribute('role', 'combobox');
   input.setAttribute('aria-autocomplete', 'list');
@@ -44,7 +52,9 @@ function combo(input, f, ctx, id) {
       h('li', {
         role: 'option', id: `${id}-o${i}`, class: i === active ? 'on' : '', 'aria-selected': String(i === active),
         onMousedown: (e) => { e.preventDefault(); choose(o); },
-      }, o)));
+        onMouseenter: () => ctx.peekType?.(o),
+      }, o, i === active ? typeNote(o) : null)));
+    ctx.peekType?.(active >= 0 ? items[active] : null);
     if (active >= 0) input.setAttribute('aria-activedescendant', `${id}-o${active}`);
     else input.removeAttribute('aria-activedescendant');
   };
@@ -66,6 +76,7 @@ function combo(input, f, ctx, id) {
   const choose = (o) => {
     input.value = o;
     ctx.commit(setValue(ctx.getState(), f.name, o));
+    ctx.peekType?.(o);
     close();
   };
 

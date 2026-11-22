@@ -79,3 +79,27 @@ export const TIPS = {
     'Clique em qualquer passo na lateral para voltar e corrigir. Seu progresso fica salvo neste navegador.',
   ],
 };
+
+// Tipos de tema (nomes iguais aos de THEME_TYPES em fieldmap.js); página = lista de tipos do livro.
+export const TYPE_INFO = {
+  'Circunstância': { texto: 'Sua origem, posição social ou modo de vida.', pagina: 92 },
+  'Devoção': { texto: 'Um grupo, pessoa ou ideal a quem você é leal.', pagina: 94 },
+  'Passado': { texto: 'Um acontecimento importante que moldou você.', pagina: 96 },
+  'Povo': { texto: 'Sua herança: tribo, cultura, raça ou nação.', pagina: 98 },
+  'Personalidade': { texto: 'Seu temperamento, comportamento ou estilo.', pagina: 100 },
+  'Habilidade ou Ofício': { texto: 'Algo que você faz bem.', pagina: 102 },
+  'Característica': { texto: 'Uma qualidade só sua, ou um talento raro.', pagina: 104 },
+  'Dever': { texto: 'Uma grande missão, lealdade ou obrigação que você assumiu.', pagina: 106 },
+  'Influência': { texto: 'Sua força sobre os outros, por posição, esperteza ou contatos.', pagina: 108 },
+  'Conhecimento': { texto: 'Algo que você sabe e que vai além do saber comum.', pagina: 110 },
+  'Habilidade Prodigiosa': { texto: 'Uma perícia ou talento único que o distingue dos demais.', pagina: 112 },
+  'Relíquia': { texto: 'Um item mágico que mudou o rumo da sua vida.', pagina: 114 },
+  'Ser Sobrenatural': { texto: 'Ser uma criatura ou entidade sobrenatural.', pagina: 116 },
+  'Destino': { texto: 'Algo que você está fadado ou escolhido a fazer ou alcançar.', pagina: 118 },
+  'Domínio': { texto: 'Sua autoridade sobre uma terra, um povo ou uma organização poderosa.', pagina: 120 },
+  'Maestria': { texto: 'Uma arte da qual você se tornou o maior expoente.', pagina: 122 },
+  'Monstruosidade': { texto: 'Ser uma criatura sobrenatural de enorme magnitude ou poder, como um grande dragão.', pagina: 124 },
+  'Companheiro': { texto: 'Um amigo ou aliado que vai com você a todo lugar.', pagina: 126 },
+  'Magia': { texto: 'Habilidades sobrenaturais à sua disposição.', pagina: 128 },
+  'Posses': { texto: 'Itens ou bens que você possui.', pagina: 130 },
+};

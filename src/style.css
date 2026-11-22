@@ -327,3 +327,5 @@ body.home-on #home { display: grid; justify-items: center; align-content: center
   .balao::after { left: auto; right: 28px; bottom: -12px; top: auto; transform: rotate(45deg); }
   .g-toggle span:not(.sw) { display: none; }
 }
+.balao .peek { margin: 0 0 8px; padding: 6px 10px; background: #fff3d2; border-left: 4px solid #8a5a2b; border-radius: 4px; font-size: 15px; line-height: 1.35; }
+.opt-note { display: block; font: italic 13px/1.3 var(--body); color: #6b5233; }

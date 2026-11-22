@@ -80,7 +80,7 @@ function aviso(id, message, kind = 'ok') {
   el.className = kind === 'err' ? 'aviso err' : 'aviso';
 }
 
-const stepCtx = { getState: () => state, commit, link: (t) => guide.link(t) };
+const stepCtx = { getState: () => state, commit, link: (t) => guide.link(t), typeInfo: (n) => guide.typeInfo(n), peekType: (n) => guide.peekType(n) };
 
 // ---------- downloads e save ----------
 function download(blob, filename) {

@@ -1,7 +1,7 @@
 // Guia na tela: mascote Piu, balão de dicas acima do título, glossário e botão liga/desliga.
 import { h, img } from './ui.js';
 import { loadPrefs, savePrefs, tipsFor, linkTerms, searchTerms, findTerm } from './guide.js';
-import { GLOSSARY } from './guide-data.js';
+import { GLOSSARY, TYPE_INFO } from './guide-data.js';
 
 /**
  * @param {{storage: Storage|null, onChange?: () => void}} opts onChange roda quando liga/desliga (para redesenhar os textos com termos).
@@ -10,6 +10,7 @@ import { GLOSSARY } from './guide-data.js';
 export function createGuide({ storage, onChange = () => {} }) {
   const prefs = loadPrefs(storage);
   let slideId = '';
+  let peeked = null; // tipo de tema em destaque (hover/seleção)
 
   const el = h('section', { class: 'guide', 'aria-label': 'Guia do jogo' });
   const sw = h('span', { class: 'sw', 'aria-hidden': 'true' });
@@ -65,10 +66,32 @@ export function createGuide({ storage, onChange = () => {} }) {
       h('header', {}, h('span', {}, 'Piu, seu guia'),
         h('button', { type: 'button', 'aria-label': 'Recolher as dicas', title: 'Recolher', onClick: () => setOpen(false) }, '▾')),
       tips.length ? h('ul', {}, ...tips.map(linkedItem)) : h('p', {}, 'Sem dicas para este passo.'),
+      h('p', { class: 'peek', role: 'status', hidden: true }),
       h('footer', {},
         h('button', { type: 'button', class: 'btn ghost', onClick: (e) => openGlossary(null, e.currentTarget) }, 'Glossário'),
         h('button', { type: 'button', class: 'btn ghost off', onClick: () => setOn(false) }, 'Desligar o guia')));
     el.replaceChildren(h('div', { class: 'g--topo' }, piu, balao));
+    showPeek();
+  }
+
+  /** Explicação de um tipo de tema (ou null se o guia está desligado ou o nome não é um tipo). */
+  function typeInfo(name) {
+    const i = prefs.on ? TYPE_INFO[name] : null;
+    return i ? `${name}: ${i.texto} (livro, p. ${i.pagina})` : null;
+  }
+
+  function showPeek() {
+    const p = el.querySelector('.peek');
+    if (!p) return;
+    const t = peeked && typeInfo(peeked);
+    p.hidden = !t;
+    p.textContent = t ?? '';
+  }
+
+  /** O Piu comenta um tipo de tema (passar o mouse, setas ou escolha); null limpa. */
+  function peekType(name) {
+    peeked = name;
+    showPeek();
   }
 
   function openGlossary(termId, opener) {
@@ -119,7 +142,9 @@ export function createGuide({ storage, onChange = () => {} }) {
   return {
     el,
     toggle,
-    update(id) { slideId = id; paint(); },
+    update(id) { slideId = id; peeked = null; paint(); },
+    typeInfo,
+    peekType,
     link,
     isOn: () => prefs.on,
     terms: GLOSSARY,

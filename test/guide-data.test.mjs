@@ -77,3 +77,13 @@ test('as páginas citadas são as conferidas no livro', () => {
   };
   for (const [id, p] of Object.entries(esperado)) assert.equal(GLOSSARY.find((t) => t.id === id)?.pagina, p, id);
 });
+
+test('todo tipo de tema do campo "Tipo de tema" tem explicação e página', async () => {
+  const { THEME_TYPES } = await import('../src/fieldmap.js');
+  const { TYPE_INFO } = await import('../src/guide-data.js');
+  for (const nome of Object.values(THEME_TYPES).flat()) {
+    const i = TYPE_INFO[nome];
+    assert.ok(i && i.texto.length > 10 && i.texto.length <= 160, `${nome}: texto`);
+    assert.ok(Number.isInteger(i.pagina) && i.pagina > 0, `${nome}: pagina`);
+  }
+});
