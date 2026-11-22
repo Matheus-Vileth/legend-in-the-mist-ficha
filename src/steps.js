@@ -264,7 +264,6 @@ export function renderStep(index, ctx) {
   return h('div', { class: 'view' },
     h('div', { class: 'title-row' }, img(STEP_ORN[slide.id], { class: 'orn', alt: '' }), h('h1', { tabIndex: -1 }, slide.title), img(STEP_ORN[slide.id], { class: 'orn flip', alt: '' })),
     img('divisor-b', { class: 'divider' }),
-    h('p', { class: 'hint' }, ...(ctx.link ? ctx.link(slide.hint) : [slide.hint])),
     body,
     img('divisor-c', { class: 'divider end', alt: '' }));
 }
