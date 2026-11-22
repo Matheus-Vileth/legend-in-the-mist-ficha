@@ -296,7 +296,7 @@ body.home-on #home { display: grid; justify-items: center; align-content: center
 .g-toggle[aria-pressed="true"] .sw { background: #4d7a3f; }
 .g-toggle[aria-pressed="true"] .sw::after { left: 18px; }
 .save-note { white-space: nowrap; }
-.g--topo { display: flex; flex-direction: row; align-items: flex-end; gap: 6px; margin: 0 0 14px; }
+.g--topo { display: flex; flex-direction: row-reverse; align-items: flex-end; gap: 6px; margin: 0 0 14px; }
 .piu { width: 88px; height: 88px; min-width: 44px; min-height: 44px; padding: 0; border: 0; background: none; cursor: pointer; flex: none; filter: drop-shadow(0 3px 4px #0005); animation: balanca 3.2s ease-in-out infinite; transform-origin: 50% 90%; }
 .piu img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .g--topo.closed .piu { width: 64px; height: 64px; }
@@ -304,7 +304,7 @@ body.home-on #home { display: grid; justify-items: center; align-content: center
 @media (prefers-reduced-motion: reduce) { .piu { animation: none; } }
 .balao { position: relative; flex: 1; max-width: 760px; margin: 0 0 14px; padding: 0 4px; color: var(--ink);
   border-style: solid; border-width: 14px; border-image: var(--img-faixa-clara) 42 fill / 14px stretch; filter: drop-shadow(0 4px 8px #3a281455); }
-.balao::after { content: ""; position: absolute; left: -24px; bottom: 28px; width: 20px; height: 20px; background: #f4e2bf; border-right: 2px solid #b08a4a; border-bottom: 2px solid #b08a4a; transform: rotate(135deg); }
+.balao::after { content: ""; position: absolute; right: -24px; bottom: 28px; width: 20px; height: 20px; background: #f4e2bf; border-right: 2px solid #b08a4a; border-bottom: 2px solid #b08a4a; transform: rotate(-45deg); }
 .balao header { display: flex; align-items: center; gap: 8px; margin: 0 0 4px; font: 700 12px var(--display); letter-spacing: .16em; text-transform: uppercase; color: #8a5a2b; }
 .balao header span { flex: 1; }
 .balao header button { width: 44px; height: 44px; border: 0; background: none; cursor: pointer; font-size: 18px; color: #6b5233; }
@@ -322,8 +322,8 @@ body.home-on #home { display: grid; justify-items: center; align-content: center
 .glos dd small { color: #7d6643; }
 @media (max-width: 860px) {
   .piu { width: 60px; height: 60px; }
-  .g--topo { flex-direction: column; align-items: flex-start; }
+  .g--topo { flex-direction: column-reverse; align-items: flex-end; }
   .balao { width: 100%; max-width: none; flex: none; }
-  .balao::after { left: 28px; bottom: auto; top: -12px; transform: rotate(225deg); }
+  .balao::after { left: auto; right: 28px; bottom: -12px; top: auto; transform: rotate(45deg); }
   .g-toggle span:not(.sw) { display: none; }
 }
