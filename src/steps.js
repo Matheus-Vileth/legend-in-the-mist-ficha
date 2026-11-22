@@ -6,6 +6,10 @@ import { h, img } from './ui.js';
 import { filterOptions } from './combo.js';
 import { renderPortrait } from './portrait-ui.js';
 
+const STEP_ORN = {
+  identidade: 'ornamento-pena', tema1: 'ornamento-sol', tema2: 'ornamento-lua', tema3: 'ornamento-flor', tema4: 'ornamento-folha-b',
+  companhia: 'ornamento-pluma', mochila: 'ornamento-folha-a', estados: 'ornamento-ampulheta', promessa: 'ornamento-coroa',
+};
 export const MIGHT_ICON = { Origem: 'ornamento-folha-a', Aventura: 'ornamento-estrela', Grandeza: 'ornamento-coroa' };
 const QUEST_TITLE = { Marcos: 'Marco' };
 const NUMBERED = new Set(['Tags de mochila']);
@@ -258,8 +262,9 @@ export function renderStep(index, ctx) {
     ? h('div', { class: 'grid has-decor' }, h('div', { class: 'col' }, ...blocks), h('div', { class: 'decor' }, renderPortrait(ctx)))
     : blocks;
   return h('div', { class: 'view' },
-    h('h1', { tabIndex: -1 }, slide.title),
+    h('div', { class: 'title-row' }, img(STEP_ORN[slide.id], { class: 'orn', alt: '' }), h('h1', { tabIndex: -1 }, slide.title), img(STEP_ORN[slide.id], { class: 'orn flip', alt: '' })),
     img('divisor-b', { class: 'divider' }),
     h('p', { class: 'hint' }, ...(ctx.link ? ctx.link(slide.hint) : [slide.hint])),
-    body);
+    body,
+    img('divisor-c', { class: 'divider end', alt: '' }));
 }
