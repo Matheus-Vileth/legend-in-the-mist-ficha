@@ -75,3 +75,47 @@ test('fillSheet ignora o retrato (data URL guardada no estado) sem lançar', asy
   assert.equal(doc.getPageCount(), 2);
   assert.equal(doc.getForm().getTextField('Character Name').getText(), 'Ana');
 });
+
+// --- retrato no PDF ---
+import { coverRect, PORTRAIT_RECT, dataUrlParts } from '../src/pdf.js';
+import { PDFName } from 'pdf-lib';
+const PNG_1PX = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==';
+
+const imagesOnPortraitPage = async (bytes) => {
+  const page = (await PDFDocument.load(bytes)).getPage(1);
+  const xo = page.node.Resources()?.lookup(PDFName.of('XObject'));
+  return xo ? xo.keys().length : 0;
+};
+
+test('PORTRAIT_RECT é a área do retrato da ficha oficial (2ª página)', () => {
+  assert.deepEqual(PORTRAIT_RECT, { x: 297.875, y: 356, width: 293.25, height: 393.625 });
+});
+
+test('dataUrlParts separa o tipo e os bytes; recusa o que não é imagem', () => {
+  const p = dataUrlParts(PNG_1PX);
+  assert.equal(p.mime, 'image/png');
+  assert.equal(p.bytes[0], 0x89); // assinatura PNG
+  assert.equal(dataUrlParts('data:text/html;base64,AAAA'), null);
+  assert.equal(dataUrlParts('lixo'), null);
+});
+
+test('coverRect preenche a moldura inteira sem distorcer (corta o que sobra, centralizado)', () => {
+  const r = { x: 0, y: 0, width: 100, height: 200 };
+  // imagem larga 400x200: altura enche (200), largura passa (400) e é centralizada
+  assert.deepEqual(coverRect(400, 200, r), { x: -150, y: 0, width: 400, height: 200 });
+  // imagem alta 100x400: largura enche (100), altura passa (400)
+  assert.deepEqual(coverRect(100, 400, r), { x: 0, y: -100, width: 100, height: 400 });
+  // mesma proporção: ocupa exatamente a moldura
+  assert.deepEqual(coverRect(50, 100, r), { x: 0, y: 0, width: 100, height: 200 });
+});
+
+test('fillSheet desenha o retrato na 2ª página (e não desenha sem retrato)', async () => {
+  const sem = await imagesOnPortraitPage(await fillSheet(pdfBytes, { 'Character Name': 'A' }));
+  const com = await imagesOnPortraitPage(await fillSheet(pdfBytes, { 'Character Name': 'A', Retrato: PNG_1PX }));
+  assert.equal(com, sem + 1);
+});
+
+test('fillSheet ignora retrato inválido sem falhar', async () => {
+  const out = await fillSheet(pdfBytes, { Retrato: 'data:text/html;base64,AAAA' });
+  assert.ok(out.length > 1000);
+});
