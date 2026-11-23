@@ -421,3 +421,7 @@ body.home-on #home { display: grid; justify-items: center; align-content: center
 @media (max-width: 860px) {
   .stage > .deco { left: 10px !important; right: auto !important; top: -16px !important; width: 30px !important; }
 }
+@media (min-width: 861px) {
+  .topbar { justify-content: center; }
+  .save-note { margin-left: 0; padding-left: 8px; }
+}
