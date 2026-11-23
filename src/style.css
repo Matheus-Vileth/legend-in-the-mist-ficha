@@ -464,5 +464,5 @@ body.home-on #home { display: grid; justify-items: center; align-content: center
 @media (min-width: 1101px) { .topbar { padding-left: 62px; padding-right: 62px; } } /* o ícone de início fica no canto, sem cobrir as abas */
 @media (min-width: 601px) and (max-width: 1100px) { .menu-btn { flex: none; } }
 @media (max-width: 1100px) { .steps { scrollbar-color: #8a6b2f #00000010; } .steps::-webkit-scrollbar { height: 6px; } .steps::-webkit-scrollbar-thumb { background: #8a6b2f; border-radius: 3px; } .steps::-webkit-scrollbar-track { background: transparent; } }
-/* a placa verde tem a ponta (e o enfeite) à direita: empurra o conteúdo um pouco para a direita para parecer centralizado */
-@media (max-width: 1100px) { .step[aria-current="step"] { padding: 4px 0 4px 10px; } }
+/* o miolo verde da placa fica ~2px acima do centro da imagem (medido no arquivo); horizontalmente ele já é simétrico */
+@media (max-width: 1100px) { .step[aria-current="step"] { padding: 2px 4px 6px; } }
