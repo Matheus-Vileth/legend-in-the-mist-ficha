@@ -39,11 +39,11 @@ export function renderHome(ctx) {
     h('div', { id: 'home-status', class: 'aviso', role: 'status', hidden: true }));
 
   return [
-    img('espada-flores', { class: 'deco', style: 'left:3%;bottom:0;width:150px' }),
-    img('flores-grandes', { class: 'deco', style: 'right:4%;bottom:0;width:190px' }),
-    img('flores-azuis', { class: 'deco', style: 'right:17%;bottom:0;width:120px' }),
-    img('passaro', { class: 'deco', style: 'right:5%;bottom:190px;width:96px' }),
-    img('borboleta', { class: 'deco', style: 'left:17%;top:16%;width:54px' }),
+    img('espada-flores', { class: 'deco d-espada', style: 'left:3%;bottom:0;width:150px' }),
+    img('flores-grandes', { class: 'deco d-flores', style: 'right:4%;bottom:0;width:190px' }),
+    img('flores-azuis', { class: 'deco d-azuis', style: 'right:17%;bottom:0;width:120px' }),
+    img('passaro', { class: 'deco d-passaro', style: 'right:5%;bottom:190px;width:96px' }),
+    img('borboleta', { class: 'deco d-borboleta', style: 'left:17%;top:16%;width:54px' }),
     img('logo', { class: 'home-logo', alt: 'Legend in the Mist' }),
     img('divisor-a', { style: 'width:300px;max-width:80%' }),
     h('h1', {}, 'Ficha de Herói'),
