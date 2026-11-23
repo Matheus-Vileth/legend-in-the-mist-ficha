@@ -25,7 +25,7 @@ body::before { content: ""; position: fixed; inset: 0; background: var(--noise);
 button { font: inherit; }
 
 /* ---------- casca ---------- */
-.app { position: relative; z-index: 1; min-height: 100vh; display: grid; grid-template-columns: 262px 1fr; grid-template-rows: auto 1fr auto; gap: 16px 22px; padding: 16px 22px 14px; }
+.app { position: relative; z-index: 1; min-height: 100vh; display: grid; grid-template-columns: 262px minmax(0, 1fr); grid-template-rows: auto 1fr auto; gap: 16px 22px; padding: 16px 22px 14px; }
 body.home-on .app { display: none; }
 
 /* barra de abas */
@@ -337,3 +337,65 @@ body.home-on #home { display: grid; justify-items: center; align-content: center
 .title-row .orn.flip { transform: scaleX(-1); }
 .view .divider.end { width: 420px; max-width: 80%; margin: 26px auto 6px; opacity: .85; }
 @media (max-width: 520px) { .title-row .orn { height: 34px; } .title-row { gap: 10px; } }
+
+/* ---- responsivo: telas pequenas ---- */
+@media (max-width: 860px) {
+  .topbar { height: auto; flex-wrap: wrap; gap: 4px; padding: 6px 2px; overflow: visible; border-width: 0 18px; border-image-width: 0 18px; justify-content: center; }
+  .tab { flex: 1 1 calc(25% - 6px); justify-content: center; padding: 0 4px; font-size: 13px; letter-spacing: 0; min-height: 40px; height: 40px; }
+  .tab[aria-selected="true"] { border-width: 0 8px; border-image: var(--img-faixa-clara) 0 42 fill / 0 8px stretch; height: 40px; }
+  .g-toggle, .menu-btn { flex: 1 1 calc(50% - 6px); justify-content: center; margin-left: 0; height: 40px; }
+  .g-toggle span:not(.sw) { display: inline; font-size: 13px; }
+  .guide { margin-top: 38px; }
+  .g--topo { position: relative; display: block; margin: 0 0 12px; }
+  .g--topo .piu { position: absolute; right: 12px; top: -40px; width: 52px; height: 52px; z-index: 2; }
+  .g--topo.closed { padding: 0; height: 52px; margin-top: -30px; }
+  .g--topo.closed .piu { position: relative; right: auto; top: auto; float: right; width: 52px; height: 52px; }
+  .balao { width: 100%; max-width: none; margin: 0; }
+  .balao::after { display: none; }
+  .balao ul { font-size: 15px; }
+  .balao footer { gap: 6px; }
+  .balao footer .btn { flex: 1 1 auto; height: 44px; font-size: 14px; padding: 0 6px; }
+  .balao header { padding-right: 56px; }
+}
+@media (max-width: 520px) {
+  .app { padding: 8px; gap: 10px; }
+  .view h1 { font-size: 24px; }
+  .hint, .view .hint { font-size: 15px; }
+  .modal { padding: 8px; }
+}
+@media (max-width: 860px) {
+  .topbar { border-width: 0 12px; border-image-width: 0 12px; }
+  .tab { flex: 1 1 auto; min-width: 0; font-size: 12px; padding: 0 3px; }
+  .g-toggle img { display: none; }
+  .g-toggle, .menu-btn { min-width: 0; padding: 0 6px; gap: 6px; }
+  .g-toggle span:not(.sw) { font-size: 12px; white-space: nowrap; }
+}
+@media (max-width: 860px) {
+  .topbar { display: grid; grid-template-columns: 1.5fr 1fr 1.15fr 1.15fr; gap: 4px; justify-content: stretch; }
+  .tab { flex: none; width: 100%; font-size: 11.5px; padding: 0 2px; }
+  .g-toggle, .menu-btn { grid-column: span 2; width: 100%; }
+}
+@media (max-width: 520px) {
+  .row .line, .sub .row .line { font-size: 15px; padding: 8px 4px 6px; }
+  .sub .line { font-size: 17px; }
+}
+@media (max-width: 520px) {
+  .big { font-size: 20px !important; }
+  .bottom .btn { white-space: nowrap; }
+  .bottom .btn.primary { height: 52px; padding: 0 14px; font-size: 17px; }
+}
+/* telas médias: a barra de cima precisa caber ao lado da lateral */
+@media (min-width: 861px) and (max-width: 1240px) {
+  .save-note { display: none; }
+  .tab { padding: 0 12px; font-size: 15px; gap: 6px; }
+  .tab img { width: 16px; }
+  .g-toggle img { display: none; }
+}
+@media (min-width: 861px) and (max-width: 1240px) {
+  .tab img { display: none; }
+  .tab { padding: 0 9px; font-size: 14px; }
+  .topbar { height: auto; min-height: 56px; flex-wrap: wrap; row-gap: 2px; padding-top: 4px; padding-bottom: 4px; }
+  .menu-btn, .g-toggle { padding: 0 6px; }
+}
+@media (max-width: 520px) { .exports .btn, .exports .btn.ghost { width: 100%; justify-content: center; } }
+@media (max-width: 400px) { .home-actions .btn.primary { font-size: 18px; padding: 0 12px; white-space: nowrap; } }
