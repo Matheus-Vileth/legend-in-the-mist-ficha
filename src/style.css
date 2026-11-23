@@ -268,9 +268,8 @@ body.home-on #home { display: grid; justify-items: center; align-content: center
 
 
 
-@media (max-width: 860px) {
+@media (max-width: 1100px) {
   .app { grid-template-columns: 1fr; padding: 10px; gap: 12px; }
-  .side { display: none; }
   .topbar, .stage, .bottom { grid-column: 1; }
   .topbar { overflow-x: auto; }
   .tab { padding: 0 12px; font-size: 14px; }
@@ -284,7 +283,7 @@ body.home-on #home { display: grid; justify-items: center; align-content: center
   .view h1 { font-size: 28px; }
   .exports .btn.primary { width: 100%; }
 }
-@media (max-width: 860px) { .portrait { grid-template-rows: auto auto; } .portrait-zone { grid-row: auto; } .portrait-side { grid-row: auto; } }
+@media (max-width: 1100px) { .portrait { grid-template-rows: auto auto; } .portrait-zone { grid-row: auto; } .portrait-side { grid-row: auto; } }
 @media (max-width: 700px) { .how { grid-template-columns: 1fr; gap: 12px; } .rowbtns, .home-secondary { grid-template-columns: 1fr; } }
 
 /* guia (Piu) */
@@ -320,7 +319,7 @@ body.home-on #home { display: grid; justify-items: center; align-content: center
 .glos dt i { font: italic 400 14px var(--body); color: #6b5233; margin-left: 6px; }
 .glos dd { margin: 0; font-size: 15px; line-height: 1.35; }
 .glos dd small { color: #7d6643; }
-@media (max-width: 860px) {
+@media (max-width: 1100px) {
   .piu { width: 60px; height: 60px; }
   .g--topo { flex-direction: column-reverse; align-items: flex-end; }
   .balao { width: 100%; max-width: none; flex: none; }
@@ -329,7 +328,7 @@ body.home-on #home { display: grid; justify-items: center; align-content: center
 }
 .balao .peek { margin: 0 0 8px; padding: 6px 10px; background: #fff3d2; border-left: 4px solid #8a5a2b; border-radius: 4px; font-size: 15px; line-height: 1.35; }
 .opt-note { display: block; font: italic 13px/1.3 var(--body); color: #6b5233; }
-@media (min-width: 861px) { .g--topo.closed { padding-right: 66px; } } /* a borboleta do canto fica livre */
+@media (min-width: 1101px) { .g--topo.closed { padding-right: 66px; } } /* a borboleta do canto fica livre */
 
 /* decorações dos passos */
 .title-row { display: flex; align-items: center; justify-content: center; gap: 18px; }
@@ -339,7 +338,7 @@ body.home-on #home { display: grid; justify-items: center; align-content: center
 @media (max-width: 520px) { .title-row .orn { height: 34px; } .title-row { gap: 10px; } }
 
 /* ---- responsivo: telas pequenas ---- */
-@media (max-width: 860px) {
+@media (max-width: 1100px) {
   .topbar { height: auto; flex-wrap: wrap; gap: 4px; padding: 6px 2px; overflow: visible; border-width: 0 18px; border-image-width: 0 18px; justify-content: center; }
   .tab { flex: 1 1 calc(25% - 6px); justify-content: center; padding: 0 4px; font-size: 13px; letter-spacing: 0; min-height: 40px; height: 40px; }
   .tab[aria-selected="true"] { border-width: 0 8px; border-image: var(--img-faixa-clara) 0 42 fill / 0 8px stretch; height: 40px; }
@@ -363,14 +362,14 @@ body.home-on #home { display: grid; justify-items: center; align-content: center
   .hint, .view .hint { font-size: 15px; }
   .modal { padding: 8px; }
 }
-@media (max-width: 860px) {
+@media (max-width: 1100px) {
   .topbar { border-width: 0 12px; border-image-width: 0 12px; }
   .tab { flex: 1 1 auto; min-width: 0; font-size: 12px; padding: 0 3px; }
   .g-toggle img { display: none; }
   .g-toggle, .menu-btn { min-width: 0; padding: 0 6px; gap: 6px; }
   .g-toggle span:not(.sw) { font-size: 12px; white-space: nowrap; }
 }
-@media (max-width: 860px) {
+@media (max-width: 1100px) {
   .topbar { display: grid; grid-template-columns: 1.5fr 1fr 1.15fr 1.15fr; gap: 4px; justify-content: stretch; }
   .tab { flex: none; width: 100%; font-size: 11.5px; padding: 0 2px; }
   .g-toggle, .menu-btn { grid-column: span 2; width: 100%; }
@@ -385,13 +384,13 @@ body.home-on #home { display: grid; justify-items: center; align-content: center
   .bottom .btn.primary { height: 52px; padding: 0 14px; font-size: 17px; }
 }
 /* telas médias: a barra de cima precisa caber ao lado da lateral */
-@media (min-width: 861px) and (max-width: 1240px) {
+@media (min-width: 1101px) and (max-width: 1240px) {
   .save-note { display: none; }
   .tab { padding: 0 12px; font-size: 15px; gap: 6px; }
   .tab img { width: 16px; }
   .g-toggle img { display: none; }
 }
-@media (min-width: 861px) and (max-width: 1240px) {
+@media (min-width: 1101px) and (max-width: 1240px) {
   .tab img { display: none; }
   .tab { padding: 0 9px; font-size: 14px; }
   .topbar { height: auto; min-height: 56px; flex-wrap: wrap; row-gap: 2px; padding-top: 4px; padding-bottom: 4px; }
@@ -418,10 +417,10 @@ body.home-on #home { display: grid; justify-items: center; align-content: center
   #home .d-passaro { width: 46px !important; bottom: 92px !important; right: 4% !important; }
   #home .d-borboleta { left: auto !important; right: 6% !important; top: 10px !important; width: 34px !important; }
 }
-@media (max-width: 860px) {
+@media (max-width: 1100px) {
   .stage > .deco { left: 10px !important; right: auto !important; top: -16px !important; width: 30px !important; }
 }
-@media (min-width: 861px) {
+@media (min-width: 1101px) {
   .topbar { justify-content: center; }
   .save-note { margin-left: 0; padding-left: 8px; }
 }
@@ -429,20 +428,39 @@ body.home-on #home { display: grid; justify-items: center; align-content: center
 /* botão de início: só o ícone, no canto esquerdo da barra */
 .menu-btn { width: 44px; height: 40px; padding: 0; justify-content: center; }
 .menu-btn svg { display: block; }
-@media (min-width: 861px) {
+@media (min-width: 1101px) {
   .topbar { position: relative; }
   .menu-btn { position: absolute; right: 30px; top: 50%; transform: translateY(-50%); }
 }
-@media (max-width: 860px) {
+@media (max-width: 1100px) {
   .menu-btn { grid-column: span 1; order: 10; width: 100%; }
   .g-toggle { grid-column: span 3; order: 11; }
 }
 .balao::after { display: none; } /* sem o "bico" quadrado */
 .piu { position: relative; z-index: 2; }
-@media (max-width: 860px) { .g--topo .piu { position: absolute; } .g--topo.closed .piu { position: relative; } }
-@media (max-width: 860px) { .menu-btn { grid-column: 4; order: 10; justify-self: end; width: 52px; } }
-@media (max-width: 860px) {
+@media (max-width: 1100px) { .g--topo .piu { position: absolute; } .g--topo.closed .piu { position: relative; } }
+@media (max-width: 1100px) { .menu-btn { grid-column: 4; order: 10; justify-self: end; width: 52px; } }
+@media (max-width: 1100px) {
   .topbar { grid-template-columns: 1.5fr 1fr 1.15fr 1.15fr 36px; }
   .menu-btn { grid-column: 5; order: 0; width: 36px; min-width: 0; justify-self: stretch; padding: 0; }
 }
 @media (max-width: 360px) { .tab { font-size: 10.5px; } .tab[aria-selected="true"] { border-width: 0 5px; border-image-width: 0 5px; } }
+
+/* até 1100px: a lateral vira uma faixa horizontal de passos, sob a barra de cima */
+@media (max-width: 1100px) {
+  .side { grid-row: auto; grid-column: 1; padding: 0; border: 0; border-image: none; filter: none; min-width: 0; }
+  .side .logo, .side .rule { display: none; }
+  .steps { display: flex; gap: 6px; overflow-x: auto; padding: 4px 2px 8px; scrollbar-width: thin; }
+  .steps li { flex: none; }
+  .step { width: auto; min-height: 40px; padding: 4px 10px; font-size: 14px; white-space: nowrap; background: #ffffff30; border-radius: 999px; }
+  .step[aria-current="step"] { margin: 0; width: auto; min-height: 40px; padding: 4px 4px; font-size: 14px; border-width: 0 14px; border-image: var(--img-placa-verde) 0 54 fill / 0 14px stretch; }
+}
+/* 601–1100px: barra de cima em fileira, centralizada, com o ícone de início no fim */
+@media (min-width: 601px) and (max-width: 1100px) {
+  .topbar { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px; padding: 4px 8px; position: relative; }
+  .tab { flex: none; width: auto; font-size: 14px; padding: 0 14px; }
+  .menu-btn { position: static; transform: none; grid-column: auto; order: 0; width: 44px; margin-left: 6px; }
+}
+@media (min-width: 1101px) { .topbar { padding-left: 62px; padding-right: 62px; } } /* o ícone de início fica no canto, sem cobrir as abas */
+@media (min-width: 601px) and (max-width: 1100px) { .menu-btn { flex: none; } }
+@media (max-width: 1100px) { .steps { scrollbar-color: #8a6b2f #00000010; } .steps::-webkit-scrollbar { height: 6px; } .steps::-webkit-scrollbar-thumb { background: #8a6b2f; border-radius: 3px; } .steps::-webkit-scrollbar-track { background: transparent; } }

@@ -197,6 +197,9 @@ function render() {
     else b.removeAttribute('aria-current');
     b.classList.toggle('done', k < i);
   });
+  const strip = side.querySelector('.steps'); // faixa horizontal (telas menores): deixa o passo atual à vista
+  const cur = stepEls[i];
+  if (strip && strip.scrollWidth > strip.clientWidth) strip.scrollLeft = cur.parentElement.offsetLeft - (strip.clientWidth - cur.offsetWidth) / 2;
   stepLabelEl.textContent = stepLabel(i);
   pbar.replaceChildren(...Array.from({ length: TOTAL_SLIDES }, (_, k) => h('i', { class: k <= i ? 'on' : '' })));
   prevBtn.disabled = i === 0;
