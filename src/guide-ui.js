@@ -1,34 +1,19 @@
-// Guia na tela: mascote Piu, balão de dicas acima do título, glossário e botão liga/desliga.
+// Guia na tela: mascote Piu, balão de dicas acima do título, glossário (recolhível).
 import { h, img } from './ui.js';
 import { loadPrefs, savePrefs, tipsFor, linkTerms, searchTerms, findTerm } from './guide.js';
 import { GLOSSARY, TYPE_INFO } from './guide-data.js';
 
 /**
  * @param {{storage: Storage|null, onChange?: () => void}} opts onChange roda quando liga/desliga (para redesenhar os textos com termos).
- * @returns {{el: HTMLElement, toggle: HTMLElement, update(slideId: string): void, link(text: string): Array<string|HTMLElement>, isOn(): boolean}}
+ * @returns {{el: HTMLElement, update(slideId: string): void, link(text: string): Array<string|HTMLElement>, isOn(): boolean}}
  */
 export function createGuide({ storage, onChange = () => {} }) {
-  const prefs = loadPrefs(storage);
+  const prefs = { ...loadPrefs(storage), on: true }; // o guia não desliga: só recolhe
   let slideId = '';
   let peeked = null; // tipo de tema em destaque (hover/seleção)
 
   const el = h('section', { class: 'guide', 'aria-label': 'Guia do jogo' });
-  const sw = h('span', { class: 'sw', 'aria-hidden': 'true' });
-  const toggleText = h('span', {});
-  const toggle = h('button', {
-    type: 'button', class: 'btn ghost g-toggle', 'aria-pressed': String(prefs.on), title: 'Ligar ou desligar o guia',
-    onClick: () => setOn(!prefs.on),
-  }, img('passaro', { alt: '' }), toggleText, sw);
-
   const save = () => savePrefs(storage, prefs);
-
-  function setOn(on) {
-    prefs.on = on;
-    if (on) prefs.open = true;
-    save();
-    onChange();
-    paint();
-  }
 
   function setOpen(open) {
     prefs.open = open;
@@ -51,8 +36,6 @@ export function createGuide({ storage, onChange = () => {} }) {
   }
 
   function paint() {
-    toggle.setAttribute('aria-pressed', String(prefs.on));
-    toggleText.textContent = prefs.on ? 'Guia ligado' : 'Guia desligado';
     el.hidden = !prefs.on;
     if (!prefs.on) { el.replaceChildren(); return; }
     const piu = h('button', {
@@ -68,8 +51,7 @@ export function createGuide({ storage, onChange = () => {} }) {
       tips.length ? h('ul', {}, ...tips.map(linkedItem)) : h('p', {}, 'Sem dicas para este passo.'),
       h('p', { class: 'peek', role: 'status', hidden: true }),
       h('footer', {},
-        h('button', { type: 'button', class: 'btn ghost', onClick: (e) => openGlossary(null, e.currentTarget) }, 'Glossário'),
-        h('button', { type: 'button', class: 'btn ghost off', onClick: () => setOn(false) }, 'Desligar o guia')));
+        h('button', { type: 'button', class: 'btn ghost', onClick: (e) => openGlossary(null, e.currentTarget) }, 'Glossário'))); 
     el.replaceChildren(h('div', { class: 'g--topo' }, piu, balao));
     showPeek();
   }
@@ -141,7 +123,6 @@ export function createGuide({ storage, onChange = () => {} }) {
   paint();
   return {
     el,
-    toggle,
     update(id) { slideId = id; peeked = null; paint(); },
     typeInfo,
     peekType,

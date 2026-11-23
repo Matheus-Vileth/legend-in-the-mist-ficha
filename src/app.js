@@ -48,7 +48,7 @@ const homeIcon = (() => {
 const homeBtn = h('button', { type: 'button', class: 'btn ghost icononly menu-btn', title: 'Voltar ao início', 'aria-label': 'Voltar ao início', onClick: () => showHome(true) }, homeIcon);
 const guide = createGuide({ storage, onChange: () => render() });
 const topbar = h('nav', { class: 'topbar', role: 'tablist', 'aria-label': 'Seções da ficha' },
-  ...tabEls, saveNote, guide.toggle, homeBtn);
+  ...tabEls, saveNote, homeBtn);
 
 const stepEls = Array.from({ length: TOTAL_SLIDES }, (_, i) =>
   h('button', { type: 'button', class: 'step', onClick: () => go(i) }, h('span', { class: 'n' }, String(i + 1)), slideTitle(i)));
