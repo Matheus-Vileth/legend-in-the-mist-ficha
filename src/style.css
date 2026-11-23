@@ -428,10 +428,7 @@ body.home-on #home { display: grid; justify-items: center; align-content: center
 /* botão de início: só o ícone, no canto esquerdo da barra */
 .menu-btn { width: 44px; height: 40px; padding: 0; justify-content: center; }
 .menu-btn svg { display: block; }
-@media (min-width: 1101px) {
-  .topbar { position: relative; }
-  .menu-btn { position: absolute; right: 30px; top: 50%; transform: translateY(-50%); }
-}
+
 @media (max-width: 1100px) {
   .menu-btn { grid-column: span 1; order: 10; width: 100%; }
   .g-toggle { grid-column: span 3; order: 11; }
@@ -461,8 +458,17 @@ body.home-on #home { display: grid; justify-items: center; align-content: center
   .tab { flex: none; width: auto; font-size: 14px; padding: 0 14px; }
   .menu-btn { position: static; transform: none; grid-column: auto; order: 0; width: 44px; margin-left: 6px; }
 }
-@media (min-width: 1101px) { .topbar { padding-left: 62px; padding-right: 62px; } } /* o ícone de início fica no canto, sem cobrir as abas */
+/* telas largas: abas centralizadas e ícone de início no fim da barra, no fluxo (nunca por cima de nada).
+   Os dois espaçadores diferem 52px (a largura do ícone) para o grupo central ficar no meio da barra. */
+@media (min-width: 1101px) {
+  .topbar { flex-wrap: nowrap; }
+  .topbar::before { content: ""; flex: 1 1 52px; min-width: 0; }
+  .topbar::after { content: ""; flex: 1 1 0; min-width: 0; order: 8; }
+  .menu-btn { order: 9; flex: none; width: 52px; position: static; }
+  .save-note { padding-right: 0; }
+}
 @media (min-width: 601px) and (max-width: 1100px) { .menu-btn { flex: none; } }
 @media (max-width: 1100px) { .steps { scrollbar-color: #8a6b2f #00000010; } .steps::-webkit-scrollbar { height: 6px; } .steps::-webkit-scrollbar-thumb { background: #8a6b2f; border-radius: 3px; } .steps::-webkit-scrollbar-track { background: transparent; } }
 /* o miolo verde da placa fica ~2px acima do centro da imagem (medido no arquivo); horizontalmente ele já é simétrico */
 @media (max-width: 1100px) { .step[aria-current="step"] { padding: 2px 4px 6px; } }
+@media (max-width: 600px) { .topbar { padding-left: 6px; padding-right: 8px; } }
