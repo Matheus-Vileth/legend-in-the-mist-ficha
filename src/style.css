@@ -431,7 +431,7 @@ body.home-on #home { display: grid; justify-items: center; align-content: center
 .menu-btn svg { display: block; }
 @media (min-width: 861px) {
   .topbar { position: relative; }
-  .menu-btn { position: absolute; left: 30px; top: 50%; transform: translateY(-50%); }
+  .menu-btn { position: absolute; right: 30px; top: 50%; transform: translateY(-50%); }
 }
 @media (max-width: 860px) {
   .menu-btn { grid-column: span 1; order: 10; width: 100%; }
