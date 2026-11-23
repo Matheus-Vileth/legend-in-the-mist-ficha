@@ -36,10 +36,19 @@ if (!storage) saveNote.classList.add('warn');
 const tabEls = TABS.map(([section, icon]) =>
   h('button', { type: 'button', class: 'tab', role: 'tab', 'aria-selected': 'false', 'data-section': section, onClick: () => go(firstSlideOf(section)) },
     img(icon), SECTION_LABELS[section]));
+const homeIcon = (() => {
+  const ns = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(ns, 'svg');
+  for (const [k, v] of Object.entries({ viewBox: '0 0 24 24', width: '22', height: '22', fill: 'none', stroke: 'currentColor', 'stroke-width': '2', 'stroke-linecap': 'round', 'stroke-linejoin': 'round', 'aria-hidden': 'true' })) svg.setAttribute(k, v);
+  const path = document.createElementNS(ns, 'path');
+  path.setAttribute('d', 'M3 11.5 12 4l9 7.5M5.5 10v9.5h4.5v-6h4v6h4.5V10');
+  svg.append(path);
+  return svg;
+})();
+const homeBtn = h('button', { type: 'button', class: 'btn ghost icononly menu-btn', title: 'Voltar ao início', 'aria-label': 'Voltar ao início', onClick: () => showHome(true) }, homeIcon);
 const guide = createGuide({ storage, onChange: () => render() });
 const topbar = h('nav', { class: 'topbar', role: 'tablist', 'aria-label': 'Seções da ficha' },
-  ...tabEls, saveNote, guide.toggle,
-  h('button', { type: 'button', class: 'btn ghost menu-btn', onClick: () => showHome(true) }, '☰ Menu'));
+  ...tabEls, saveNote, guide.toggle, homeBtn);
 
 const stepEls = Array.from({ length: TOTAL_SLIDES }, (_, i) =>
   h('button', { type: 'button', class: 'step', onClick: () => go(i) }, h('span', { class: 'n' }, String(i + 1)), slideTitle(i)));

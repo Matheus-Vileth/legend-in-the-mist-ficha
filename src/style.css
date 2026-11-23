@@ -425,3 +425,15 @@ body.home-on #home { display: grid; justify-items: center; align-content: center
   .topbar { justify-content: center; }
   .save-note { margin-left: 0; padding-left: 8px; }
 }
+
+/* botão de início: só o ícone, no canto esquerdo da barra */
+.menu-btn { width: 44px; height: 40px; padding: 0; justify-content: center; }
+.menu-btn svg { display: block; }
+@media (min-width: 861px) {
+  .topbar { position: relative; }
+  .menu-btn { position: absolute; left: 30px; top: 50%; transform: translateY(-50%); }
+}
+@media (max-width: 860px) {
+  .menu-btn { grid-column: span 1; order: 10; width: 100%; }
+  .g-toggle { grid-column: span 3; order: 11; }
+}
